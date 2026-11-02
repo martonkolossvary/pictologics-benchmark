@@ -1,0 +1,32 @@
+{
+  "benchmark_settings": {
+    "background_load": "operator_quiescent",
+    "low_power_mode": "off",
+    "operating_system_updates": "deferred_for_complete_machine_run",
+    "power_source": "AC Power",
+    "result_storage": "local_unsynchronised_disk",
+    "sleep_prevention": "controller_sleep_guard",
+    "thread_policy": "adapter_native_threads"
+  },
+  "cpu_model": "Apple M4 Pro",
+  "expected_hardware": {
+    "cpu_count_logical": 14,
+    "cpu_count_physical": 14,
+    "machine": "arm64",
+    "memory_total_bytes": 51539607552,
+    "platform": "Darwin"
+  },
+  "machine_id": "pr-test",
+  "machine_label": "Apple M4 Pro (14-thread CPU, 48 GiB RAM)",
+  "notes": [
+    "Measured by reproduce on the first run of this machine.",
+    "The profile holds no serial number, hardware UUID, hostname or account name."
+  ],
+  "profile_id": "pr-test",
+  "required_runtime_state": {
+    "low_power_mode": 0,
+    "power_source": "AC Power",
+    "sleep_assertion_during_calculation": true
+  },
+  "schema_version": 1
+}
