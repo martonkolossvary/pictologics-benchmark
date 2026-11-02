@@ -1,0 +1,28 @@
+schema_version: 1
+name: medimage
+distribution: medimage-pkg
+version: "0.9.8"
+python: "3.10"
+requirement: "medimage-pkg==0.9.8"
+extra_requirements:
+  # MEDimage 0.9.8 still calls pandas.DataFrame.append and np.product.
+  - "pandas==1.5.3"
+  - "numpy==1.26.4"
+env_dir: ".venvs/adapters/medimage"
+smoke_imports: []
+upstream: "https://pypi.org/project/medimage-pkg/0.9.8/"
+verified_latest_stable: "2026-07-21"
+notes: "Compatibility pins are required by the 0.9.8 implementation; pip check remains mandatory. The adapter imports only MEDimage biomarker modules because the package-level import eagerly loads an unrelated XGBoost learning stack that requires system OpenMP on macOS."
+environment_locks:
+  Darwin-arm64:
+    path: "reproducibility/environment-locks/darwin-arm64/medimage.txt"
+    sha256: "b4935aa89d99f4e6d82d5f71a56b0477234ae537069dfa4a2e1d259d65a804ae"
+    freeze_sha256: "fab4c8460ec14031992eb04228d1ca955017b3a2f2539d0c16d356671344a09c"
+  Linux-x86_64:
+    path: "reproducibility/environment-locks/linux-x86_64/medimage.txt"
+    sha256: "b32ae058c5d40d95c12e9faeae4c3986cd72faac6b1cb2fc42b2d545c9b8f70f"
+    freeze_sha256: "4ef2efaa4d0e8a0ccf83487222bde8bb7f157e9364a2b1c9c10bf6a3556fdaa5"
+  Windows-AMD64:
+    path: "reproducibility/environment-locks/windows-amd64/medimage.txt"
+    sha256: "6cafea270bc9cadafdc4701fbdf6966706aece175b54444150c67e7413d2c436"
+    freeze_sha256: "8ee4d6053f7720f1bbe015c8872cc4bded211b405dca7bccb59d01de1b0881b2"

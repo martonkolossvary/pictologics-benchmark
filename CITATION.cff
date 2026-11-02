@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, cite it with the metadata in this file."
+title: "Pictologics radiomics benchmark"
+type: software
+authors:
+  - family-names: "Kolossváry"
+    given-names: "Márton"
+license: Apache-2.0
+version: 1.0.0
+repository-code: "https://github.com/martonkolossvary/pictologics-benchmark"

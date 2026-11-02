@@ -1,0 +1,13 @@
+PyWavelets==1.9.0
+docopt==0.6.2
+numpy==1.26.4
+packaging==26.2
+pip==26.1.2
+pykwalify==1.8.0
+pyradiomics @ git+https://github.com/AIM-Harvard/pyradiomics.git@6a761c4eb01905cfcb1139b0b158547c55edd4df
+python-dateutil==2.9.0.post0
+ruamel.yaml==0.19.1
+setuptools==83.0.0
+simpleitk==2.5.5
+six==1.17.0
+wheel==0.47.0

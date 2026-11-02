@@ -1,0 +1,30 @@
+schema_version: 1
+name: pyradiomics
+distribution: pyradiomics
+version: "3.1.0"
+python: "3.11"
+requirement: "pyradiomics @ git+https://github.com/AIM-Harvard/pyradiomics.git@6a761c4"
+extra_requirements:
+  - "numpy==1.26.4"
+env_dir: ".venvs/adapters/pyradiomics"
+smoke_imports:
+  - radiomics
+  - SimpleITK
+upstream: "https://pypi.org/project/pyradiomics/3.1.0/"
+verified_latest_stable: "2026-07-21"
+source_commit: "6a761c4"
+metadata_version: "3.0.1a1"
+notes: "Official 3.1.0 tag commit; avoids the unusable PyPI sdist and any third-party Python 3.12 fork. The upstream tag still reports stale distribution metadata 3.0.1a1, which is verified separately and never rewritten."
+environment_locks:
+  Darwin-arm64:
+    path: "reproducibility/environment-locks/darwin-arm64/pyradiomics.txt"
+    sha256: "5096585f2754890500e6f2cada5ba456bf438105ea5f42265f416b583ebbbf0c"
+    freeze_sha256: "b5c0f050cd146c2e28249fc14d47929d837a708dbe505e41a09e03ea743850e6"
+  Linux-x86_64:
+    path: "reproducibility/environment-locks/linux-x86_64/pyradiomics.txt"
+    sha256: "ad77e623c7e8b7961fab1a5ed977e72f02e747aef47c025978789bda2aed29b5"
+    freeze_sha256: "b5c0f050cd146c2e28249fc14d47929d837a708dbe505e41a09e03ea743850e6"
+  Windows-AMD64:
+    path: "reproducibility/environment-locks/windows-amd64/pyradiomics.txt"
+    sha256: "ad77e623c7e8b7961fab1a5ed977e72f02e747aef47c025978789bda2aed29b5"
+    freeze_sha256: "b5c0f050cd146c2e28249fc14d47929d837a708dbe505e41a09e03ea743850e6"

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "profile_id": "mac-m4pro-01",
+  "machine_id": "mac-m4pro-01",
+  "machine_label": "Apple M4 Pro (14-core CPU, 48 GiB RAM)",
+  "cpu_model": "Apple M4 Pro",
+  "expected_hardware": {
+    "platform": "Darwin",
+    "machine": "arm64",
+    "cpu_count_physical": 14,
+    "cpu_count_logical": 14,
+    "memory_total_bytes": 51539607552
+  },
+  "required_runtime_state": {
+    "power_source": "AC Power",
+    "low_power_mode": 0,
+    "sleep_assertion_during_calculation": true
+  },
+  "benchmark_settings": {
+    "background_load": "operator_quiescent",
+    "operating_system_updates": "deferred_for_complete_machine_run",
+    "power_source": "AC Power",
+    "low_power_mode": "off",
+    "sleep_prevention": "controller_sleep_guard",
+    "result_storage": "local_unsynchronised_ssd",
+    "thread_policy": "adapter_native_threads"
+  },
+  "notes": [
+    "The public profile intentionally excludes serial numbers, hardware UUIDs, hostnames, and account names.",
+    "The exact OS and Python versions are captured separately in every immutable run specification.",
+    "Operator-controlled settings are frozen in the profile but must still be confirmed before each uninterrupted machine run."
+  ]
+}

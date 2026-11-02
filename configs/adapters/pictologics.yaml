@@ -1,0 +1,26 @@
+schema_version: 1
+name: pictologics
+distribution: pictologics
+version: "1.0.0"
+python: "3.12"
+requirement: "pictologics==1.0.0"
+env_dir: ".venvs/adapters/pictologics"
+smoke_imports:
+  - pictologics
+upstream: "https://pypi.org/project/pictologics/1.0.0/"
+verified_latest_stable: "2026-11-01"
+source_commit: "3cb90e6438ba41fdcffd1a81fbe61d90c4f3ad48"
+notes: "PyPI trusted-publishing release, tag v1.0.0. Wheel SHA-256: 68f1e48b7a56941b71d2e52336dfd72374503b4f8dd6a68979a2842e13ec1cfc; sdist SHA-256: 8e4e9523258fe2679b7145ed253146d042970f4270f3e81336529e79ccc88c41. The other packages of the lock resolve at the 2026-08-29 cutoff of the other adapters."
+environment_locks:
+  Darwin-arm64:
+    path: "reproducibility/environment-locks/darwin-arm64/pictologics.txt"
+    sha256: "16912ebed7af366e3c5f63187e706dd0438c5c1abf1ec279c1c189ad6a5bda9e"
+    freeze_sha256: "f85a9559b201acc06b36a36122c192a50b6cb383b603c923dec784c4e0ea7c4c"
+  Linux-x86_64:
+    path: "reproducibility/environment-locks/linux-x86_64/pictologics.txt"
+    sha256: "f6ac1755c24e542ccfea9d47d0f8cdc770702c01752f98bfbaf1a6892bf2f7ac"
+    freeze_sha256: "f85a9559b201acc06b36a36122c192a50b6cb383b603c923dec784c4e0ea7c4c"
+  Windows-AMD64:
+    path: "reproducibility/environment-locks/windows-amd64/pictologics.txt"
+    sha256: "bd310bf9d13e19996c1a224b4e294d32f457000b9859f918c8af7bb8615658ab"
+    freeze_sha256: "913108039e30cd7537f0343042744bcc4195c447bf3f376932448ecfeb03db94"

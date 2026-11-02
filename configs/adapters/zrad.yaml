@@ -1,0 +1,28 @@
+schema_version: 1
+name: zrad
+distribution: z-rad
+version: "26.8.0"
+python: "3.12"
+requirement: "z-rad==26.8.0"
+env_dir: ".venvs/adapters/zrad"
+smoke_imports:
+  - zrad
+  - zrad.image
+  - zrad.preprocessing
+  - zrad.radiomics
+upstream: "https://pypi.org/project/z-rad/26.8.0/"
+verified_latest_stable: "2026-08-20"
+notes: "Latest stable release verified against the official PyPI JSON API. Wheel SHA-256: defbe9b8c1bd0aff44533876cba92c3e153181aa3adf8f913b5d31ff48a1e860; sdist SHA-256: c4f9a9480604f858e7ae4fd3115116c24056cbda51df59d4af38f7343a313b7f."
+environment_locks:
+  Darwin-arm64:
+    path: "reproducibility/environment-locks/darwin-arm64/zrad.txt"
+    sha256: "c4e9390a4603c0631852bf792571bb562df93dd160a3e237644967a10c262977"
+    freeze_sha256: "f9cdf0a5928734d1449917cc8caaff53d25024dd7b4ac472501968dbf9f5c5ae"
+  Linux-x86_64:
+    path: "reproducibility/environment-locks/linux-x86_64/zrad.txt"
+    sha256: "6163ab2fdcd2610d95e672d09e6cabf3ada219a19877caf6e7db9c2e86778f00"
+    freeze_sha256: "f9cdf0a5928734d1449917cc8caaff53d25024dd7b4ac472501968dbf9f5c5ae"
+  Windows-AMD64:
+    path: "reproducibility/environment-locks/windows-amd64/zrad.txt"
+    sha256: "6b35e10c5ec153a0464e69b6d7521d5bfd95eaa4135ad92eb3ee39c1430a0600"
+    freeze_sha256: "7c51f2011451bae39bb8d9efbdd33c7c4e8f1a7724c73964fe00296b7abd2478"

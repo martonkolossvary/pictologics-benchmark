@@ -1,0 +1,30 @@
+schema_version: 1
+name: mirp
+distribution: mirp
+version: "2.7.0"
+python: "3.12"
+requirement: "mirp==2.7.0"
+env_dir: ".venvs/adapters/mirp"
+smoke_imports:
+  - mirp
+  - itk
+upstream: "https://pypi.org/project/mirp/2.7.0/"
+# The itk 5.4.7 Linux wheels write the tag "itk-5.4.7-cp311-abi3-..." into
+# their WHEEL file, so dependency checkers cannot read it; the package works.
+unreadable_wheel_metadata:
+  - itk
+verified_latest_stable: "2026-08-20"
+notes: "Latest stable release verified against the official PyPI JSON API. Wheel SHA-256: ab4cbcb6340d9835217531bde51da1220a022f0ce9975ccd70047744f453deb1; sdist SHA-256: b92bdc8edf04ec760bde4116b14c83e2480bf36343f7d145f404523d2efa1a24."
+environment_locks:
+  Darwin-arm64:
+    path: "reproducibility/environment-locks/darwin-arm64/mirp.txt"
+    sha256: "9114e23c91221c17a3eb2c56bee78db432a1abe751c3a32af31306d2fa28f3a4"
+    freeze_sha256: "d48c5e7479ab0eed821fe66cddfb77c139785ec7b8f850bc198589a9a00ff61a"
+  Linux-x86_64:
+    path: "reproducibility/environment-locks/linux-x86_64/mirp.txt"
+    sha256: "41683f3669547af2e5a4819c04999113b7a0f23b032ac138577f0cd2b11cfb06"
+    freeze_sha256: "d48c5e7479ab0eed821fe66cddfb77c139785ec7b8f850bc198589a9a00ff61a"
+  Windows-AMD64:
+    path: "reproducibility/environment-locks/windows-amd64/mirp.txt"
+    sha256: "43b54958d2a15bdccebb25a579c779161ea2eb00f0cb53d57ea1fbc88d5a8a32"
+    freeze_sha256: "dcc1450240846cdedca598b40c26caa4c4f4c2d51ad2944e0d27470c713fc6f9"

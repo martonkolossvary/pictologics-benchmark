@@ -1,0 +1,13 @@
+Pictologics Manuscript Benchmark
+Copyright 2026 Márton Kolossváry
+
+This product includes software developed by Márton Kolossváry.
+
+This product contains code derived from the Image Biomarker Standardisation
+Initiative (IBSI) reference implementations and guidelines.
+https://theibsi.github.io/
+
+The benchmark installs and evaluates third-party radiomics software in
+separate environments. Those packages and the externally fetched IBSI data
+remain subject to their own licenses; their provenance and license locations
+are recorded in reproducibility/inputs/manifest.json and README.md.

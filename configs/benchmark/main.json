@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "contract_id": "calculation_only_native_group_3d_merge",
+  "status": "frozen_prebenchmark",
+  "aggregation": "3d_merge",
+  "distance": 1,
+  "input_contract": "manifest_harmonized",
+  "family_order": [
+    "group_intensity",
+    "group_local_intensity",
+    "group_morphology",
+    "group_spatial_morphology",
+    "group_texture",
+    "group_ivh"
+  ],
+  "timing": {
+    "contract_version": 1,
+    "scope": "prepared_family_inputs_to_radiomic_calculations",
+    "file_io_included": false,
+    "mask_preparation_included": false,
+    "resegmentation_included": false,
+    "discretization_included": false,
+    "result_normalization_or_serialization_included": false,
+    "matrix_mesh_neighborhood_construction_included": true,
+    "untimed_warmup_calls_per_process": 1,
+    "measured_calls_per_process": 3,
+    "fresh_process_repeats": 3,
+    "within_process_primary_statistic": "median",
+    "between_process_primary_statistic": "median",
+    "retain_all_raw_samples": true,
+    "runtime_normalization": "none",
+    "thread_policy": "adapter_native_threads"
+  },
+  "representations": {
+    "raw": {
+      "families": [
+        "group_intensity",
+        "group_local_intensity",
+        "group_morphology",
+        "group_spatial_morphology"
+      ],
+      "adapter_discretization": "raw"
+    },
+    "texture_fbn32": {
+      "families": [
+        "group_texture"
+      ],
+      "representation_id": "mask_specific_ibsi_fbn32",
+      "adapter_discretization": "identity",
+      "configured_levels": 32
+    },
+    "precomputed_ivh": {
+      "families": [
+        "group_ivh"
+      ],
+      "eligible_modalities": [
+        "ct",
+        "synthetic",
+        "mri",
+        "pet"
+      ],
+      "ct_and_synthetic_representation_id": "mask_specific_ibsi_fbs1_ivh_indices",
+      "noncalibrated_representation_id": "mask_specific_ibsi_fbn1000_ivh_indices",
+      "adapter_discretization": "identity",
+      "adapter_rebinning": false
+    }
+  },
+  "adapter_inventories": {
+    "pictologics": {
+      "release_version": "1.0.0",
+      "native_output_count": 174,
+      "ibsi_table2_definition_count": 172,
+      "family_output_counts": {
+        "group_intensity": 18,
+        "group_local_intensity": 2,
+        "group_morphology": 27,
+        "group_spatial_morphology": 2,
+        "group_texture": 118,
+        "group_ivh": 7
+      }
+    },
+    "pyradiomics": {
+      "release_version": "3.1.0",
+      "distribution_metadata_version": "3.0.1a1",
+      "native_output_count": 110,
+      "ibsi_table2_definition_count": 108,
+      "family_output_counts": {
+        "group_intensity": 16,
+        "group_local_intensity": 0,
+        "group_morphology": 17,
+        "group_spatial_morphology": 0,
+        "group_texture": 77,
+        "group_ivh": 0
+      }
+    },
+    "mirp": {
+      "release_version": "2.7.0",
+      "native_output_count": 190,
+      "ibsi_table2_definition_count": 172,
+      "family_output_counts": {
+        "group_intensity": 22,
+        "group_local_intensity": 2,
+        "group_morphology": 30,
+        "group_spatial_morphology": 2,
+        "group_texture": 119,
+        "group_ivh": 15
+      }
+    },
+    "medimage": {
+      "release_version": "0.9.8",
+      "native_output_count": 173,
+      "ibsi_table2_definition_count": 171,
+      "family_output_counts": {
+        "group_intensity": 18,
+        "group_local_intensity": 2,
+        "group_morphology": 27,
+        "group_spatial_morphology": 2,
+        "group_texture": 117,
+        "group_ivh": 7
+      }
+    },
+    "zrad": {
+      "release_version": "26.8.0",
+      "native_output_count": 169,
+      "ibsi_table2_definition_count": 167,
+      "family_output_counts": {
+        "group_intensity": 18,
+        "group_local_intensity": 2,
+        "group_morphology": 23,
+        "group_spatial_morphology": 2,
+        "group_texture": 118,
+        "group_ivh": 6
+      }
+    }
+  },
+  "evidence": {
+    "feature_surface_contract": {
+      "path": "reproducibility/contracts/adapter_feature_surface.csv",
+      "sha256": "40773b726298b97535762817cd0382b8002ae5d0a82fd2b98de07beb17f26b96",
+      "source_release": "ibsi1"
+    }
+  },
+  "interpretation": {
+    "comparison_unit": "same case, family, stored representation, and process repeat",
+    "equal_feature_work_claim": false,
+    "per_feature_runtime_valid": false,
+    "coverage_adjusted_runtime_valid": false,
+    "report_runtime_with_native_output_count_and_ibsi_coverage": true
+  },
+  "roi_crop": "roi_bounding_box_before_timer",
+  "timing_unit": "one adapter call per group of families that share one stored input",
+  "workload_groups": {
+    "group_intensity": [
+      "intensity"
+    ],
+    "group_local_intensity": [
+      "local_intensity"
+    ],
+    "group_morphology": [
+      "morphology_shape"
+    ],
+    "group_spatial_morphology": [
+      "morphology_spatial"
+    ],
+    "group_texture": [
+      "histogram",
+      "glcm",
+      "glrlm",
+      "glszm",
+      "gldzm",
+      "ngtdm",
+      "ngldm"
+    ],
+    "group_ivh": [
+      "ivh"
+    ]
+  }
+}
