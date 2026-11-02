@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "dataset": "pictologics_pillar1",
+  "dataset_kind": "synthetic",
+  "description": "CT-inspired 3D morphology scaling benchmark with three per-voxel noise levels, raw HU, mask-specific IBSI FBN32 texture inputs, and mask-specific FBS1 IVH inputs",
+  "generator": "synthetic_volumetric_phantom",
+  "generator_version": 1,
+  "coordinate_system": "RAS+",
+  "axis_order": "xyz",
+  "fov_mm": 256.0,
+  "sizes": [
+    32,
+    48,
+    64,
+    96,
+    128,
+    192,
+    256,
+    320,
+    384,
+    512
+  ],
+  "hu_profiles": [
+    "low_noise",
+    "reference_noise",
+    "high_noise"
+  ],
+  "mask_ids": [
+    "M1",
+    "M2",
+    "M3",
+    "M4"
+  ],
+  "seed": 20260809,
+  "slab_depth": 8,
+  "raw_representation": {
+    "id": "original_hu_int16",
+    "dtype": "int16",
+    "units": "HU",
+    "routing": [
+      "morphology",
+      "local_intensity",
+      "intensity_statistics"
+    ]
+  },
+  "texture_representation": {
+    "id": "mask_specific_ibsi_fbn32",
+    "method": "IBSI_fixed_bin_number",
+    "configured_levels": 32,
+    "background_value": 0,
+    "roi_value_range": [
+      1,
+      32
+    ],
+    "routing": [
+      "intensity_histogram",
+      "glcm",
+      "glrlm",
+      "glszm",
+      "gldzm",
+      "ngtdm",
+      "ngldm"
+    ]
+  },
+  "ivh_representation": {
+    "id": "mask_specific_ibsi_fbs1_ivh_indices",
+    "method": "IBSI_fixed_bin_size",
+    "bin_width": 1.0,
+    "anchor": "mask_specific_roi_minimum",
+    "background_value": 0,
+    "routing": [
+      "ivh"
+    ]
+  },
+  "storage": {
+    "format": "NIfTI-1",
+    "compression": "gzip",
+    "extension": ".nii.gz"
+  },
+  "case_count": 120,
+  "raw_image_count": 30,
+  "mask_count": 40,
+  "discrete_image_count": 120,
+  "ivh_image_count": 120
+}

@@ -1,0 +1,18 @@
+{
+  "contract_id": "adapter_feature_surface_ibsi1",
+  "contract_path": "reproducibility/contracts/adapter_feature_surface.csv",
+  "contract_sha256": "40773b726298b97535762817cd0382b8002ae5d0a82fd2b98de07beb17f26b96",
+  "generation": {
+    "delimiter": ", ",
+    "documented_alias_suffix": " [documented exact alias]",
+    "selection": "non-empty native_feature_names, deduplicated by adapter and family"
+  },
+  "purpose": "Native feature names for each adapter and IBSI family, with IBSI morphology split into the morphology_shape and morphology_spatial (Moran's I, Geary's C) benchmark workloads; used by the feature-surface audit.",
+  "rows": 56,
+  "schema_version": 1,
+  "source_evidence": {
+    "comparisons_sha256": "f7ccccae24412216eb04d5692d30b71ca4d5beb483c77e5780dfc16c3d733d64",
+    "result_release": "ibsi1",
+    "rows": 870
+  }
+}

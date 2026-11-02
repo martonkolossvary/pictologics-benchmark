@@ -1,0 +1,140 @@
+name: ci
+
+# A result package changes only submissions/<machine-id>/<date>/, and
+# submission.yml checks it.
+on:
+  push:
+    paths-ignore: ["submissions/*/**"]
+  pull_request:
+    paths-ignore: ["submissions/*/**"]
+  workflow_dispatch:
+    inputs:
+      environments:
+        description: "Build the five library environments from their locks"
+        type: boolean
+        default: false
+      quick_run:
+        description: "Run reproduce --quick end to end (about two hours)"
+        type: boolean
+        default: false
+      quick_run_os:
+        description: "Systems for the quick run"
+        type: choice
+        options: [both, ubuntu-latest, windows-latest]
+        default: both
+
+permissions:
+  contents: read
+
+jobs:
+  controller:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Install Arial (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ttf-mscorefonts-installer
+          fc-cache -f
+      - name: Install Poetry
+        run: python -m pip install "poetry==2.2.1"
+      - name: Install the controller
+        run: poetry sync
+      - name: Check the project metadata
+        run: poetry check
+      - name: Lint and format
+        run: |
+          poetry run ruff check .
+          poetry run ruff format --check .
+      - name: Check the release lock
+        run: poetry run python -m bench.release_lock --check
+      - name: Tests
+        run: poetry run pytest -q
+
+  scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: ShellCheck
+        run: shellcheck reproduce.sh
+      - name: PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser
+          Invoke-ScriptAnalyzer -Path reproduce.ps1 -Severity Error -EnableExit
+
+  environments:
+    if: github.event_name == 'workflow_dispatch' && inputs.environments
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Bootstrap (POSIX)
+        if: runner.os != 'Windows'
+        run: |
+          ./reproduce.sh --help
+          export PATH="$PWD/.tools:$PATH"
+          .venv/bin/python -m bench.cli env create
+          .venv/bin/python -m bench.cli env verify
+      - name: Bootstrap (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        # The same command as in the README: Windows PowerShell 5.1, Bypass.
+        run: |
+          powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 --help
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $env:PATH = "$PWD\.tools;" + $env:PATH
+          .venv\Scripts\python.exe -m bench.cli env create
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          .venv\Scripts\python.exe -m bench.cli env verify
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+  quick-run:
+    if: github.event_name == 'workflow_dispatch' && inputs.quick_run
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(inputs.quick_run_os == 'both' && '["ubuntu-latest", "windows-latest"]' || format('["{0}"]', inputs.quick_run_os)) }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 345
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install Arial (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ttf-mscorefonts-installer
+          fc-cache -f
+      - name: Free disk space (Linux)
+        if: runner.os == 'Linux'
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+      - name: Quick run (Linux)
+        if: runner.os != 'Windows'
+        run: ./reproduce.sh --quick --yes --no-submit --machine-id ci-${{ runner.os }} --result-root "$RUNNER_TEMP/results"
+      - name: Quick run (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 --quick --yes --no-submit --machine-id ci-${{ runner.os }} --result-root "$env:RUNNER_TEMP\results"
+      - name: Keep the reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: quick-run-${{ runner.os }}
+          path: |
+            ${{ runner.temp }}/results/**/report/**
+            ${{ runner.temp }}/results/**/figures/**
+            ${{ runner.temp }}/results/**/compliance/**/logs/**
+          if-no-files-found: ignore

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "dataset": "pictologics_pillar2_a1",
+  "dataset_kind": "synthetic",
+  "description": "Dense whole-anatomy 3D scaling workload with a one-voxel-or-greater background guard",
+  "generator": "synthetic_volumetric_phantom",
+  "generator_version": 1,
+  "coordinate_system": "RAS+",
+  "axis_order": "xyz",
+  "fov_mm": 256.0,
+  "sizes": [
+    32,
+    48,
+    64,
+    96,
+    128,
+    192,
+    256,
+    320,
+    384,
+    512
+  ],
+  "hu_profile": "reference_noise",
+  "mask_id": "A1",
+  "seed": 20260809,
+  "slab_depth": 8,
+  "texture_levels": 32,
+  "ivh_bin_width": 1.0,
+  "case_count": 10,
+  "artifact_count": 40
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "specification": "IBSI 2",
+  "phase": "phase2",
+  "reference_manual_version": "9",
+  "configuration_dimension": "A",
+  "crop": false,
+  "intensity_resegmentation_range_hu": [
+    -1000,
+    400
+  ],
+  "intensity_resegmentation_source": "unfiltered_image",
+  "response_map_discretization": "none",
+  "statistics_roi": "complete_3d",
+  "resampling": {
+    "enabled": false
+  }
+}

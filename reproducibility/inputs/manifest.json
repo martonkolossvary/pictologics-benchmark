@@ -1,0 +1,2997 @@
+{
+  "downloads": [
+    {
+      "component": "workbook",
+      "destination": "data/downloads/IBSI-1-submission-table.xlsx",
+      "sha256": "3af20577b580f2161bd546e147338ff226abb1676488e2906f2ce908b7985710",
+      "url": "https://ibsi.radiomics.hevs.ch/assets/IBSI-1-submission-table.xlsx"
+    }
+  ],
+  "files": [
+    {
+      "bytes": 126,
+      "component": "ibsi1",
+      "destination": "data/ibsi1/digital_phantom/image/phantom.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "83773ac2a288aa93cf819a98eaf301c18d35d5876182ec9c18733184e2b7a83a",
+      "source": "ibsi_1_digital_phantom/nifti/image/phantom.nii.gz"
+    },
+    {
+      "bytes": 99,
+      "component": "ibsi1",
+      "destination": "data/ibsi1/digital_phantom/mask/mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "3032d340944b577b83bc559ea7ae9a6034b84633a840eff39570ec17aa1d6281",
+      "source": "ibsi_1_digital_phantom/nifti/mask/mask.nii.gz"
+    },
+    {
+      "bytes": 17028,
+      "component": "licenses",
+      "destination": "data/ibsi1/licenses/digital_phantom_LICENSE.md",
+      "repository": "ibsi_data_sets",
+      "sha256": "c863fa4a2aa4d3152f4bcb58bb7bb63c95704805bbb4aec18cbea7c701d4f046",
+      "source": "ibsi_1_digital_phantom/LICENSE.md"
+    },
+    {
+      "bytes": 706,
+      "component": "licenses",
+      "destination": "data/ibsi1/licenses/digital_phantom_README.md",
+      "repository": "ibsi_data_sets",
+      "sha256": "9759bad4490e0f2443188a6f565c14d55fce8fdc90670c153962e375fbcdee00",
+      "source": "ibsi_1_digital_phantom/README.md"
+    },
+    {
+      "bytes": 1943,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/checkerboard/image/checkerboard.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "55cb8915c22178a420904e94a74f7fca94f3a887095957ef679809bfdff7a23e",
+      "source": "ibsi_2_digital_phantom/nifti/checkerboard/image/checkerboard.nii.gz"
+    },
+    {
+      "bytes": 349,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/checkerboard/mask/mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f169b2fced49fe23eee6c09914d9ad07e0aba835b46f2c74caa99a609996fc16",
+      "source": "ibsi_2_digital_phantom/nifti/checkerboard/mask/mask.nii.gz"
+    },
+    {
+      "bytes": 351,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/empty/image/empty.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "3ba64e8a782127c2595f2f74a59820d414cf525c1f942380de587806a75ed464",
+      "source": "ibsi_2_digital_phantom/nifti/empty/image/empty.nii.gz"
+    },
+    {
+      "bytes": 349,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/empty/mask/mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f169b2fced49fe23eee6c09914d9ad07e0aba835b46f2c74caa99a609996fc16",
+      "source": "ibsi_2_digital_phantom/nifti/empty/mask/mask.nii.gz"
+    },
+    {
+      "bytes": 359,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/impulse/image/impulse.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "8a8314fdcf41a55f4de3f8e7d0f78a09563ffd4d11f20d73995e8b13369a78bd",
+      "source": "ibsi_2_digital_phantom/nifti/impulse/image/impulse.nii.gz"
+    },
+    {
+      "bytes": 349,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/impulse/mask/mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f169b2fced49fe23eee6c09914d9ad07e0aba835b46f2c74caa99a609996fc16",
+      "source": "ibsi_2_digital_phantom/nifti/impulse/mask/mask.nii.gz"
+    },
+    {
+      "bytes": 233697,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/noise/image/noise.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "20feaef6e6b5970dc4ce9979a00e1fe41d5017bd2f044d1ad2eec4f74f507ccc",
+      "source": "ibsi_2_digital_phantom/nifti/noise/image/noise.nii.gz"
+    },
+    {
+      "bytes": 349,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/noise/mask/mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f169b2fced49fe23eee6c09914d9ad07e0aba835b46f2c74caa99a609996fc16",
+      "source": "ibsi_2_digital_phantom/nifti/noise/mask/mask.nii.gz"
+    },
+    {
+      "bytes": 1001,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/orientation/image/orientation.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "e0f961ec142b597569aad1d46717fd3d8ae17b100330278a819b4e012357d3b6",
+      "source": "ibsi_2_digital_phantom/nifti/orientation/image/orientation.nii.gz"
+    },
+    {
+      "bytes": 540,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/pattern_1/image/pattern_1.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "e2ec165e237a9fb8e017c5ef7c5472fa82d10da1433d4bb296762916f8e7570f",
+      "source": "ibsi_2_digital_phantom/nifti/pattern_1/image/pattern_1.nii.gz"
+    },
+    {
+      "bytes": 349,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/pattern_1/mask/mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f169b2fced49fe23eee6c09914d9ad07e0aba835b46f2c74caa99a609996fc16",
+      "source": "ibsi_2_digital_phantom/nifti/pattern_1/mask/mask.nii.gz"
+    },
+    {
+      "bytes": 426,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/pattern_2/image/pattern_2.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "60ce42614abe68acd16a2d6f853218a62666fed580ecbb49a8c3a15c914b7bb0",
+      "source": "ibsi_2_digital_phantom/nifti/pattern_2/image/pattern_2.nii.gz"
+    },
+    {
+      "bytes": 349,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/pattern_2/mask/mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f169b2fced49fe23eee6c09914d9ad07e0aba835b46f2c74caa99a609996fc16",
+      "source": "ibsi_2_digital_phantom/nifti/pattern_2/mask/mask.nii.gz"
+    },
+    {
+      "bytes": 412,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/pattern_3/image/pattern_3.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "3f33f74dff6c9d5a58d38f999074f6b55732ea859dcdebf93b54aa440e04b27b",
+      "source": "ibsi_2_digital_phantom/nifti/pattern_3/image/pattern_3.nii.gz"
+    },
+    {
+      "bytes": 349,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/pattern_3/mask/mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f169b2fced49fe23eee6c09914d9ad07e0aba835b46f2c74caa99a609996fc16",
+      "source": "ibsi_2_digital_phantom/nifti/pattern_3/mask/mask.nii.gz"
+    },
+    {
+      "bytes": 8060,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/sphere/image/sphere.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ab6136aa65c6378fc680f3a3dffc9f2ac12950635b3ad8d15aa3a4896f745064",
+      "source": "ibsi_2_digital_phantom/nifti/sphere/image/sphere.nii.gz"
+    },
+    {
+      "bytes": 349,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/source/phase1/sphere/mask/mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f169b2fced49fe23eee6c09914d9ad07e0aba835b46f2c74caa99a609996fc16",
+      "source": "ibsi_2_digital_phantom/nifti/sphere/mask/mask.nii.gz"
+    },
+    {
+      "bytes": 17028,
+      "component": "licenses",
+      "destination": "data/ibsi2/licenses/digital_phantom_LICENSE.md",
+      "repository": "ibsi_data_sets",
+      "sha256": "c863fa4a2aa4d3152f4bcb58bb7bb63c95704805bbb4aec18cbea7c701d4f046",
+      "source": "ibsi_2_digital_phantom/LICENSE.md"
+    },
+    {
+      "bytes": 773,
+      "component": "licenses",
+      "destination": "data/ibsi2/licenses/digital_phantom_README.md",
+      "repository": "ibsi_data_sets",
+      "sha256": "9b528b2baf90c2c4b8216e9032634d2148593ab1aebbec346f1cc33db876c15b",
+      "source": "ibsi_2_digital_phantom/README.md"
+    },
+    {
+      "bytes": 3858588,
+      "component": "ibsi2-phase2",
+      "destination": "data/ibsi2/source/phase2/image/phantom.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "909129fdf99d5f5fd17bc568b1834d31edce8663ea6746c6020720bfc1d7bbcb",
+      "source": "ibsi_2_ct_radiomics_phantom/nifti/image/phantom.nii.gz"
+    },
+    {
+      "bytes": 8114,
+      "component": "ibsi2-phase2",
+      "destination": "data/ibsi2/source/phase2/mask/mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "0e9243e473b1255c60e6460df465d0b07b65436d6e0c691fe3d17bca0594ae78",
+      "source": "ibsi_2_ct_radiomics_phantom/nifti/mask/mask.nii.gz"
+    },
+    {
+      "bytes": 19526,
+      "component": "licenses",
+      "destination": "data/ibsi2/licenses/ct_phantom_LICENSE.md",
+      "repository": "ibsi_data_sets",
+      "sha256": "03e3631fbf812e9158e525de9ebd062987f51810d219e795ba5c12e190828663",
+      "source": "ibsi_2_ct_radiomics_phantom/LICENSE.md"
+    },
+    {
+      "bytes": 1469,
+      "component": "licenses",
+      "destination": "data/ibsi2/licenses/ct_phantom_README.md",
+      "repository": "ibsi_data_sets",
+      "sha256": "5162e6d41505e340cad1efd540a668608d8746f2ba6deb568e4b479290352962",
+      "source": "ibsi_2_ct_radiomics_phantom/README.md"
+    },
+    {
+      "bytes": 3417229,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_001_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6751295745f056c0b25e3b97fc5d9106d944b715db2df3f1a408923b9c36cf5f",
+      "source": "ibsi_validation/nifti/STS_001/CT_image.nii.gz"
+    },
+    {
+      "bytes": 8481,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_001_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6ee66bb3facc1784c01930c2c942e1a52c377d3329a6fee12c674d017099f3bc",
+      "source": "ibsi_validation/nifti/STS_001/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2325774,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_001_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "c6dec5057ac68c5c0d45322a3ee680a3bc65b776f8359e2c5d56ff90b3ed253f",
+      "source": "ibsi_validation/nifti/STS_001/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 7170,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_001_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "e1a2d44d41992fdda50303ebbf040729d3b13b33b9eaa00dc8274651767057ee",
+      "source": "ibsi_validation/nifti/STS_001/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 338859,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_001_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "358300bb60fb5a21e914e833afdda4d16072bd25cbd0c0f9e38a7a64726af31a",
+      "source": "ibsi_validation/nifti/STS_001/PET_image.nii.gz"
+    },
+    {
+      "bytes": 983,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_001_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ac70620abd70a5934dc2d8efbbd3baf627484b7182d1268aac071a9a445f57b5",
+      "source": "ibsi_validation/nifti/STS_001/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 1825261,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_002_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "9f8a7676fc019abb9a1137bf3a31f87ed822fc2be211b141caf54b4fba5ac422",
+      "source": "ibsi_validation/nifti/STS_002/CT_image.nii.gz"
+    },
+    {
+      "bytes": 2505,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_002_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "5af62399b5696902714740358dc7fe5ffe0bad3c80558c9c7d56225cf3214b30",
+      "source": "ibsi_validation/nifti/STS_002/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 504429,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_002_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "30f6cc14233abb9084794ea818e6c69c77b0cf09453b65cbe15c9e5f1d0fe056",
+      "source": "ibsi_validation/nifti/STS_002/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 1651,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_002_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ea066ddfa87edd8e353366c58f9568acabcc036d042e83b99707f3c8c86dc351",
+      "source": "ibsi_validation/nifti/STS_002/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 120400,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_002_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d0e070f1e88c48f3ffdefa5ec7a91a3df72c62d6d84e2a32a8575ea2f94ebbbb",
+      "source": "ibsi_validation/nifti/STS_002/PET_image.nii.gz"
+    },
+    {
+      "bytes": 331,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_002_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "c3faaa8c7490d858e3dd8f7180749f3334ac55985c035be8ed04bcf70625526d",
+      "source": "ibsi_validation/nifti/STS_002/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2053136,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_003_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1a762c2dbd46738a76386b8c2fd246709c0ca5d5641c012ed8f5153fd0382083",
+      "source": "ibsi_validation/nifti/STS_003/CT_image.nii.gz"
+    },
+    {
+      "bytes": 3168,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_003_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "341ed2a3a845a86a156682c8852e382361b5abc66628785b5bbd60c580aa61e8",
+      "source": "ibsi_validation/nifti/STS_003/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1152873,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_003_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "39e722e4f3849bd88a9377e5eb3db2931746a320388fa3fefb5f19ac04616f5e",
+      "source": "ibsi_validation/nifti/STS_003/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 2533,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_003_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "df9b82f22596f7c6547ecd6092497110ada84a92cfbc59c8ff55d999fdb6afbc",
+      "source": "ibsi_validation/nifti/STS_003/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 150683,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_003_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d1c28ce396df16302dc2ce4591362e01c639d4390d9289794d02b89d3a5a8be2",
+      "source": "ibsi_validation/nifti/STS_003/PET_image.nii.gz"
+    },
+    {
+      "bytes": 381,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_003_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "495f698cfd7815e189ade87c03c910067c9a2f22da1e2430bc20cce1a2ce326b",
+      "source": "ibsi_validation/nifti/STS_003/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 3758048,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_004_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "5ec21177e31ba1ff9c5ab85a8cc3acf4eaa79f4fa99bb7bc91db026a71b8cbb0",
+      "source": "ibsi_validation/nifti/STS_004/CT_image.nii.gz"
+    },
+    {
+      "bytes": 9203,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_004_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "0481d7862b42c387cdb426f82d5621d0842b2cba5b8a2cc0a4198e785b91fc83",
+      "source": "ibsi_validation/nifti/STS_004/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1157010,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_004_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "26b81993311d3d8faeecce561bcae85d834830bb1bb8f487d88506b2e014b2f1",
+      "source": "ibsi_validation/nifti/STS_004/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 6821,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_004_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "5a88b6f845ad6fb86ebc526bfeef1e51deeb21b90325138ddaea096d1203ff41",
+      "source": "ibsi_validation/nifti/STS_004/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 519917,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_004_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "85d8a9665414f6a358657d7382c5f92427aa9e4a218c14b293306dc16ba1c6e7",
+      "source": "ibsi_validation/nifti/STS_004/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1129,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_004_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "5be93d012c7f4ae624847b5f5dc0fe7e6c2c8c2f5919c7f7a137bf6bba3f6d3f",
+      "source": "ibsi_validation/nifti/STS_004/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 3947434,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_005_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "43696eca1d9e1b31073de6ecc15b15fa3dedb43b6f1b684d58240720bbf7f834",
+      "source": "ibsi_validation/nifti/STS_005/CT_image.nii.gz"
+    },
+    {
+      "bytes": 10835,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_005_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "868e51bae20413e39d1c9858048d1a3734757029a3c23ca9041549ca0e7ba46c",
+      "source": "ibsi_validation/nifti/STS_005/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1779823,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_005_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "629f85d553dabe8e382b3a77465c33798c6005286a98f1cdea3f19d3a3ba8aba",
+      "source": "ibsi_validation/nifti/STS_005/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 8711,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_005_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "87b83f128b17323573cd6122363e7fc67f962ac71dde15b5a18dfe5a8d3fda39",
+      "source": "ibsi_validation/nifti/STS_005/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 350862,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_005_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f05ccf002bdb2e258cb24e49b52591fae2161cf660267c424ed3dfe33378635a",
+      "source": "ibsi_validation/nifti/STS_005/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1109,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_005_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "17047c1cbed936726981d2eda0fc1b9fbf9d8c7ec821b603370759d040dc5701",
+      "source": "ibsi_validation/nifti/STS_005/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2774482,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_006_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "65f0e6945f500b7bc851afc39ad3494c38d1934580dfeeeaec8d7ec16f55b60c",
+      "source": "ibsi_validation/nifti/STS_006/CT_image.nii.gz"
+    },
+    {
+      "bytes": 6996,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_006_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "440a60145bd0e9fea43b450192da463a708df81a9acb502ffca9c2b71702177c",
+      "source": "ibsi_validation/nifti/STS_006/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1454365,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_006_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "4903b18919e891a108d533bf13bacccb300662efd6cd3a1623f4d397f8d1ce13",
+      "source": "ibsi_validation/nifti/STS_006/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 6132,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_006_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "28b0740504d0ed0367734f44d6fc0a26293ee443694423d8d604a00ef1f138f7",
+      "source": "ibsi_validation/nifti/STS_006/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 352612,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_006_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "2cb4b877d469637fc06854e20d2f85ef5d3035408c4e9d41a5edc73a055aa731",
+      "source": "ibsi_validation/nifti/STS_006/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1064,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_006_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "5f7e66232cd575225d5d6ced0b532e196c1dff33faca8122796e06fb527901d6",
+      "source": "ibsi_validation/nifti/STS_006/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 5760225,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_007_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "dc29e111c6aa2ed9f557e631b853bcfd197b7a965ff96d1bd0106962761edce6",
+      "source": "ibsi_validation/nifti/STS_007/CT_image.nii.gz"
+    },
+    {
+      "bytes": 12294,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_007_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d48201609f342ce2f5a58ced2927669da59d76e74416a37755dbfc163a9016cc",
+      "source": "ibsi_validation/nifti/STS_007/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 3868364,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_007_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "546a66337d51b58d09361dceeb0da183fa6dce8f96225c6d3bdb66344182d823",
+      "source": "ibsi_validation/nifti/STS_007/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 11150,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_007_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ff3cf218e5e30758f0a34c7f78c966da6d092d3ad49b12914064d9d9daaa0dcb",
+      "source": "ibsi_validation/nifti/STS_007/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 510189,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_007_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "649b4f1b8d972555036ae3b5a78e589bb3bf6914cee882d5e7ad15e141ebbab9",
+      "source": "ibsi_validation/nifti/STS_007/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1399,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_007_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f341dfb501dae08f3220713c457c9954ac62b3748ccecf05887ce119e8b0ef32",
+      "source": "ibsi_validation/nifti/STS_007/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 1440426,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_008_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d9c5989b1a03d756b07f9b33ae1162cbaebe5df33b0f75268e2e2aafd2769832",
+      "source": "ibsi_validation/nifti/STS_008/CT_image.nii.gz"
+    },
+    {
+      "bytes": 2185,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_008_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "b22a7007a8323e255a52f5484e38a278e338ecb52900be1cc4982698e879b389",
+      "source": "ibsi_validation/nifti/STS_008/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 254394,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_008_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "39b7efb952825ccd9cfcfc7660f1b83f79c4afa69b61a894b467ee26de332da2",
+      "source": "ibsi_validation/nifti/STS_008/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 1199,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_008_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "7a95da45ce92f2ab43484566ee0a762aec290f47acd34e8fec13f5a96b3f2ea2",
+      "source": "ibsi_validation/nifti/STS_008/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 138739,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_008_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "03a91e31a419b4781cb1c7aee827895937e0fe4d20e2d8369169eb878548edac",
+      "source": "ibsi_validation/nifti/STS_008/PET_image.nii.gz"
+    },
+    {
+      "bytes": 329,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_008_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "be398293998af6b239bb2969c3d02ec3f474a777126b846ab28bc24128b2eae9",
+      "source": "ibsi_validation/nifti/STS_008/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 6420489,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_009_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "24567e4885a0ebfd9cbe906e48acb14d1146d52d3fb6f3553e92cc48f8432269",
+      "source": "ibsi_validation/nifti/STS_009/CT_image.nii.gz"
+    },
+    {
+      "bytes": 26441,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_009_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "af562b51ba1c409a7707a193e03b83a4f214bfa4138987c2ef51b8c87e25f21b",
+      "source": "ibsi_validation/nifti/STS_009/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 4930070,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_009_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "a65803274a15feb2d92b8357e074e2f9ad27565e05d20c0c9a6d1ad990d6d9cb",
+      "source": "ibsi_validation/nifti/STS_009/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 25055,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_009_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "88686289d6881dcf2677b08cd04bcc5dbdc6945ac46da0d9d27cc474191526dd",
+      "source": "ibsi_validation/nifti/STS_009/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 470030,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_009_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "77ba09c728f5950c0b538cd94e9fb8f5a72509dd1bb9227cf499beed2fe6b2c6",
+      "source": "ibsi_validation/nifti/STS_009/PET_image.nii.gz"
+    },
+    {
+      "bytes": 2296,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_009_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "287e5ef843944c2a0d6ba7d46a7973f7ce23b7c867b977ad08a769eb116b4bd7",
+      "source": "ibsi_validation/nifti/STS_009/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2546311,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_010_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "4006316c883a66b3eb6b22e95c3bc05c782ecf70828b346ba0e42786d8c62912",
+      "source": "ibsi_validation/nifti/STS_010/CT_image.nii.gz"
+    },
+    {
+      "bytes": 5437,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_010_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "47036dce01d55640e854ad8342accf287de97aff6c8b6c4915a840f6669c2795",
+      "source": "ibsi_validation/nifti/STS_010/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1491340,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_010_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "44c0ee836b45e2001f36bdb4bed1254ea4ceee8c26691b61ea7bb56ac09dd406",
+      "source": "ibsi_validation/nifti/STS_010/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 4678,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_010_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "47b326186f38db249823e3d76fb148abafed9b27dbb29ab4a0686b7fb30ca1c6",
+      "source": "ibsi_validation/nifti/STS_010/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 192162,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_010_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d9dd3d28a3d6591c138a13125ed03bf6fac0bca24d32144a1ac3b4505ad4bd5d",
+      "source": "ibsi_validation/nifti/STS_010/PET_image.nii.gz"
+    },
+    {
+      "bytes": 561,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_010_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "3534aec86ef2f5a8f7a24b42af3d2383ecd3a86a1b5bdaa2d3e858170b89a42c",
+      "source": "ibsi_validation/nifti/STS_010/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 5264527,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_011_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "fc8e48edfefa7c1e79272b6ae6e748b90ef0254f30a646a418bcb6a06dd7ce80",
+      "source": "ibsi_validation/nifti/STS_011/CT_image.nii.gz"
+    },
+    {
+      "bytes": 13979,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_011_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "fd28ee732d23d5c9a8cac8c30d07638b79418b615ae17c6e247271ca0a2cd564",
+      "source": "ibsi_validation/nifti/STS_011/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2291895,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_011_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "7f21c50303da06f64ec8531e6b5c72a145b5d8d3d3d18eb238a6d31ba1e6f7d4",
+      "source": "ibsi_validation/nifti/STS_011/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 13000,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_011_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "7f39209ed1fefaf2fc301993fe40df6d5a5126497e703416fc691aeb6a3db672",
+      "source": "ibsi_validation/nifti/STS_011/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 373755,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_011_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "25f6627ba4be3f20ebdb1c1e35b0a7e1c60c2222aedaa5efaba167db73a4148b",
+      "source": "ibsi_validation/nifti/STS_011/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1357,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_011_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "2336ae053a0a89c588c134823250698407a44b671de0bc2545fa68666d29e1b0",
+      "source": "ibsi_validation/nifti/STS_011/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 1922911,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_012_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "88318e22426e866173bfc29adbeab7fb05b125809bbf8b63114f42d56cd92ba7",
+      "source": "ibsi_validation/nifti/STS_012/CT_image.nii.gz"
+    },
+    {
+      "bytes": 3371,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_012_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d5131c61d5026ba0d7353d2fb75df9d87975784c9ce7c3050ade7ef8080cb892",
+      "source": "ibsi_validation/nifti/STS_012/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 814306,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_012_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f7060e0782eccf8ac248af63ec066bd98f18bd970e6c58280c802e22333a0170",
+      "source": "ibsi_validation/nifti/STS_012/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 2315,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_012_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f2fdbdc9a44138aed263668f91a645db95781d5f75d77a7c63c2f26b9eb15f0c",
+      "source": "ibsi_validation/nifti/STS_012/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 155442,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_012_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d25e80035d3c5302feb920772701499dbcc5a0475441aa7fdd71f27eac937d75",
+      "source": "ibsi_validation/nifti/STS_012/PET_image.nii.gz"
+    },
+    {
+      "bytes": 410,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_012_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "2ca06b2e6ab006ce969539f08861a66d249a9bbdd8bfb86618d43244cd895b3d",
+      "source": "ibsi_validation/nifti/STS_012/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 7845840,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_013_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "469066bd5bd946d6604cb4b01bc67842082171badd807a80fcb0e1fcf6a86b96",
+      "source": "ibsi_validation/nifti/STS_013/CT_image.nii.gz"
+    },
+    {
+      "bytes": 35802,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_013_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ce55cd636a64f8982d9c3931209f0c829a50ba4476b8ca0a3e7b7a8078a94983",
+      "source": "ibsi_validation/nifti/STS_013/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 3284501,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_013_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "c51c66cbb32e221af8908be0dc9614b313762437788d68b7708fbce184d1b020",
+      "source": "ibsi_validation/nifti/STS_013/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 29191,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_013_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "0a9b37b214e265a37ea3bade041df283e2f5a12bc1711f17936967eaad9a9e6f",
+      "source": "ibsi_validation/nifti/STS_013/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 1065499,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_013_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d84454fadfa70107d979bab65e2a9ae090de5b1bda55931610ffcca9480648e7",
+      "source": "ibsi_validation/nifti/STS_013/PET_image.nii.gz"
+    },
+    {
+      "bytes": 4877,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_013_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "fb44f6cc77e1d5d79d435c0badfc4e2cf81ca07140c526e829a44a7754060ac9",
+      "source": "ibsi_validation/nifti/STS_013/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 3229514,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_014_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "838037e3c2eb24414ab746d98634ed9b7a568c608bdcfc39495c4a49c944d04b",
+      "source": "ibsi_validation/nifti/STS_014/CT_image.nii.gz"
+    },
+    {
+      "bytes": 9620,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_014_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "e50a7b598e0db7d01a542d91fc812bfd7121ec7e7f2c52ba7a7aed36403c8536",
+      "source": "ibsi_validation/nifti/STS_014/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2529098,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_014_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "8b26a0358e24020d2dbd3c1607ef821c9b8434cd96cafced0be2589120961284",
+      "source": "ibsi_validation/nifti/STS_014/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 8654,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_014_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ff5d4d81ccf594ab8a24efe9af4b52d747a9ac0579b21af164691d191e68b222",
+      "source": "ibsi_validation/nifti/STS_014/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 237641,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_014_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "9f6d168572f8c065f6d2a39beef442e31613be27ccb47e9997c82609eb92d959",
+      "source": "ibsi_validation/nifti/STS_014/PET_image.nii.gz"
+    },
+    {
+      "bytes": 850,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_014_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "19679e2ece0f18cea1c6848cc74a3ad24df7af1628dd2d650a587bbd0f93cfd7",
+      "source": "ibsi_validation/nifti/STS_014/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2132908,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_015_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "e494c2246ff196d6c071ef96b479ce15e4ee8a58c482a5211e8bc1b4e42b0456",
+      "source": "ibsi_validation/nifti/STS_015/CT_image.nii.gz"
+    },
+    {
+      "bytes": 4092,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_015_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "2a91814b39ea6536246cc5a3bb79518bb08d1ef30fd073d492fbc4044a198d0e",
+      "source": "ibsi_validation/nifti/STS_015/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 529625,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_015_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "30c1f2b245170c6ce0936a3cda85aa1c529a679833a1bedbae23053c96554e2b",
+      "source": "ibsi_validation/nifti/STS_015/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 2454,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_015_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "c06327372f09a1071472b7ec568834a67928438a5b1130ab0a4a120f16fc8c35",
+      "source": "ibsi_validation/nifti/STS_015/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 148913,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_015_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "b048a838c89d7d4a9f8e0cddd5dad1838ddea8576e2b5c26a121288cea55bf18",
+      "source": "ibsi_validation/nifti/STS_015/PET_image.nii.gz"
+    },
+    {
+      "bytes": 431,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_015_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "66f828a4aa20fc6203d26f48ab33df61d472771efe002c57173d3221ef476f34",
+      "source": "ibsi_validation/nifti/STS_015/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 4337317,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_016_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "2f3e33f1c14ae85220da2b217cc6262c097e9c4d7118792ef7875e0fc98ca091",
+      "source": "ibsi_validation/nifti/STS_016/CT_image.nii.gz"
+    },
+    {
+      "bytes": 11843,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_016_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ed3f40ec45bbac08a22b28ef13843ddd7fbbe36f0143cc9fa11c150acf48d1e6",
+      "source": "ibsi_validation/nifti/STS_016/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2894486,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_016_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "137b5682eea0b6b05d6a36b3886bc53416ce4a25eba5ef8c7a8171f1b67b905a",
+      "source": "ibsi_validation/nifti/STS_016/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 10066,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_016_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "5d31fe96ba47bbd98b6fa285ad0e19db0fb3afbc722117fe75fe7954eacfbb5c",
+      "source": "ibsi_validation/nifti/STS_016/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 349673,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_016_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f3c605c2910a7fd8e28c7c1abc09874c8a3e950f2a27e244d5d7a8dcdfc2758c",
+      "source": "ibsi_validation/nifti/STS_016/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1142,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_016_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "bc50cd792d5308b370812fbcd32e03e25231161dcec86fd12dc88f30822f8cd3",
+      "source": "ibsi_validation/nifti/STS_016/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 4897574,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_017_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1224e1d79ef7319099069989bee3d30ad9f0f874372da49522b874cee5de8f8d",
+      "source": "ibsi_validation/nifti/STS_017/CT_image.nii.gz"
+    },
+    {
+      "bytes": 14661,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_017_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "751a724d69ceaa3782ada610cc0060681e1c758cb0c1d170b6e312aadfc5e887",
+      "source": "ibsi_validation/nifti/STS_017/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2272415,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_017_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d692a2066978b5a45df0a08f5b988ba1ecac7d9339003fb41b99e082ec19decf",
+      "source": "ibsi_validation/nifti/STS_017/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 11375,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_017_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "07927736c14b3190df24afb1f8189d5c5e76969e20ce7a1033ece10ec0e8e40d",
+      "source": "ibsi_validation/nifti/STS_017/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 680519,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_017_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6d59e37e20e21ca50f2af0ddfa091e0a481292528f64e58da1fac66b9dad254d",
+      "source": "ibsi_validation/nifti/STS_017/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1905,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_017_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "23935e0923e5948f0b1dcf69aec20c0f1d61ea9df77fbbdb1b15d0dfe7979a03",
+      "source": "ibsi_validation/nifti/STS_017/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2388134,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_018_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "44e8095529a719b6e84b501eab312339a7a4cdc79f16dccaaf18decc22fbd540",
+      "source": "ibsi_validation/nifti/STS_018/CT_image.nii.gz"
+    },
+    {
+      "bytes": 4526,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_018_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "7e764bd1f2965a7998dc9ec9bff4c990dde255c72a0fe848f7dea19dcae82ffe",
+      "source": "ibsi_validation/nifti/STS_018/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 721821,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_018_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "9296af5e249e3adfa9fcf3996b8147c47c3026d8843652e36f9bf914988217fc",
+      "source": "ibsi_validation/nifti/STS_018/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 2925,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_018_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "63d69f2113a96852d567583205f6702507e8189497d7f04e327cb5c1c1ddb0b3",
+      "source": "ibsi_validation/nifti/STS_018/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 157913,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_018_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "379cd8b5d244ee8d93dd89889b5f06b81f337ea0b4f79f57de5c3dd6dff52d32",
+      "source": "ibsi_validation/nifti/STS_018/PET_image.nii.gz"
+    },
+    {
+      "bytes": 472,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_018_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "9b55b5e6657fed2a88ac74c3ddfbe81812f3e60124df32196a30080bb2dc4157",
+      "source": "ibsi_validation/nifti/STS_018/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 1073365,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_019_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "77783efdecfbdc7490808082dddd2551d1f9680205ce5379a3054be3e5214b67",
+      "source": "ibsi_validation/nifti/STS_019/CT_image.nii.gz"
+    },
+    {
+      "bytes": 1758,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_019_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1c6702a6a631092c9ff00a35232dce17b28670279f8b78d7662661e4a7c86e6f",
+      "source": "ibsi_validation/nifti/STS_019/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 356053,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_019_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f9462624d86c65d224040f8d3fe1421802585afae50547badc1591b400a897de",
+      "source": "ibsi_validation/nifti/STS_019/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 1215,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_019_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "55fcd1d12bf5ac760086ff370bb39810a08d1c6259973af2b58b97495e7e932e",
+      "source": "ibsi_validation/nifti/STS_019/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 105347,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_019_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "92b67c8a5951f6ca7acbe79954e647e74c79b8ac9725930bbdc282c167814b75",
+      "source": "ibsi_validation/nifti/STS_019/PET_image.nii.gz"
+    },
+    {
+      "bytes": 271,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_019_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ca538bee3897b7fc2d0ac838bc0663f01b04492e2e7ac5c0ea43682e1d674195",
+      "source": "ibsi_validation/nifti/STS_019/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 9689446,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_020_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "68fe8bc1375c9a617ed0864823fbe46f6785ebb3e239ac9e778f9d9549ac9835",
+      "source": "ibsi_validation/nifti/STS_020/CT_image.nii.gz"
+    },
+    {
+      "bytes": 37677,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_020_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d1ad917e978d77cc1687d5006e032417e209f6f041675c8d54eec2965b7390f0",
+      "source": "ibsi_validation/nifti/STS_020/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 7226337,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_020_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "4497b4cf7a0078265db23da840fc13b4dab57cfaa31d8611f10bc47af169f644",
+      "source": "ibsi_validation/nifti/STS_020/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 36797,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_020_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ca7d85c35564b71a50d298857d29471e606ec4bdd72f6ebf57b8f74083d265e4",
+      "source": "ibsi_validation/nifti/STS_020/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 631987,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_020_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "dc711f0e02bc1e2c1f38a76c1fb77423c975f26299ccbadb97af4edb2267d5d0",
+      "source": "ibsi_validation/nifti/STS_020/PET_image.nii.gz"
+    },
+    {
+      "bytes": 3416,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_020_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "a5e2d97858cb9c7efa38f888c574675013c48f096a6557557c238f81f444be46",
+      "source": "ibsi_validation/nifti/STS_020/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 5701405,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_021_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d3deca798b9b2bdf73df34e7dedda214e165278039c915830ba6f5d72174ac11",
+      "source": "ibsi_validation/nifti/STS_021/CT_image.nii.gz"
+    },
+    {
+      "bytes": 17343,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_021_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d9ebe587f410dce8b956a7d899ad92fc6c1139abc0d1cf64f843c9f4c2f7cbef",
+      "source": "ibsi_validation/nifti/STS_021/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 3532884,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_021_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "0bbac3aa83edb2f9dc2b52464c0f8f2ecff0a7fd38c19174e4d8dc6e6faa71ee",
+      "source": "ibsi_validation/nifti/STS_021/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 14353,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_021_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "188bb43cf04f8d9318b95a0aeeecd92a1a36d60d8203cb73fad94142c2863274",
+      "source": "ibsi_validation/nifti/STS_021/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 431688,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_021_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "9d5207d80081aed3999c0eb8471c89dae537a035cec43afde75e0086cc4d8fbd",
+      "source": "ibsi_validation/nifti/STS_021/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1519,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_021_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "64af896bd3226ff89a1a106b804dc8dd0e3d122e97ca030366beb766919be341",
+      "source": "ibsi_validation/nifti/STS_021/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 3948236,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_022_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "a3ad1dd263f01943a88d5711f8ae530501512b334d1e6e4ea6c8e112e9e128bf",
+      "source": "ibsi_validation/nifti/STS_022/CT_image.nii.gz"
+    },
+    {
+      "bytes": 15635,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_022_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "064ebc29136e35b65ad33155a2759fdb3fc51830c9a1c69a329cb2328402bc77",
+      "source": "ibsi_validation/nifti/STS_022/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2417927,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_022_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "41a3fbeb2ac7b413ea560685bb2f42ff7f0390f190a0491123d5c6a690190b1e",
+      "source": "ibsi_validation/nifti/STS_022/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 14481,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_022_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6119c8db5b0500e80541e6bd3cb0a399f21d787a93454f40e5254f5e30b667d4",
+      "source": "ibsi_validation/nifti/STS_022/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 288676,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_022_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "5c799afb3119c85e83bbde2c731b3d556edf3d78a122df7138ff14dd30fc704b",
+      "source": "ibsi_validation/nifti/STS_022/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1199,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_022_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "97f3415f002e8ee2677c0a7f74bdd36b8c884448a6b78b10780302d729d1f541",
+      "source": "ibsi_validation/nifti/STS_022/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 3096329,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_023_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d2b09d136b05cf0f68a3e4db4af2244a82463a31374f0a5d192709c4fa0b0443",
+      "source": "ibsi_validation/nifti/STS_023/CT_image.nii.gz"
+    },
+    {
+      "bytes": 7905,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_023_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "5b8284854bf9bac83ded6b83b91b9653be7ed0788a212dbc4a9680ae8036132d",
+      "source": "ibsi_validation/nifti/STS_023/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1635378,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_023_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "fe7855f9b5900ae572aa349a5ba3b55295c4922522998697af1860dd93525113",
+      "source": "ibsi_validation/nifti/STS_023/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 6626,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_023_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ec158300acee14803e229d7a51db3492d341639df71677fd11f8149590f1f2b6",
+      "source": "ibsi_validation/nifti/STS_023/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 222358,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_023_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "be2fcf62f22907d1a2b4e1ea8656e9f66e9ede34edb5bd527874937f120595e3",
+      "source": "ibsi_validation/nifti/STS_023/PET_image.nii.gz"
+    },
+    {
+      "bytes": 706,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_023_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "085500dd9790d894889e5f54d11a4eaf9d12626e68f8b24b63952a46c1a6b3af",
+      "source": "ibsi_validation/nifti/STS_023/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 1760651,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_024_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f0e10fc67c3680314978d3c38a8cd363c8a3246c3636d598ee930f54ce8d90e8",
+      "source": "ibsi_validation/nifti/STS_024/CT_image.nii.gz"
+    },
+    {
+      "bytes": 3458,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_024_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1f206092122a5a59e307e3285b364ba2f82f55e417ff9a9efeed222afa11c6b3",
+      "source": "ibsi_validation/nifti/STS_024/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 417077,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_024_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1a5bb55d87c69276928bd7796c1253fff81a1a1b03c81a8e5d256bf1201dcee1",
+      "source": "ibsi_validation/nifti/STS_024/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 2097,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_024_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f777f1b1c42ccc8d58f58c23dae7d8fd3f4d999d3c1fed54eeda5d0e4cad95ff",
+      "source": "ibsi_validation/nifti/STS_024/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 150661,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_024_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "fa41670431c91eb7a5f7e56cc6b5d0c0363f5d900f903fd479f996e1f288b9ae",
+      "source": "ibsi_validation/nifti/STS_024/PET_image.nii.gz"
+    },
+    {
+      "bytes": 406,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_024_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "e424e30245af970a6a52bc346a39c6a28ccefec4b2a827eccb37dca81b20a4b8",
+      "source": "ibsi_validation/nifti/STS_024/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 1289056,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_025_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "fa58e9ce9675fc78a9e291e57132c9cc07156f32a9adb58681b2596e5a4a11a4",
+      "source": "ibsi_validation/nifti/STS_025/CT_image.nii.gz"
+    },
+    {
+      "bytes": 2193,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_025_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "9c90fe64dd66922d2c5061f8d1568d2a564ec350048f8d457ff0a7119cb82b7e",
+      "source": "ibsi_validation/nifti/STS_025/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 146272,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_025_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "02a835483f26db5273c20b615efaee020e1062c9e01600c3a8cbcf5a68586003",
+      "source": "ibsi_validation/nifti/STS_025/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 1154,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_025_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "c6a8dad682cd9e19e6bf43345ad778a09b71953ae8364800d7526d0edc3318a8",
+      "source": "ibsi_validation/nifti/STS_025/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 170268,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_025_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "b0a673f3241c145f13a0f3783265cbcf7992d8c49223215673e77c91ac8985cb",
+      "source": "ibsi_validation/nifti/STS_025/PET_image.nii.gz"
+    },
+    {
+      "bytes": 373,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_025_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "4faf149fd1a190b7c7d438aba6c55237c471d5b87662bbd6d55ca8e1a9ec2430",
+      "source": "ibsi_validation/nifti/STS_025/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2465333,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_026_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "73bfa9f8fc1823204f3eddf9d8fa7231d392dd50af10a75bb8e9c4b368aa1681",
+      "source": "ibsi_validation/nifti/STS_026/CT_image.nii.gz"
+    },
+    {
+      "bytes": 7975,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_026_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6f8918484efb8be8253138f6f9681d5b37d508c25fe8b87e3c264003fa23b2ae",
+      "source": "ibsi_validation/nifti/STS_026/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 959567,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_026_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "3a5dede9b2450a12ed35b467c24a1c02cfb8b66287a851a99ab5aa6020f1a44a",
+      "source": "ibsi_validation/nifti/STS_026/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 5917,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_026_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "9dc344ea9370853949748dfc295813f2054f6d9b4038a27c4384946cc52a3bc1",
+      "source": "ibsi_validation/nifti/STS_026/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 270957,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_026_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "e6acec5801ec23a9907c2afb9d8391aeedf6e00f2c6b136f47c1f803c955a7d8",
+      "source": "ibsi_validation/nifti/STS_026/PET_image.nii.gz"
+    },
+    {
+      "bytes": 973,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_026_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "b256919eb36ba65c114b7e64ee6748d36db5661457cd5e76d0de87474846d7a3",
+      "source": "ibsi_validation/nifti/STS_026/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 5687067,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_027_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "702515ff6dca6b38ed3c46f7945b2da0dc4db7356ec9bb3058c4e8cf54bfbbe7",
+      "source": "ibsi_validation/nifti/STS_027/CT_image.nii.gz"
+    },
+    {
+      "bytes": 19702,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_027_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d7e3b6b8d34ddfbc9313b9dbf0b26c7df3e85c42529dd912ea9475de298742e4",
+      "source": "ibsi_validation/nifti/STS_027/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 3960532,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_027_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6b81d3245ffaa45b76d94c1175c9bc813c059a88c575dbc8d77d8bb0e9537c75",
+      "source": "ibsi_validation/nifti/STS_027/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 17524,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_027_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "95564927764a597e0f9aa4de55f7e2857cdf462551085942cac30fb5cdd561c9",
+      "source": "ibsi_validation/nifti/STS_027/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 396593,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_027_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "66e7c58e55c7e34fb3ffc6dad88a059b8630d9050c7608df7125b44f340758d0",
+      "source": "ibsi_validation/nifti/STS_027/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1649,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_027_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d0bb85c2da5da9e63803ecce1a2ccf62f56e04587c20fdb0cf55e3f2bdce4207",
+      "source": "ibsi_validation/nifti/STS_027/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2491532,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_028_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "a110f9617db7862d5360f2b039cdf94248471821f372d4201f3f9c055f431b9d",
+      "source": "ibsi_validation/nifti/STS_028/CT_image.nii.gz"
+    },
+    {
+      "bytes": 7042,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_028_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ad7e84d1767e557bc30534dc2a2565329b86f75838d6d8f41575dfc68558915f",
+      "source": "ibsi_validation/nifti/STS_028/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1445541,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_028_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6ebe77bed33aa6f4ef3d933ad6fac7e7d76eb5cff1142274b79e1dbde53ccbba",
+      "source": "ibsi_validation/nifti/STS_028/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 5200,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_028_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "dbd002e3b0f8c8cbf614056c55ffa427003da3b47370061895bfdf92ad73a679",
+      "source": "ibsi_validation/nifti/STS_028/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 210815,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_028_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "995fb12bc8e83dfeb114381d03a0ef21e1415ebe603bbc04f6a986ed042dc930",
+      "source": "ibsi_validation/nifti/STS_028/PET_image.nii.gz"
+    },
+    {
+      "bytes": 699,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_028_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "3729547848c14d52cec8b77f352a58be2581cc8e9651909519f01eed79f28dff",
+      "source": "ibsi_validation/nifti/STS_028/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 3149827,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_029_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d7ee83633e1dbc761e01ffa6a3cb9950607e0d3b8f7ad7bac4b7e749ba98b089",
+      "source": "ibsi_validation/nifti/STS_029/CT_image.nii.gz"
+    },
+    {
+      "bytes": 7112,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_029_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "0253461e8c0e568b99197733fc8af3fb73c6ef4da1e7007deac2bef1e63eddd2",
+      "source": "ibsi_validation/nifti/STS_029/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2268110,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_029_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "b64b39639b6ae93d2d6f8eca88e78f23dd409fbd883b1d0fd6e8610c378988b4",
+      "source": "ibsi_validation/nifti/STS_029/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 6267,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_029_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "8260e033f96061d6fb1af77e161d7b3765a13bf76acd2da6939b427315025d61",
+      "source": "ibsi_validation/nifti/STS_029/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 245639,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_029_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d555d823638ad6e8609e836c67fdf64bd6dea6ccb057d648460a38fa9744cca9",
+      "source": "ibsi_validation/nifti/STS_029/PET_image.nii.gz"
+    },
+    {
+      "bytes": 711,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_029_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "da4c24b42ea4fa8aaa0109bee4d9e0be36cbbba9f26823a784e2c1cc13267fc2",
+      "source": "ibsi_validation/nifti/STS_029/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 4303450,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_030_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1265ce4a67c6853b1c93fbf46bd1dae7761312df4e208de39a0a816770bf5da0",
+      "source": "ibsi_validation/nifti/STS_030/CT_image.nii.gz"
+    },
+    {
+      "bytes": 10417,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_030_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "92f29bfb83134dd2fe932b9e9e69b5b4223894f201d2fc9200436835d3800bea",
+      "source": "ibsi_validation/nifti/STS_030/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 4078173,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_030_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "249755615e97cae9de731f17a74e9c846ac9f8f82d2eb171ecb8e41e48830e59",
+      "source": "ibsi_validation/nifti/STS_030/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 10244,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_030_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "469843968ccd80ce46c1ee0ccfbf5af2c83ac554b34fcd5f004f692b57fa465b",
+      "source": "ibsi_validation/nifti/STS_030/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 339809,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_030_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "809cdbeb87a05da4fd0571907c03dd4ec1436d4326f8ad155026275d7b4058b7",
+      "source": "ibsi_validation/nifti/STS_030/PET_image.nii.gz"
+    },
+    {
+      "bytes": 857,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_030_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "0f709fd3cf7f5c07a5a63f3ef90e0f6c138303f25861180f49326d1768879fde",
+      "source": "ibsi_validation/nifti/STS_030/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 4089304,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_031_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1732729c115aeade56e320a556ec636fee9b2f347838a1037804254a484134c3",
+      "source": "ibsi_validation/nifti/STS_031/CT_image.nii.gz"
+    },
+    {
+      "bytes": 10179,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_031_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "2a0302f03879e33aa08f3e95af8924bf3cbcfce85891056a2151ae0ae35cc75e",
+      "source": "ibsi_validation/nifti/STS_031/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2669998,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_031_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d319dd4fba9687bfa6b87b082e1f5fa454a9f72e55e8c72d55a88bce2894bc2b",
+      "source": "ibsi_validation/nifti/STS_031/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 9202,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_031_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "85da027e78831d98438c73bc6e0eae5253982875fe5f2cd3e80b6ae568e70c08",
+      "source": "ibsi_validation/nifti/STS_031/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 286374,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_031_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "0c0d0db47adda460cdf7f897528d19f8042274a150ed389a478b4c71f0b731c2",
+      "source": "ibsi_validation/nifti/STS_031/PET_image.nii.gz"
+    },
+    {
+      "bytes": 855,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_031_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "a27fbd20b09f50506540cce701a608d315dda844ecdc6b503fb31bf030e3b026",
+      "source": "ibsi_validation/nifti/STS_031/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 1856416,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_032_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "8c0bffb9888b1e498130c4692271bf27d05a61e4a55bab44a0d8d23ca3f50b91",
+      "source": "ibsi_validation/nifti/STS_032/CT_image.nii.gz"
+    },
+    {
+      "bytes": 3797,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_032_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "22169459fe5e94b016a30f00d502317e4327b29a292e14108733b3b4a03f09d2",
+      "source": "ibsi_validation/nifti/STS_032/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 566310,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_032_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "14b661953415eef8b72ecb6c0f18e665301ab87ecfc0742e5bd21ac2161ac67f",
+      "source": "ibsi_validation/nifti/STS_032/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 2407,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_032_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "a7304b9d2a1e5ed9a4209b7e5d461d7f26a5224ae9bbab3931f2e1b20e998c1f",
+      "source": "ibsi_validation/nifti/STS_032/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 270476,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_032_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "9c7322a3e02e30d8054bc73bac32b953f7ecb9fefebb111277aaf6e2ad389ba0",
+      "source": "ibsi_validation/nifti/STS_032/PET_image.nii.gz"
+    },
+    {
+      "bytes": 585,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_032_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "16e130b5b267e45a15c0fd63678912fe641d348c9dc5af6d81746011f169b0dd",
+      "source": "ibsi_validation/nifti/STS_032/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 3131480,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_033_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "e8f48c0c03d5cc62e6dbba3811c9f7d871adb8a6fa6ed27fdfe4b50ff3858ac9",
+      "source": "ibsi_validation/nifti/STS_033/CT_image.nii.gz"
+    },
+    {
+      "bytes": 8729,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_033_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "40c7553678465250bca56c0dd7e7d127ad2069775d585c5f94b5f7400ce4e980",
+      "source": "ibsi_validation/nifti/STS_033/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2083982,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_033_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "995bcee04f697128129db21f41519b3c4e961c639ad4c00952756d5bd77ae37f",
+      "source": "ibsi_validation/nifti/STS_033/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 7334,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_033_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f90d676ba4dee914d57c70fa7bf6c41cbd53ceab10edff4e9c54a61e6a52096f",
+      "source": "ibsi_validation/nifti/STS_033/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 259165,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_033_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "195896f11178b2139640ad39f82d5f64d72c9b36593741e2db4cc4151da25a7c",
+      "source": "ibsi_validation/nifti/STS_033/PET_image.nii.gz"
+    },
+    {
+      "bytes": 833,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_033_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "0487787547a39d838b92a3540aa313eaa3eb53365116b365059d49fd69761243",
+      "source": "ibsi_validation/nifti/STS_033/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 3675123,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_034_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ee8498d94633aaf24f316fe9192a08e5169668eb69edd3edc3707b641f917d57",
+      "source": "ibsi_validation/nifti/STS_034/CT_image.nii.gz"
+    },
+    {
+      "bytes": 12891,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_034_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "ae5f8a568f021b79bb9dc344779f51e8bd4cbb5363c6bff716adf938b6c3357b",
+      "source": "ibsi_validation/nifti/STS_034/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1718652,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_034_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1699e7ae311a2db0331726fca99977eec2f76b5c5f3585c6ac67cd3d8dead4bc",
+      "source": "ibsi_validation/nifti/STS_034/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 10762,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_034_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "89c7fdd45c9781f40573289d24bfc4d364f4f330949034d700c52f336944a375",
+      "source": "ibsi_validation/nifti/STS_034/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 262003,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_034_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "612c41b51e143dcf6c00179ec5cdc65a942b827eb9353728f04827ba3ac5db1b",
+      "source": "ibsi_validation/nifti/STS_034/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1106,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_034_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "e6109d2d997016c29f56e73c042cf5986777bfea07b3988064fed16123fdf6f8",
+      "source": "ibsi_validation/nifti/STS_034/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 1799990,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_035_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "cf2ba0db8dacbe647dde02b9c7642b1c76157d48724168dd9a32f777986d5ee0",
+      "source": "ibsi_validation/nifti/STS_035/CT_image.nii.gz"
+    },
+    {
+      "bytes": 3183,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_035_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "49b3b9b23fcbe1b6ecd5d71d390a5960ab6aa5ff724d72961a969cc08f19c44f",
+      "source": "ibsi_validation/nifti/STS_035/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 701690,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_035_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "75cb331b86e19cb48f6a4383c0866e36d43770a68796f1eeaf1e8927a7a43af7",
+      "source": "ibsi_validation/nifti/STS_035/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 2079,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_035_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1ba7f350bb2654ddbe71e2f4cc0356509b7c9ed875828e37bf6c1c7582730a8d",
+      "source": "ibsi_validation/nifti/STS_035/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 150878,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_035_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "84bd39cddc7034c87425e1cf94304831510982e5dfa178d25b4f2948959e07d5",
+      "source": "ibsi_validation/nifti/STS_035/PET_image.nii.gz"
+    },
+    {
+      "bytes": 374,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_035_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "3dcf38006150dd4fcd026eb4a45c54286fee41b8a3496ef64df1c39f08c199b9",
+      "source": "ibsi_validation/nifti/STS_035/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 3141246,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_036_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "39ef83e359cff6037cd5c7c392bc7a676360cc1f5e24a4d91d67261434eb1aaa",
+      "source": "ibsi_validation/nifti/STS_036/CT_image.nii.gz"
+    },
+    {
+      "bytes": 8754,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_036_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "5f02b65dec87a087f6033c572566d490847e637cecb0a6ab906797e2a5897499",
+      "source": "ibsi_validation/nifti/STS_036/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2069085,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_036_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "af93580bd2990276a4c7f2f987a33235c68790d5dc3ab34acc0cfd51839633c8",
+      "source": "ibsi_validation/nifti/STS_036/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 7607,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_036_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "bcb6ffad01e129ceff09ac67adb62dd649d85e35cf32bc478badc1d425575b45",
+      "source": "ibsi_validation/nifti/STS_036/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 336640,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_036_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d20b17a565b92ce8181abe40b57e38c65ad24e2451aea5905c014b4e1e693c30",
+      "source": "ibsi_validation/nifti/STS_036/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1051,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_036_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "81261b78ff705b294d6a26d7fbb1df8e4c39bdd92bae6837d860989559039fd3",
+      "source": "ibsi_validation/nifti/STS_036/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 5975009,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_037_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f47ee616d69d0e259c260c18c65f798d9787153db2ff010f4f18e30515d42915",
+      "source": "ibsi_validation/nifti/STS_037/CT_image.nii.gz"
+    },
+    {
+      "bytes": 13303,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_037_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1f535041b02ca33cb1ef07f2ea431075313b315307e4c09e7ae41e822bdd83c7",
+      "source": "ibsi_validation/nifti/STS_037/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2569412,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_037_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "5fab4559782373d1e40bd6470e6dc600bd5f5e644799eb711c1dd4ad2b4e36a4",
+      "source": "ibsi_validation/nifti/STS_037/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 12348,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_037_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d39898e5c85e774e561d5d340ba750491377a91a3bf8228c11218402e62c93f1",
+      "source": "ibsi_validation/nifti/STS_037/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 385247,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_037_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d118f743fb89e161aa016fe415b9d3a1261c6c681a7ec8b08348dba24d88063e",
+      "source": "ibsi_validation/nifti/STS_037/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1304,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_037_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "10dace170a8a1e23cfb7b46e740c4d94207a2b51745e2dc4c1bfdff3d56e985c",
+      "source": "ibsi_validation/nifti/STS_037/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2933685,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_038_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "76d76cc42802a4f7776e6d81e10afbdfe2847c61d8f988505fe875b6be231a40",
+      "source": "ibsi_validation/nifti/STS_038/CT_image.nii.gz"
+    },
+    {
+      "bytes": 10271,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_038_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "819f3cb1426161154d2b18d7177480380dedf91d734716c877f898e75fbb3616",
+      "source": "ibsi_validation/nifti/STS_038/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1316423,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_038_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "47329b5ec352719b7e16d5de55506e348233bb09c544c3d056d810dfd3acce86",
+      "source": "ibsi_validation/nifti/STS_038/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 8046,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_038_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "32e618fe03a67f023b247c9690df87516f3f546a668e7d55e820422b2b4c1ed1",
+      "source": "ibsi_validation/nifti/STS_038/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 236650,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_038_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6f70f42ed9bddcc827d99c9f8dab7febe4bc8a8837f23a3ce581f5c0b8f1d332",
+      "source": "ibsi_validation/nifti/STS_038/PET_image.nii.gz"
+    },
+    {
+      "bytes": 930,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_038_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "58c5b0efa1714b30dbe0877f286ffdb56e944cc2b5b2ade3cee7057d7bf31bd9",
+      "source": "ibsi_validation/nifti/STS_038/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 4549583,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_039_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "934048d088970dfa13f6ed0a24421b2399f4894b6b879565ba2588a16eeee818",
+      "source": "ibsi_validation/nifti/STS_039/CT_image.nii.gz"
+    },
+    {
+      "bytes": 15644,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_039_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "b6cc091e90caa2841d2866835fc6f3d1f98c1a528e1abe531233137fbde0acb6",
+      "source": "ibsi_validation/nifti/STS_039/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2166180,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_039_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "785d7f8bc134c22d1c3aa6b46a2c6894920831ffd4cab68bff47e8868f6d93f8",
+      "source": "ibsi_validation/nifti/STS_039/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 12788,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_039_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "660139bd57e94a0c31a5173c028665f18382bd48721e8e5e7ceb57093be5c5a6",
+      "source": "ibsi_validation/nifti/STS_039/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 337559,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_039_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "0cec42340f5f9b89259d23094942d81fbb012ad2514aefee2225a8010e2af605",
+      "source": "ibsi_validation/nifti/STS_039/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1230,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_039_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6d32674b4fb6c87f613490f6a4b5333998902f3cedc773979870a4e85b37e719",
+      "source": "ibsi_validation/nifti/STS_039/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 3518773,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_040_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "76da7aa16b8ddc783d475be51390e9afe0a3a7ddba4c195f6305a5308bfd500f",
+      "source": "ibsi_validation/nifti/STS_040/CT_image.nii.gz"
+    },
+    {
+      "bytes": 9820,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_040_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6b752477db3b68a4ec0b654ff289cf4e423082723fdae951ed3231cf25c189d2",
+      "source": "ibsi_validation/nifti/STS_040/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2122960,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_040_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "b881a81a14a608c0f37646c37f417031cb6eb45f2c77073ccb5915e319affacf",
+      "source": "ibsi_validation/nifti/STS_040/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 7958,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_040_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f2e8ef6af0ed85bdd997d4b0a28170e8eaf373f1bd0df8bb455664027b1f08ad",
+      "source": "ibsi_validation/nifti/STS_040/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 343971,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_040_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "820a3e891de99096e2feae1b14c3f91f83b8623d45f943c4aefcbddcc23b649d",
+      "source": "ibsi_validation/nifti/STS_040/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1125,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_040_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "cc38ecde834b011cdee60fceff5f9cf03c066b9dbf691c0a39b8bd5b73f7bb87",
+      "source": "ibsi_validation/nifti/STS_040/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 1930732,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_041_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "7e9ad91ad803a1b6d19f9196b8e3b48cb1f350773f0914dfd4821d6c1763aa19",
+      "source": "ibsi_validation/nifti/STS_041/CT_image.nii.gz"
+    },
+    {
+      "bytes": 3115,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_041_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "283f9cbd62ea70b046a4e2adbcafaac5c72d9937e00e6b4d106d65c2636bc4ad",
+      "source": "ibsi_validation/nifti/STS_041/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 713558,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_041_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6be80dfa8303bb06231ec997824ceabb1902e9fecd50db220a0e8762b0ebb6dc",
+      "source": "ibsi_validation/nifti/STS_041/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 2019,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_041_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1e1621e6a7bc4288167c7d80febed971c316e45c769f5642253d8a409488f873",
+      "source": "ibsi_validation/nifti/STS_041/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 158870,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_041_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "7b4b3e7d804823b2d951d92b796918e4225a05be7417c7a8cabb0d6906947009",
+      "source": "ibsi_validation/nifti/STS_041/PET_image.nii.gz"
+    },
+    {
+      "bytes": 381,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_041_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f4554e61c199dcaded73eb0363b76861521fdaf50f9ade575239858847c68411",
+      "source": "ibsi_validation/nifti/STS_041/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 1452527,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_042_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "bd724dc37daaf201883b4f74dc9c4e940f0434a3cdaa76cbf34428f12b96cdb0",
+      "source": "ibsi_validation/nifti/STS_042/CT_image.nii.gz"
+    },
+    {
+      "bytes": 2573,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_042_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "4ee16f8e7b6d8c931a7eb774cd994fbad64013dbe1b105bccaffcb9b9c05ae95",
+      "source": "ibsi_validation/nifti/STS_042/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 342157,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_042_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d68e78560a1c12f1dc5aac4cc2417f42bf3ccdf277fdba7e228f4a5804463c90",
+      "source": "ibsi_validation/nifti/STS_042/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 1334,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_042_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "8c3299842839a03f954659ee51a39c68b7e4beeb811c0168269c2af6274d542d",
+      "source": "ibsi_validation/nifti/STS_042/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 115035,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_042_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1f55cb05e36357ef4fb27fea0bfcb5b1dd5948ea4f9985c588fbcc4482ce7f8f",
+      "source": "ibsi_validation/nifti/STS_042/PET_image.nii.gz"
+    },
+    {
+      "bytes": 317,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_042_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "c05b3bcc98ddbe375139b1559631bdf2b7a05ba03b0e58a7583d71ae1fb27ce6",
+      "source": "ibsi_validation/nifti/STS_042/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2546177,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_043_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "2a717076a21a930ba99655acf44edc44de12349d5055de9daeca82759d31ffec",
+      "source": "ibsi_validation/nifti/STS_043/CT_image.nii.gz"
+    },
+    {
+      "bytes": 5851,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_043_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "412651649ac6520214a931e7d0c975b8a4c3a4a9b696df6fae3164f396f79777",
+      "source": "ibsi_validation/nifti/STS_043/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 782217,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_043_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "e12e0fad294d281168887323c3b3619ef19b13c75017bd52f43bb8b783310ba5",
+      "source": "ibsi_validation/nifti/STS_043/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 4044,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_043_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "51375c3b7a9e5a47b0a867cc81c5ab6719de349178c5af0c3e12d5b7fd406dab",
+      "source": "ibsi_validation/nifti/STS_043/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 373786,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_043_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "46703e0aace00823c952dac7bb5d270dbaf8aace70b9cde0aa4aeef58abb0eed",
+      "source": "ibsi_validation/nifti/STS_043/PET_image.nii.gz"
+    },
+    {
+      "bytes": 755,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_043_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "bc5f252ae39eaeffc79dd2a0f266baec3a22a8e1d6aff3e878a54deca4c61be5",
+      "source": "ibsi_validation/nifti/STS_043/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 4115508,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_044_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "36f67777373acc6b93b0ca703bc09d92fedffcf3101bddcef69686b8f31b9c9f",
+      "source": "ibsi_validation/nifti/STS_044/CT_image.nii.gz"
+    },
+    {
+      "bytes": 13030,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_044_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "44db9da8278fcc235ad1f9ffd88570e175e3f5ab34fe1af584228e550c61534e",
+      "source": "ibsi_validation/nifti/STS_044/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2662383,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_044_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "7958f461d8aa1823a355827afee81ae2889fe9bb375c4148dc5ad6fbe6776cd4",
+      "source": "ibsi_validation/nifti/STS_044/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 11835,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_044_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "4e766921c9ba2556306d1c4e018ad56bc9076a8d84540bc9bbb20c4ca8cec27d",
+      "source": "ibsi_validation/nifti/STS_044/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 384503,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_044_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "802cbb331b2d21161337fd83be9a37f6061fdf16e620983b518f0ee682334f6e",
+      "source": "ibsi_validation/nifti/STS_044/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1506,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_044_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "6bdb0b3e5f5d3cd45aa6ce8f5705f58afa505b21d3d8dfb07665009d87ce14ef",
+      "source": "ibsi_validation/nifti/STS_044/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 5079309,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_045_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "02ac77f016921ceeba9adcea296e59f3a061d959d57e71bc81b3161a64a2e800",
+      "source": "ibsi_validation/nifti/STS_045/CT_image.nii.gz"
+    },
+    {
+      "bytes": 14823,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_045_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "5ec2e7a2386f7b4d1d3b4908b6caa2f14594f5588dd5de9829cd57db2574b116",
+      "source": "ibsi_validation/nifti/STS_045/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2432955,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_045_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "3f55e9ede9e1a9f1b0f40aae9820ddf21ae921c6312c9d5ff38c0e70ce643b9e",
+      "source": "ibsi_validation/nifti/STS_045/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 11804,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_045_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "834a4450cb19d0232bbc1ca8292cd3e3d6f6add0992e78de5e69bf09e92e10d9",
+      "source": "ibsi_validation/nifti/STS_045/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 699749,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_045_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "93694ed70283648ef9b011056122a7a2d71dd1a334896c7d8915151a59804299",
+      "source": "ibsi_validation/nifti/STS_045/PET_image.nii.gz"
+    },
+    {
+      "bytes": 2136,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_045_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "330358d854edfe5cb1ed0d2251730c3d92c8dcc6f155ec0367cb6d34b96977a9",
+      "source": "ibsi_validation/nifti/STS_045/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 5279719,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_046_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "65f1f6f8fc7559493f8236e78e802059c030d79d179996cd9cde5bf5efb902ee",
+      "source": "ibsi_validation/nifti/STS_046/CT_image.nii.gz"
+    },
+    {
+      "bytes": 17652,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_046_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "2cc6eb99f40e728b85024a33454713d3e0f834bfb89196f19a8c4052039d4e02",
+      "source": "ibsi_validation/nifti/STS_046/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 2936073,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_046_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "7d7bdeaa43734ef9cd2627a1bb37d180b85dc5e03056131910380458f474f1ec",
+      "source": "ibsi_validation/nifti/STS_046/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 13909,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_046_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "e322ade400ad79abadb67c6f8b18ac649b472bcc99d2a00472ea537a4af13152",
+      "source": "ibsi_validation/nifti/STS_046/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 643211,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_046_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "7b1436eec53f1ce993fe3599ae17fafdebe4a2f47e0101f87dc08d6be9217f4e",
+      "source": "ibsi_validation/nifti/STS_046/PET_image.nii.gz"
+    },
+    {
+      "bytes": 2271,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_046_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "af1566b2857c8aa56c9837e75328fa11712807149dede5d4ac5bfd5706274895",
+      "source": "ibsi_validation/nifti/STS_046/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2547768,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_047_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "eb26ba2e87a3dbdf8a3786d34c973f7b526c1844a516082792bea56cd7d739ed",
+      "source": "ibsi_validation/nifti/STS_047/CT_image.nii.gz"
+    },
+    {
+      "bytes": 6013,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_047_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "187a4a3f629b8bdc79450eccc6b320bdcc12d497f9e7079716994bc07f2a14f8",
+      "source": "ibsi_validation/nifti/STS_047/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 553250,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_047_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "39d2efe5a14f6866f6dcf33e8bff388b3530c6ddd6fd1ae680a7c3766f3a43dc",
+      "source": "ibsi_validation/nifti/STS_047/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 3867,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_047_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "0fff111280aee9a89567930a87bca57adf91fda1e1db2302ec4c67d6e6cb9956",
+      "source": "ibsi_validation/nifti/STS_047/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 349551,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_047_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "1eeb4a86db9495cb5670ee85f96e441c6eaa0496c0e2818315c563899eda3eea",
+      "source": "ibsi_validation/nifti/STS_047/PET_image.nii.gz"
+    },
+    {
+      "bytes": 803,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_047_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "3b2f957666c7de4f4c92a704f45b5a9c3da666fd6177ab35722c291fec592888",
+      "source": "ibsi_validation/nifti/STS_047/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 3056223,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_048_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "4238bf0a60e0834b5e3c0794d219a766665216417da4e0cfddd8321b69b3a5a8",
+      "source": "ibsi_validation/nifti/STS_048/CT_image.nii.gz"
+    },
+    {
+      "bytes": 7901,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_048_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "29abfa2a845a95f163cac5d3d89dda3b9fc8ec75ea7b45eb150cbf5ae2662b9b",
+      "source": "ibsi_validation/nifti/STS_048/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1913872,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_048_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "72957e1e28976fd03c8d4646b0c8cb12aa7520effdd394e8814f23f0c6e4c08e",
+      "source": "ibsi_validation/nifti/STS_048/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 6688,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_048_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "4cb914899c5dcefaa1dd5481192261426712efb7b08fe6e6c8373f3897257a6d",
+      "source": "ibsi_validation/nifti/STS_048/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 429129,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_048_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "be338c437765b5a7e389729ddec65d3a41a868412620aeb67b0fc51e91f37e53",
+      "source": "ibsi_validation/nifti/STS_048/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1113,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_048_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "483c63e8b5ae6a41f389e7f7d9c14d0239c7657d1371b1b9699caa72b633665a",
+      "source": "ibsi_validation/nifti/STS_048/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 5662614,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_049_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "8850c8bdde55766e034af8ad8956b2b945a8a5e0581d23aa4068c0481484d2a4",
+      "source": "ibsi_validation/nifti/STS_049/CT_image.nii.gz"
+    },
+    {
+      "bytes": 20152,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_049_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "63c82a063cd848d1078184c89625af2a4cabda3c67acadd40674e6c7e7a8a26a",
+      "source": "ibsi_validation/nifti/STS_049/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1784590,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_049_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "9d7fefe264df008c1f0970ea84585d3ee336efdb0a9a64b245600477349f098b",
+      "source": "ibsi_validation/nifti/STS_049/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 15299,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_049_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "7056f8bd0f712681859d4d13ec8f4046a54e0377dcfbc5b6721e85fd28fde071",
+      "source": "ibsi_validation/nifti/STS_049/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 404518,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_049_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "93f5deb5d42cfa79d41d02b384c437e20cf86ed37bda1f315daa623f28f22e85",
+      "source": "ibsi_validation/nifti/STS_049/PET_image.nii.gz"
+    },
+    {
+      "bytes": 1616,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_049_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f24e1c2897e818847fd106bff29d6e08086e3a048cbe350d33d9a74366ea0a40",
+      "source": "ibsi_validation/nifti/STS_049/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2152321,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_050_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d082c3d6854bc4a27090c2c45c82175c7b56ba04ed847f8eb0c889c8f5238a08",
+      "source": "ibsi_validation/nifti/STS_050/CT_image.nii.gz"
+    },
+    {
+      "bytes": 4900,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_050_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d8d6c8bc99d4d4d9a103730ed3b06cd8ad06366c555916cb00c496177bebc8b4",
+      "source": "ibsi_validation/nifti/STS_050/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 1463572,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_050_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "44d315d5e81a3e4ba5842d2dc2f17c01b6b145b64855ec8332f28771659ca8e3",
+      "source": "ibsi_validation/nifti/STS_050/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 4480,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_050_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "10eb54570ef185a2c0b08bccde711e2d5109dc2195675949b1fb349b984d1ac5",
+      "source": "ibsi_validation/nifti/STS_050/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 160863,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_050_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "d97472b4c381ad589a0e5e0195416a5359473a8f6cee24a26872a1eb55ca5f21",
+      "source": "ibsi_validation/nifti/STS_050/PET_image.nii.gz"
+    },
+    {
+      "bytes": 525,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_050_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "2f09a6050f4873a16c416da57089545c7ed531508f94847a1894f31bd9c6320c",
+      "source": "ibsi_validation/nifti/STS_050/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 2404852,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_051_ct_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "fb0203b886ce50c46bd93f98184a10a8acd5dbe34ef09490379c4d360a91df06",
+      "source": "ibsi_validation/nifti/STS_051/CT_image.nii.gz"
+    },
+    {
+      "bytes": 5285,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_051_ct_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "2d7374ceb840e2fa6bd7c38750df0b892108657cf6b91df2098e05253e3bfc24",
+      "source": "ibsi_validation/nifti/STS_051/CT_mask.nii.gz"
+    },
+    {
+      "bytes": 700215,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_051_mri_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "02a6a0925bd9054d18a80a88e4871c05a0443f80e8caf8ff00b40e9ccb264af8",
+      "source": "ibsi_validation/nifti/STS_051/MR_T1_image.nii.gz"
+    },
+    {
+      "bytes": 3532,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_051_mri_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "7b012111329ff80079a21f89dbb268cd7f203d78276054fd443e9fed71819fe4",
+      "source": "ibsi_validation/nifti/STS_051/MR_T1_mask.nii.gz"
+    },
+    {
+      "bytes": 308785,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/images/STS_051_pet_image.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "f32c44de69310d075ef19c0d48ff71347902485d6323f162086dbe9289736253",
+      "source": "ibsi_validation/nifti/STS_051/PET_image.nii.gz"
+    },
+    {
+      "bytes": 813,
+      "component": "ibsi2-phase3",
+      "destination": "data/ibsi2_validation/masks/STS_051_pet_mask.nii.gz",
+      "repository": "ibsi_data_sets",
+      "sha256": "033d2a1699f523d2dca5730c92657df03ea9bb04aa50542ca31beaa1969463f1",
+      "source": "ibsi_validation/nifti/STS_051/PET_mask.nii.gz"
+    },
+    {
+      "bytes": 18589,
+      "component": "licenses",
+      "destination": "data/ibsi2_validation/LICENSE.md",
+      "repository": "ibsi_data_sets",
+      "sha256": "13f6d80645c0358a7325e9f44180cc51767dda0957e61f88345b9685aa59983f",
+      "source": "ibsi_validation/LICENSE.md"
+    },
+    {
+      "bytes": 2453,
+      "component": "licenses",
+      "destination": "data/ibsi2_validation/README.official.md",
+      "repository": "ibsi_data_sets",
+      "sha256": "48d4ed9b3f9b5184088f6f163b5485bdf8a2ce28f5f806ee032fe00d1cc3ce0f",
+      "source": "ibsi_validation/README.md"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/10_b_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "b02016be9a851a79a2ebc6c697781ec6ae73b54eca990f6c4d3facfc85da6726",
+      "source": "reference_response_maps/10_b_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/1_a_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "4d45bd79271d0b4034f248690dee2fb60990fb436f29b0edb76c67ea65dedda3",
+      "source": "reference_response_maps/1_a_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/1_a_2-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "d32e92e7fd1d8833d63aa4cf516bd2f59bddf704ccd6e1f177ad2d0b06a93e22",
+      "source": "reference_response_maps/1_a_2-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/1_a_3-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "8c6d6c09e2f0cb3711ebd6d5860a1f29c34197900d479e2e09d967765e60c95c",
+      "source": "reference_response_maps/1_a_3-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/1_a_4-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "5903a490acf4b85601f0af64d336415e61f72ca0992c107941591017de92ba74",
+      "source": "reference_response_maps/1_a_4-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/1_b_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "c483968d7e4a1db017497825e380342ea0433208b6ba30cb8233442ed33770ab",
+      "source": "reference_response_maps/1_b_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/2_a-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "2b09b838cecbf9324d7ef5978ec949d5a18c33d40cb4a8044a674fe24ce2e065",
+      "source": "reference_response_maps/2_a-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/2_b-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "654458872fd3f6574b6638820fe88593fd78b644305cf68ddcf2b3e3e4e13f51",
+      "source": "reference_response_maps/2_b-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/2_c-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "4c0b340261f6bdb5741843a0d09dca9605509a06453c21b03a9dbd65ddf1fe98",
+      "source": "reference_response_maps/2_c-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/3_a_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "653de66c165d449d621540b0c3091ded89585f8cc52606b99a7b63292f94eae2",
+      "source": "reference_response_maps/3_a_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/3_a_2-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "e9ac127ae56a71ecf3f6c9bc2a41c4effafb10fbea2dfbc6884dbffe1aa6cc28",
+      "source": "reference_response_maps/3_a_2-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/3_a_3-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "cf0569fa94ae5d1babeeb570cac7e5baa76a7894dec60c8c9c78be27bae67106",
+      "source": "reference_response_maps/3_a_3-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/3_b_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "b0733aa5eeff197e84a61dbdd3ecce86a2615688a1fa63930bdc235ce3f80e3c",
+      "source": "reference_response_maps/3_b_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/3_b_2-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "43318d37691a69cdf4e0995ddf34da245347bb39524fe0a3658c44aa61736580",
+      "source": "reference_response_maps/3_b_2-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/3_b_3-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "ad11703127a2f173aa12e1bbae7270d794d3f2483932ced8ef8a4f1ca2e128f2",
+      "source": "reference_response_maps/3_b_3-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/3_c_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "3983e7ba9b20ead5cba46ac791445c777d62c9439740b2d0c226496210e9c1e9",
+      "source": "reference_response_maps/3_c_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/3_c_2-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "b4dcd5c18c149eef3076c40905e006373c19893f41c018d7f0e164886f3611c9",
+      "source": "reference_response_maps/3_c_2-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/3_c_3-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "63d630767358892b1dd15fdcbec55e20e8ca4608911590d5da3b3aeeda98e199",
+      "source": "reference_response_maps/3_c_3-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/4_a_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "72636c8b8873e1b184e7ddff14fd381781503cb63b69d57567ca77785993e8a9",
+      "source": "reference_response_maps/4_a_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/4_a_2-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "35d04398515d654a99fca5a616018a67b9265ee614da0ded490e67df86a3eadb",
+      "source": "reference_response_maps/4_a_2-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/4_b_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "c516a4ac1ce4b844285afff97785a3571af2ae543b44f51e9403cf71e0d85fef",
+      "source": "reference_response_maps/4_b_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/4_b_2-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "2feab18d9958e760363c341126a4b8fa4b1b48abf18d6fefd2897f6114bd4f43",
+      "source": "reference_response_maps/4_b_2-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/5_a_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "28ca3830658c09be1fda6fd0ce0d658a7511d1ad09c9fadfd37405ce5f3ad512",
+      "source": "reference_response_maps/5_a_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/5_a_2-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "2f06f786d19ebe49f067f7e035212acb7bfb893022a92d79658ff982d141e33f",
+      "source": "reference_response_maps/5_a_2-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/6_a_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "c32f12b1839f4f658325f5b5cb05363495efb0bbcefa5dbc108f06b2960e5629",
+      "source": "reference_response_maps/6_a_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/6_a_2-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "5e35d206b3b4b9033451cc978330dc5f0c38ff87f0cb6dc32a57092411019026",
+      "source": "reference_response_maps/6_a_2-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/7_a_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "849d625044a3f2291128d44ce72faa9ef4dc1980053064b36b72a4e32c644eba",
+      "source": "reference_response_maps/7_a_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/7_a_2-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "b58b6f4166bebd2091d2adfb453af12e5c925467de778fa12a2eb60ea392a724",
+      "source": "reference_response_maps/7_a_2-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/8_a_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "f26254a1dac5b51a50849b11b53ce4fd2d8a8c61228627acce06740094ccaad5",
+      "source": "reference_response_maps/8_a_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/8_a_2-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "e5df8a75c68807935652a70b92f5c616508216cb8cb3f0df4ced6158db20e7e2",
+      "source": "reference_response_maps/8_a_2-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/8_a_3-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "0affd2ee328882cf7501b6d79ac173cf5811b7fb09308bf0c4b8315851f7a75a",
+      "source": "reference_response_maps/8_a_3-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/9_a-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "9ef1621d397e12a4d16079b7bb83658a1b2fb1da4706047c9c50c043daddf62b",
+      "source": "reference_response_maps/9_a-ValidCRM.nii"
+    },
+    {
+      "bytes": 1048928,
+      "component": "ibsi2-phase1",
+      "destination": "data/ibsi2/references/phase1/maps/9_b_1-ValidCRM.nii",
+      "repository": "ibsi2_reference",
+      "sha256": "fb6df2cd53d5fe9ec03756db15c27c7aaba3dec344210625c7365d6cd7747c6d",
+      "source": "reference_response_maps/9_b_1-ValidCRM.nii"
+    },
+    {
+      "bytes": 12703,
+      "component": "ibsi2-phase2",
+      "destination": "data/ibsi2/references/phase2/source/reference_values.csv",
+      "repository": "ibsi2_reference",
+      "sha256": "6d1a4e7b297e5e9d79ce54471e81f6f84e202fafe0322df1258ac834ce95dd45",
+      "source": "reference_feature_values/reference_values.csv"
+    },
+    {
+      "bytes": 7048,
+      "component": "licenses",
+      "destination": "data/ibsi2/licenses/reference_data_LICENSE",
+      "repository": "ibsi2_reference",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "source": "LICENSE"
+    },
+    {
+      "bytes": 1357,
+      "component": "licenses",
+      "destination": "data/ibsi2/references/README.official.md",
+      "repository": "ibsi2_reference",
+      "sha256": "7cd0c53d69ffd405fa72fa31f364e373687845431aa67a377239b5727f65cadc",
+      "source": "README.md"
+    }
+  ],
+  "generated_manifests": [
+    "data/ibsi1/digital_phantom/manifest.json",
+    "data/ibsi2/source/manifest.json",
+    "data/ibsi2_validation/manifest.json"
+  ],
+  "purpose": "Checksum-bound inputs required to recreate IBSI compliance and the three-pillar benchmark; no image bytes are stored in Git.",
+  "repositories": {
+    "ibsi2_reference": {
+      "commit": "5404579fb3e0d17e8db421f0e82d64ce2432ec03",
+      "url": "https://github.com/theibsi/ibsi_2_reference_data.git"
+    },
+    "ibsi_data_sets": {
+      "commit": "6da96021bc91faf4c0cb7fd7fa56a4225d2064a8",
+      "url": "https://github.com/theibsi/data_sets.git"
+    }
+  },
+  "schema_version": 1
+}
