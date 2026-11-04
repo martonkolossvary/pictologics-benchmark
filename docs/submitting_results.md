@@ -8,7 +8,7 @@ The send comes several days after the start. Thus prepare the GitHub CLI and git
 
 1. Install the GitHub CLI (`gh`). On Windows, use `winget install --id GitHub.cli -e`. The MSI installs for all users and needs administrator rights (a UAC prompt). On macOS and Linux, see <https://cli.github.com>.
 2. On Windows, open a new PowerShell window, so that the `PATH` is current.
-3. Sign in to GitHub. The first command opens the browser:
+3. Sign in to GitHub. On Windows, use a PowerShell window from the Start menu, not a terminal that another app opened ([platforms.md](platforms.md#terminals-on-windows)). The first command opens the browser:
    ```
    gh auth login --web --git-protocol https
    gh auth setup-git

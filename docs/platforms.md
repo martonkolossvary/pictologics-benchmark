@@ -58,6 +58,14 @@ The runner asks for the result folder on the first run. The default is `~/pictol
 
 On Linux, numpy uses AVX-512 math routines (fast CPU math code) when the CPU has them. These routines round some results differently, and the synthetic images then miss the release checksums. The runner thus sets `NPY_DISABLE_CPU_FEATURES` for the workspace build on Linux only. The timed adapter processes keep the routines.
 
+## Terminals on Windows
+
+Start the runner from a PowerShell window that you open from the Start menu, or from Windows Terminal started by itself. Do not use a terminal that another app opened.
+
+The reason is the file redirection of packaged apps (MSIX or Microsoft Store apps), for example the Claude desktop app. A PowerShell window that such an app opens has the same redirection: writes to `AppData` go to `AppData\Local\Packages\<app>\LocalCache\`. In a test run, `uv python install` then failed with "Missing expected target directory for Python minor version link". The default result folder and the `gh` sign-in would also go to the private folder of the app.
+
+Do the `gh auth login` of [submitting_results.md](submitting_results.md#before-the-run) in such a window too.
+
 ## What the runner installs
 
 `reproduce.sh` (macOS and Linux) and `reproduce.ps1` (Windows) do these steps:

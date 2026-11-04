@@ -42,6 +42,11 @@ cd pictologics-benchmark
 powershell -ExecutionPolicy Bypass -File .\reproduce.ps1
 ```
 
+Open this PowerShell window from the Start menu, or start Windows Terminal by
+itself. Do not use a terminal that another app opened, for example the
+Claude desktop app. [docs/platforms.md](docs/platforms.md#terminals-on-windows)
+gives the reason.
+
 On Windows, the repository path must have 80 characters or fewer. Clone into
 `%USERPROFILE%` only when it is not in OneDrive. Otherwise, start with
 `cd C:\` to clone into `C:\pictologics-benchmark`.
