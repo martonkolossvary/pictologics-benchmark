@@ -2,6 +2,27 @@
 
 After a complete main run, the runner builds a result package. It then offers to send the package to the benchmark repository by pull request. The runner never builds or sends a package for a quick run (`--quick`).
 
+## Before the run
+
+The send comes several days after the start. Thus prepare the GitHub CLI and git before the run:
+
+1. Install the GitHub CLI (`gh`). On Windows, use `winget install --id GitHub.cli -e`. The MSI installs for all users and needs administrator rights (a UAC prompt). On macOS and Linux, see <https://cli.github.com>.
+2. On Windows, open a new PowerShell window, so that the `PATH` is current.
+3. Sign in to GitHub. The first command opens the browser:
+   ```
+   gh auth login --web --git-protocol https
+   gh auth setup-git
+   gh auth status
+   ```
+4. Set the git identity. The submit stage commits the package in a temporary clone, and git needs a name and an email for this commit:
+   ```
+   git config --global user.name "Your Name"
+   git config --global user.email "you@example.com"
+   ```
+   GitHub's private noreply address works as the email. GitHub shows it under Settings > Emails.
+
+Without a name and an email, the commit fails with "Author identity unknown". The runner then prints the git error at the end and sends nothing. Set the identity, and run the command again with `--submit`.
+
 ## The package and submit stages
 
 The last two stages of the runner are `package` and `submit` ([`bench/reproduce/stages.py`](../bench/reproduce/stages.py)). They do these steps:
@@ -21,6 +42,12 @@ These options control the submit stage:
 | `--yes` without `--submit` | The runner does not send the package. |
 
 To send the package later, run the same command again with `--submit`. The runner does not repeat the finished benchmark stages.
+
+```bash
+./reproduce.sh --submit
+```
+
+On Windows: `powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 --submit`.
 
 A clone that ran with `--quick` keeps that setting in `.reproduce/settings.json`. Use a new clone for a main run.
 
@@ -60,7 +87,7 @@ The package must be 45 MiB or smaller. A larger package stops the build, and the
 
 ## Send the package by pull request
 
-The submit stage uses the GitHub CLI (`gh`). It needs `gh` on the `PATH`, a `gh` login, and the GitHub address of the benchmark repository in `project.urls.Repository` of [`pyproject.toml`](../pyproject.toml). When these are ready, [`bench/submission/submit.py`](../bench/submission/submit.py) does these steps:
+The submit stage uses the GitHub CLI (`gh`). It needs `gh` on the `PATH`, a `gh` login ([Before the run](#before-the-run)), and the GitHub address of the benchmark repository in `project.urls.Repository` of [`pyproject.toml`](../pyproject.toml). When these are ready, [`bench/submission/submit.py`](../bench/submission/submit.py) does these steps:
 
 1. Fork the benchmark repository to your GitHub account. GitHub lets no account fork its own repository, so for the owner of the benchmark repository the next steps use the repository itself.
 2. Clone the fork into a temporary folder.
@@ -68,7 +95,12 @@ The submit stage uses the GitHub CLI (`gh`). It needs `gh` on the `PATH`, a `gh`
 4. Copy the package to `submissions/<machine ID>/<date>/`, commit it and push the branch.
 5. Open the pull request "Benchmark results from \<machine ID\> (\<date\>)".
 
-The runner prints the address of the pull request at the end.
+The runner prints the address of the pull request at the end. To see the pull request and the result of its check later:
+
+```
+gh pr list --repo martonkolossvary/pictologics-benchmark
+gh pr checks <number> --repo martonkolossvary/pictologics-benchmark
+```
 
 When one of these three is missing, the runner prints the manual steps:
 
@@ -100,7 +132,12 @@ The validator checks these items:
 - For the current release, the package holds one environment record for each library lock of its platform. Each environment holds exactly the packages of its lock.
 - No file holds a personal path (`/Users/<name>`, `/home/<name>`, `C:\Users\<name>`) or an email address.
 
-To run the same check on your computer, use `python -I bench/submission/validate.py . <package folder>`.
+To run the same check on your computer, use the controller Python in the repository folder:
+
+- macOS and Linux: `.venv/bin/python -I bench/submission/validate.py . <package folder>`
+- Windows: `.venv\Scripts\python.exe -I bench\submission\validate.py . <package folder>`
+
+On Windows, a plain `python` can be the Microsoft Store placeholder, which runs no script.
 
 ## Known limit
 

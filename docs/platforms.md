@@ -20,11 +20,23 @@ The first stage of the runner checks this computer. It lists every problem that 
 
 | Item | macOS | Linux | Windows |
 | --- | --- | --- | --- |
-| git | required | required | required |
-| C compiler | Xcode Command Line Tools: `xcode-select --install` | `cc` or `gcc`, for example `sudo apt install build-essential` | Microsoft C++ Build Tools, with "Desktop development with C++" |
+| git | required; the Xcode Command Line Tools include it | required, for example `sudo apt install git` | required, for example `winget install --id Git.Git -e` |
+| C compiler | Xcode Command Line Tools: `xcode-select --install` | `cc` or `gcc`, for example `sudo apt install build-essential` | Microsoft C++ Build Tools, with "Desktop development with C++" (see below) |
 | Repository path | any length | any length | at most 80 characters |
 
 PyRadiomics installs from its source code at a git commit. For this reason, every platform needs git and a C compiler. On macOS and Linux, `reproduce.sh` uses `curl` to download uv.
+
+On Windows, this command installs the Build Tools with the C++ workload:
+
+```powershell
+winget install --id Microsoft.VisualStudio.BuildTools -e --override "--passive --wait --norestart --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"
+```
+
+- `Microsoft.VisualStudio.BuildTools` is the Build Tools 2026. The CI builds PyRadiomics with Visual Studio 2026 (the GitHub image `windows-2025-vs2026`).
+- The runner accepts any version that has the component `Microsoft.VisualStudio.Component.VC.Tools.x86.x64`. It finds the component with `vswhere.exe`.
+- The install needs administrator rights (a UAC prompt). The installer can ask for a restart. Restart before the first run, because a restart stops the run.
+
+After an install, open a new PowerShell window, so that the `PATH` is current.
 
 Windows blocks PowerShell scripts by default (the execution policy). Start the runner with `powershell -ExecutionPolicy Bypass -File .\reproduce.ps1`, and put the options after it. `Bypass` holds only for this one process. It changes no setting of the computer.
 
@@ -32,6 +44,9 @@ Free disk space:
 
 - The repository folder needs 10 GiB.
 - The result folder needs 8 GiB, or 3 GiB for a run with `--quick`.
+- uv keeps the three Pythons and its package cache in its own user folders, outside the repository. `.tools/uv python dir` and `.tools/uv cache dir` print the two folders. On Windows, the defaults are `%APPDATA%\uv\data\python` and `%LOCALAPPDATA%\uv\cache`. On the test Mac, after several runs, the Pythons used 0.2 GiB and the cache 4.9 GiB. The runner does not check this space.
+
+Memory: 16 GiB or more. With less memory, more large tasks stop at the memory limit. IBSI 2 conformance needs more than 16 GiB. With less, the runner reports it and runs the timing benchmark. The runner does not check the memory before the start.
 
 Use local folders. The runner stops when the repository or the result folder is in a cloud-sync folder. The check finds OneDrive, Dropbox, Google Drive, iCloud Drive and `Library/CloudStorage` folders by their path. It also finds the folders that the `OneDrive`, `Dropbox` and `GoogleDrive` environment variables name (`_known_sync_root` in [`scripts/launch_benchmark.py`](../scripts/launch_benchmark.py)).
 
@@ -118,7 +133,7 @@ Each task runs its adapter in a new process. [`bench/run.py`](../bench/run.py) c
 
 ## Fonts for the figures
 
-The figures use Arial. The figures stage looks for Arial first. When Arial is missing, the stage does not draw the figures. The runner then prints an install hint at the end. On Linux, the hint is `sudo apt install ttf-mscorefonts-installer`.
+The figures use Arial. The figures stage looks for Arial first. When Arial is missing, the stage does not draw the figures. The runner then prints an install hint at the end. On Linux, the hint is `sudo apt install ttf-mscorefonts-installer`. Windows and macOS include Arial. When Arial is missing there, the hint is "install the Arial font".
 
 ## Times from different systems
 
