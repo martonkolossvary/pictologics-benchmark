@@ -15,11 +15,15 @@ You need:
 | Item | Requirement |
 | --- | --- |
 | System | macOS on Apple Silicon, Linux x86_64 or Windows x86_64 |
-| Tools | git and a C compiler ([docs/platforms.md](docs/platforms.md) lists one for each system) |
+| Tools | git and a C compiler: the Xcode Command Line Tools (macOS), `gcc` (Linux) or the Microsoft C++ Build Tools with "Desktop development with C++" (Windows). [docs/platforms.md](docs/platforms.md) gives the install commands |
+| To send results (optional) | The GitHub CLI (`gh`), signed in, and a git `user.name` and `user.email`. [docs/submitting_results.md](docs/submitting_results.md#before-the-run) gives the commands |
 | Disk | 10 GiB for the repository folder, 8 GiB for the results (3 GiB for the quick run) |
 | Memory | 16 GiB or more; with less memory, more large tasks stop at the memory limit. IBSI 2 conformance needs more than 16 GiB; with less, the command reports it and runs the timing benchmark |
 | Time | About 2 hours for the quick run; several days for the full run |
 | Folder | A local folder that is not in a cloud-sync folder (OneDrive, Dropbox, iCloud, Google Drive) |
+
+Install all prerequisites before the first run. Do any restart that an
+installer asks for before the first run, because a restart stops the run.
 
 Start the benchmark (macOS and Linux):
 
@@ -29,11 +33,23 @@ cd pictologics-benchmark
 ./reproduce.sh
 ```
 
-On Windows, open PowerShell in the repository folder and run:
+Start the benchmark (Windows, in PowerShell):
 
 ```powershell
+cd $env:USERPROFILE
+git clone https://github.com/martonkolossvary/pictologics-benchmark.git
+cd pictologics-benchmark
 powershell -ExecutionPolicy Bypass -File .\reproduce.ps1
 ```
+
+Open this PowerShell window from the Start menu, or start Windows Terminal by
+itself. Do not use a terminal that another app opened, for example the
+Claude desktop app. [docs/platforms.md](docs/platforms.md#terminals-on-windows)
+gives the reason.
+
+On Windows, the repository path must have 80 characters or fewer. Clone into
+`%USERPROFILE%` only when it is not in OneDrive. Otherwise, start with
+`cd C:\` to clone into `C:\pictologics-benchmark`.
 
 Windows blocks scripts by default. `Bypass` lifts this block for this one run
 only, and it changes no setting of the computer. On Windows, use this command
@@ -58,8 +74,20 @@ The command does these steps:
 9. It writes the reports and the figures.
 10. It builds a result package and asks if you want to send it.
 
-On the first run, the command asks for a result folder and a machine ID. Do not
-use a personal name in the machine ID.
+The command asks these questions, in this order. Each question shows its
+default in brackets, and Return accepts the default.
+
+1. `Result folder`: the folder for the results. Only the first run asks.
+2. `Machine ID (no personal names)`: a suggested ID. Only the first run asks.
+   Do not use a personal name.
+3. `Type CALCULATE to start`: this question comes after a checklist, before
+   the timing benchmark starts or resumes. The default is `CALCULATE`. Any
+   other answer prints "Not started." and stops the command with exit code 1.
+4. `Send the results to the benchmark repository now? [y/N]`: this question
+   comes at the end of a full run. Type `y` to send the results.
+
+Steps 1 to 7 run before question 3, so stay near the computer until then.
+The dataset build alone takes about 25 minutes.
 
 ### Stop and resume
 
@@ -70,12 +98,37 @@ use a personal name in the machine ID.
 - Until the run ends, do not update the operating system, do not move the
   repository folder, and do not run `git pull`. A resume refuses each of these
   changes, because the run binds the kernel release, the paths and the code.
+- On Windows, pause Windows Update before the start: Settings > Windows
+  Update > Pause updates, with the longest period. On Windows, the kernel
+  release is only the major version (for example `11`), so a resume does not
+  see a monthly update.
 - Keep the computer on mains power. Before the first task and after each
   task, the run checks the power source and power saving. If they change, the
   run stops, and the next run does the last task again.
 
 `./reproduce.sh --status` shows the progress. `./reproduce.sh --help` lists all
-options.
+options. On Windows, use
+`powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 --status` and
+`powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 --help`.
+
+Each start of `reproduce.sh` or `reproduce.ps1` first checks uv, the Pythons
+and the Poetry environment again. While a run goes on, use the controller
+Python directly instead. This command only reads the progress files, so it
+does not disturb the run:
+
+```bash
+.venv/bin/python -m bench.reproduce --status
+```
+
+On Windows: `.venv\Scripts\python.exe -m bench.reproduce --status`.
+
+The command ends with one of these exit codes:
+
+| Code | Meaning |
+| --- | --- |
+| 0 | The benchmark is complete. |
+| 1 | A stage stopped, or the answer to `Type CALCULATE to start` was not `CALCULATE`. The message says what to do. A change of the power state also gives 1: correct the power state, then run the same command again. |
+| 130 | Ctrl-C stopped the command. Run the same command again to resume. |
 
 ## Results
 
