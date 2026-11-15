@@ -8,12 +8,14 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from dataclasses import replace
 from pathlib import Path
+from types import SimpleNamespace
 from unittest import mock
 
 from bench import run
 from bench.reproduce import __main__ as reproduce
-from bench.reproduce import host_profile, stages
+from bench.reproduce import host_profile, pictologics_only, stages
 from scripts.launch_benchmark import _load_host_profile, build_commands
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,13 +55,20 @@ class SettingsAndMarkerTests(unittest.TestCase):
         self.addCleanup(patcher.stop)
         self.addCleanup(self.temporary.cleanup)
 
-    def arguments(self, *, quick: bool = False, screens: bool = False):
+    def arguments(
+        self,
+        *,
+        quick: bool = False,
+        screens: bool = False,
+        pictologics_only: bool = False,
+    ):
         return argparse.Namespace(
             yes=True,
             result_root=self.temporary.name,
             machine_id=None,
             quick=quick,
             screens=screens,
+            pictologics_only=pictologics_only,
         )
 
     def test_a_second_run_with_another_mode_is_refused(self) -> None:
@@ -67,6 +76,40 @@ class SettingsAndMarkerTests(unittest.TestCase):
         self.assertTrue(json.loads(self.settings.read_text())["quick"])
         with self.assertRaisesRegex(stages.StageError, "already runs with screens"):
             reproduce._settings(self.arguments(screens=True))
+
+    def test_a_full_run_folder_never_switches_to_pictologics_only(self) -> None:
+        reproduce._settings(self.arguments())
+        self.assertFalse(json.loads(self.settings.read_text())["pictologics_only"])
+        with self.assertRaisesRegex(
+            stages.StageError, "already runs with pictologics_only = False"
+        ):
+            reproduce._settings(self.arguments(pictologics_only=True))
+
+    def test_a_pictologics_only_folder_keeps_its_mode(self) -> None:
+        reproduce._settings(self.arguments(pictologics_only=True))
+        # The resume command may leave out the option.
+        self.assertTrue(reproduce._settings(self.arguments())["pictologics_only"])
+
+    def test_settings_from_before_the_option_belong_to_a_full_run(self) -> None:
+        self.settings.write_text(
+            json.dumps(
+                {
+                    "result_root": str(Path(self.temporary.name).resolve()),
+                    "machine_id": "machine",
+                    "quick": False,
+                    "screens": False,
+                    "first_start": {},
+                }
+            ),
+            encoding="utf-8",
+        )
+        self.assertFalse(reproduce._settings(self.arguments())["pictologics_only"])
+        with self.assertRaises(stages.StageError):
+            reproduce._settings(self.arguments(pictologics_only=True))
+
+    def test_the_screens_are_refused_with_pictologics_only(self) -> None:
+        with self.assertRaises(SystemExit):
+            reproduce.main(["--pictologics-only", "--screens", "--status"])
 
     def test_markers_are_bound_to_the_release_lock_and_the_mode(self) -> None:
         context = stages.Context(
@@ -266,6 +309,183 @@ class QuickLaunchTests(unittest.TestCase):
         self.assertEqual(first[first.index("--timeout") + 1], "300.0")
         self.assertEqual(first[first.index("--sizes") + 1], "32,64")
         self.assertEqual(first[first.index("--project-total-tasks") + 1], str(12 * 5))
+
+
+def _context(result_root: Path, **options) -> stages.Context:
+    return stages.Context(
+        result_root=result_root,
+        machine_id="machine",
+        quick=False,
+        screens=False,
+        yes=True,
+        **options,
+    )
+
+
+class PictologicsOnlyStageTests(unittest.TestCase):
+    def setUp(self) -> None:
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.full = _context(self.root)
+        self.solo = _context(self.root, pictologics_only=True)
+
+    def test_the_run_keeps_every_file_apart_from_a_full_run(self) -> None:
+        machine = self.root / "machine"
+        self.assertEqual(self.full.state_root, machine)
+        self.assertEqual(self.solo.state_root, machine / "pictologics_only")
+        self.assertEqual(self.solo.run_root, self.solo.state_root)
+        self.assertEqual(self.solo.compliance_root, self.solo.state_root / "compliance")
+        self.assertEqual(
+            replace(self.solo, quick=True).run_root, self.solo.state_root / "quick"
+        )
+        self.assertEqual(self.full.compliance_root, machine / "compliance")
+        self.assertNotEqual(
+            stages.Markers(self.full).path, stages.Markers(self.solo).path
+        )
+        self.assertNotEqual(
+            stages._release_digest(self.full), stages._release_digest(self.solo)
+        )
+
+    def test_only_the_screens_and_the_figures_are_left_out(self) -> None:
+        skipped = [s.name for s in stages.STAGES if not stages.applies(s, self.solo)]
+        self.assertEqual(skipped, ["screens", "figures"])
+        skipped = [s.name for s in stages.STAGES if not stages.applies(s, self.full)]
+        self.assertEqual(skipped, ["screens"])
+
+    def problems(self, context: stages.Context) -> str:
+        with (
+            mock.patch.object(stages, "REPO", self.root),
+            mock.patch.object(
+                stages, "native_platform_key", return_value="Linux-x86_64"
+            ),
+            mock.patch.object(
+                stages, "_compiler_problems", return_value=["install a compiler"]
+            ),
+            mock.patch.object(stages.shutil, "which", return_value="/usr/bin/git"),
+            mock.patch.object(
+                stages.shutil,
+                "disk_usage",
+                return_value=SimpleNamespace(free=100 * stages.GIB),
+            ),
+            mock.patch("scripts.launch_benchmark._known_sync_root", return_value=None),
+        ):
+            try:
+                stages.prerequisites(context)
+            except stages.StageError as exc:
+                return str(exc)
+        return ""
+
+    def test_no_c_compiler_is_needed(self) -> None:
+        self.assertIn("install a compiler", self.problems(self.full))
+        self.assertEqual(self.problems(self.solo), "")
+
+    def test_only_the_pictologics_environment_is_built(self) -> None:
+        profiles = {"pictologics": "picto-profile", "mirp": "mirp-profile"}
+        with (
+            mock.patch("bench.env.load_runtime_profiles", return_value=profiles),
+            mock.patch("bench.env.create_profile") as create,
+            mock.patch.object(stages, "bench") as verify,
+        ):
+            stages.environments(self.solo)
+        create.assert_called_once_with("picto-profile")
+        self.assertEqual(
+            verify.call_args.args, ("env", "verify", "--profiles", "pictologics")
+        )
+
+    def test_conformance_runs_for_pictologics_alone_in_its_own_folder(self) -> None:
+        calls = []
+
+        def fake_bench(*arguments, step, **options):
+            calls.append(arguments)
+
+        with (
+            mock.patch.object(stages, "bench", side_effect=fake_bench),
+            mock.patch.object(Path, "is_dir", return_value=False),
+        ):
+            self.assertTrue(stages.compliance(self.solo))
+        self.assertEqual(len(calls), 6)
+        for arguments in calls:
+            self.assertEqual(arguments[-2:], ("--adapters", "pictologics"))
+            output = arguments[arguments.index("--output-dir") + 1]
+            self.assertTrue(Path(output).is_relative_to(self.solo.compliance_root))
+
+    def test_the_timing_stage_uses_the_pictologics_launcher(self) -> None:
+        context = replace(self.solo, host_profile=self.root / "host_profile.json")
+        with mock.patch.object(
+            stages.subprocess, "run", return_value=SimpleNamespace(returncode=0)
+        ) as fake:
+            stages.timing_run(context)
+        command = fake.call_args.args[0]
+        self.assertEqual(command[1:3], ["-m", "bench.reproduce.pictologics_only"])
+        self.assertIn("--execute", command)
+
+
+class PictologicsOnlyLaunchTests(unittest.TestCase):
+    WORKSPACE = {
+        "launch_policy": {
+            "speed_guardrail_baseline": "pictologics",
+            "checkpoint_interval_tasks": 25,
+            "per_call_timeout_seconds": 1800,
+        },
+        "adapter_order": ["pictologics", "mirp"],
+        "endpoint_contract": {"path": "configs/benchmark/main.json"},
+        "task_inventory": {
+            "fresh_process_repeats": 3,
+            "measured_calls_per_process": 3,
+            "adapter_count": 2,
+            "family_count": 5,
+        },
+        "datasets": {pillar: {"case_count": 10} for pillar in stages.PILLARS},
+    }
+
+    def test_only_the_libraries_folder_run_id_and_counters_change(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "repo" / "data" / "benchmark"
+            results = Path(temporary) / "results"
+            commands = build_commands(
+                root,
+                self.WORKSPACE,
+                result_root=results,
+                dry_run=False,
+                machine_id="machine",
+            )
+            solo = pictologics_only.pictologics_commands(
+                commands,
+                self.WORKSPACE,
+                machine_root=results / "machine",
+                quick=False,
+            )
+            expected_root = (results / "machine").resolve() / "pictologics_only"
+        for pillar, original, changed in zip(stages.PILLARS, commands, solo):
+            self.assertEqual(len(original), len(changed))
+            differing = {
+                original[index - 1]
+                for index, (old, new) in enumerate(zip(original, changed))
+                if old != new
+            }
+            self.assertLessEqual(differing, set(pictologics_only.CHANGED_OPTIONS))
+
+            def value(option: str, command=changed) -> str:
+                return command[command.index(option) + 1]
+
+            self.assertEqual(value("--adapters"), "pictologics")
+            self.assertEqual(Path(value("--report-dir")), expected_root / pillar)
+            self.assertEqual(value("--run-id"), f"{pillar}_main_pictologics")
+            self.assertEqual(
+                value("--endpoint-contract"), value("--endpoint-contract", original)
+            )
+            self.assertEqual(value("--timeout"), value("--timeout", original))
+        # Pillars x cases x groups x repeats, now for one library.
+        self.assertEqual(solo[0][solo[0].index("--project-total-tasks") + 1], "450")
+        self.assertEqual(solo[2][solo[2].index("--project-task-offset") + 1], "300")
+
+    def test_a_workspace_without_pictologics_is_refused(self) -> None:
+        workspace = {**self.WORKSPACE, "adapter_order": ["mirp"]}
+        with self.assertRaisesRegex(ValueError, "does not schedule Pictologics"):
+            pictologics_only.pictologics_commands(
+                [], workspace, machine_root=Path("."), quick=False
+            )
 
 
 class IsolationTests(unittest.TestCase):

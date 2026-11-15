@@ -62,10 +62,16 @@ def submit(package: Path) -> str:
             "The GitHub CLI (gh) is missing or not logged in.\n"
             + manual_steps(package, target)
         )
-    machine_id, date = package.parent.name, package.name
+    # The folder is <date> for a full run and <date>-pictologics for a
+    # Pictologics-only run.
+    machine_id, folder = package.parent.name, package.name
+    date = folder[:10]
+    results = (
+        "Pictologics-only benchmark results" if folder != date else "benchmark results"
+    )
     login = _gh("api", "user", "--jq", ".login")
     owner, name = target.split("/")
-    branch = f"results-{machine_id}-{date}"
+    branch = f"results-{machine_id}-{folder}"
     with tempfile.TemporaryDirectory() as temporary:
         # GitHub lets no account fork its own repository, so the owner
         # pushes the branch to the repository itself.
@@ -82,16 +88,20 @@ def submit(package: Path) -> str:
             "1",
         )
         _git("checkout", "-b", branch, cwd=fork)
-        destination = fork / "submissions" / machine_id / date
+        destination = fork / "submissions" / machine_id / folder
+        if destination.exists():
+            raise RuntimeError(
+                f"submissions/{machine_id}/{folder} is already in the repository."
+            )
         shutil.copytree(package, destination)
         _git("add", "submissions", cwd=fork)
-        _git("commit", "-m", f"Add benchmark results from {machine_id}", cwd=fork)
+        _git("commit", "-m", f"Add {results} from {machine_id}", cwd=fork)
         _git("push", "--set-upstream", "origin", branch, cwd=fork)
         return _gh(
             "pr", "create",
             "--repo", target,
             "--head", f"{login}:{branch}",
-            "--title", f"Benchmark results from {machine_id} ({date})",
+            "--title", f"{results[0].upper()}{results[1:]} from {machine_id} ({date})",
             "--body",
             "Result package made by reproduce. The submission check verifies it.",
         )  # fmt: skip

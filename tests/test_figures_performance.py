@@ -252,3 +252,61 @@ class CommunityFigureTests(unittest.TestCase):
                 root / "submissions", root / "figures", dataset="Pillar 2, 64³"
             )
             self.assertTrue((root / "figures" / f"{record['figure_id']}.pdf").is_file())
+
+    def test_pictologics_only_packages_join_the_hardware_figure_only(self) -> None:
+        import gzip
+
+        from bench.figures import community
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            packages = (
+                ("macos-a-1111", "2026-11-01", "all", ("pictologics", "mirp"), 1.0),
+                (
+                    "linux-b-2222",
+                    "2026-11-02-pictologics",
+                    "pictologics",
+                    ("pictologics",),
+                    2.0,
+                ),
+            )
+            for machine, name, scope, adapters, speed in packages:
+                folder = root / "submissions" / machine / name
+                records = [
+                    _record(adapter, size, repeat, duration=0.01 * speed * size)
+                    for size in (32, 64)
+                    for repeat in (1, 2, 3)
+                    for adapter in adapters
+                ]
+                for pillar in community.PILLARS:
+                    (folder / pillar).mkdir(parents=True)
+                    lines = [json.dumps({"record": record}) for record in records]
+                    (folder / pillar / "tasks.jsonl.gz").write_bytes(
+                        gzip.compress(("\n".join(lines) + "\n").encode())
+                    )
+                (folder / "submission.json").write_text(
+                    json.dumps({"platform_key": "Linux-x86_64", "scope": scope}),
+                    encoding="utf-8",
+                )
+                (folder / "host_profile.json").write_text(
+                    json.dumps({"machine_label": f"CPU {machine} (8-thread CPU)"}),
+                    encoding="utf-8",
+                )
+            ratios = community.machine_ratios(root / "submissions")
+            self.assertEqual(set(ratios["machine"]), {"macos-a-1111"})
+            times = community.pictologics_times(root / "submissions")
+            self.assertEqual(set(times["machine"]), {"macos-a-1111", "linux-b-2222"})
+            self.assertEqual(
+                set(times["run_kind"]), {"full run", "Pictologics-only run"}
+            )
+            medians = times.set_index(["machine", "size"])["median"]
+            self.assertAlmostEqual(
+                medians[("linux-b-2222", 64)], 2 * medians[("macos-a-1111", 64)]
+            )
+            record = community.pictologics_hardware_figure(
+                root / "submissions", root / "figures"
+            )
+            self.assertTrue((root / "figures" / f"{record['figure_id']}.pdf").is_file())
+            self.assertTrue(
+                (root / "figures" / "table_community_pictologics_times.csv").is_file()
+            )

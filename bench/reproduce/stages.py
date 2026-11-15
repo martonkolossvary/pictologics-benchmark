@@ -26,6 +26,10 @@ WORKSPACE = REPO / "data" / "benchmark"
 PILLARS = ("pillar1_morphology", "pillar2_whole_anatomy", "pillar3_ibsi2_phase3")
 SUPPORTED_PLATFORMS = ("Darwin-arm64", "Linux-x86_64", "Windows-AMD64")
 GIB = 1024**3
+# A Pictologics-only run times this one library on the tasks of the full run,
+# to compare hardware.  It keeps all its files in this folder of the machine.
+PICTOLOGICS = "pictologics"
+PICTOLOGICS_FOLDER = "pictologics_only"
 # On Linux, numpy's AVX-512 math routines round some results differently, and
 # the synthetic images then miss the release checksums.  The workspace build
 # turns them off; the timed adapter processes keep them.
@@ -48,6 +52,7 @@ class Context:
     yes: bool
     host_profile: Path | None = None
     submit: bool | None = None
+    pictologics_only: bool = False
     notes: list[str] = field(default_factory=list)
 
     @property
@@ -55,12 +60,33 @@ class Context:
         return self.result_root / self.machine_id
 
     @property
+    def state_root(self) -> Path:
+        """The host profile, stage records, conformance tables and packages.
+
+        A Pictologics-only run keeps them in its own folder, so it never
+        changes a file of a full run of the same machine.
+        """
+        if self.pictologics_only:
+            return self.machine_root / PICTOLOGICS_FOLDER
+        return self.machine_root
+
+    @property
     def compliance_root(self) -> Path:
-        return self.machine_root / "compliance"
+        return self.state_root / "compliance"
 
     @property
     def run_root(self) -> Path:
-        return self.machine_root / "quick" if self.quick else self.machine_root
+        return self.state_root / "quick" if self.quick else self.state_root
+
+    @property
+    def scope(self) -> str:
+        """The libraries of this run: ``all`` or ``pictologics``."""
+        return PICTOLOGICS if self.pictologics_only else "all"
+
+    @property
+    def adapter_arguments(self) -> tuple[str, ...]:
+        """The ``--adapters`` option for the conformance commands of this run."""
+        return ("--adapters", PICTOLOGICS) if self.pictologics_only else ()
 
 
 def run(command: list[str], *, step: str, **options: Any) -> None:
@@ -85,6 +111,8 @@ def _release_digest(context: Context) -> str:
     lock = REPO / "reproducibility" / "release-lock.json"
     content = lock.read_bytes() if lock.is_file() else b"no-release-lock"
     mode = b"quick" if context.quick else b"main"
+    if context.pictologics_only:
+        mode = b"pictologics-" + mode
     return hashlib.sha256(content + mode).hexdigest()
 
 
@@ -92,7 +120,7 @@ class Markers:
     """Stage completion records of one machine, bound to the release lock."""
 
     def __init__(self, context: Context):
-        self.path = context.machine_root / "reproduce_stages.json"
+        self.path = context.state_root / "reproduce_stages.json"
         self.digest = _release_digest(context)
         self.records = (
             json.loads(self.path.read_text(encoding="utf-8"))
@@ -115,27 +143,13 @@ class Markers:
 # ---------------------------------------------------------------- stages
 
 
-def prerequisites(context: Context) -> None:
-    from scripts.launch_benchmark import _known_sync_root
-
-    problems = []
-    key = native_platform_key()
-    if key not in SUPPORTED_PLATFORMS:
-        problems.append(
-            f"this platform ({key}) is not supported; use macOS on Apple Silicon, "
-            "Linux x86_64 or Windows x86_64"
-        )
-    if not shutil.which("git"):
-        problems.append("install git")
-    system = platform.system()
+def _compiler_problems(system: str) -> list[str]:
     if system == "Darwin":
         xcode = subprocess.run(["xcode-select", "-p"], capture_output=True)
         if xcode.returncode != 0:
-            problems.append("install the compiler: xcode-select --install")
+            return ["install the compiler: xcode-select --install"]
     elif system == "Linux" and not (shutil.which("cc") or shutil.which("gcc")):
-        problems.append(
-            "install a C compiler, for example: sudo apt install build-essential"
-        )
+        return ["install a C compiler, for example: sudo apt install build-essential"]
     elif system == "Windows":
         vswhere = (
             Path(r"C:\Program Files (x86)\Microsoft Visual Studio\Installer")
@@ -158,15 +172,34 @@ def prerequisites(context: Context) -> None:
             ).stdout.strip()
         )
         if not found:
-            problems.append(
+            return [
                 "install the Microsoft C++ Build Tools (Desktop development with C++)"
-            )
-        if len(str(REPO)) > 80:
-            problems.append(
-                f"move this folder to a shorter path (at most 80 characters): {REPO}"
-            )
+            ]
+    return []
+
+
+def prerequisites(context: Context) -> None:
+    from scripts.launch_benchmark import _known_sync_root
+
+    problems = []
+    key = native_platform_key()
+    if key not in SUPPORTED_PLATFORMS:
+        problems.append(
+            f"this platform ({key}) is not supported; use macOS on Apple Silicon, "
+            "Linux x86_64 or Windows x86_64"
+        )
+    if not shutil.which("git"):
+        problems.append("install git")
+    system = platform.system()
+    # Only PyRadiomics builds from source code; Pictologics installs from wheels.
+    if not context.pictologics_only:
+        problems += _compiler_problems(system)
+    if system == "Windows" and len(str(REPO)) > 80:
+        problems.append(
+            f"move this folder to a shorter path (at most 80 characters): {REPO}"
+        )
     for label, path, need in (
-        ("repository", REPO, 10),
+        ("repository", REPO, 6 if context.pictologics_only else 10),
         ("result folder", context.result_root, 3 if context.quick else 8),
     ):
         if _known_sync_root(path):
@@ -222,13 +255,17 @@ def references(context: Context) -> None:
 def environments(context: Context) -> None:
     from bench import env
 
-    for name, profile in env.load_runtime_profiles().items():
+    profiles = env.load_runtime_profiles()
+    if context.pictologics_only:
+        profiles = {PICTOLOGICS: profiles[PICTOLOGICS]}
+    for name, profile in profiles.items():
         try:
             env.create_profile(profile)
         except Exception as exc:  # noqa: BLE001 - a drifted env is rebuilt
             print(f"Rebuilding the {name} environment: {exc}")
             env.create_profile(profile, force=True)
-    bench("env", "verify", step="environment check")
+    only = ("--profiles", PICTOLOGICS) if context.pictologics_only else ()
+    bench("env", "verify", *only, step="environment check")
 
 
 def workspace(context: Context) -> None:
@@ -263,6 +300,7 @@ def compliance(context: Context) -> bool:
         "--reference-manifest", "data/ibsi1/references/ibsi1_reference_manifest.json",
         "--output-dir", str(root / "ibsi1"),
         "--resume",
+        *context.adapter_arguments,
         step="IBSI 1 conformance",
     )  # fmt: skip
     # IBSI 2 needs more memory than the timing run (MEDimage's Gabor filter
@@ -281,6 +319,7 @@ def compliance(context: Context) -> bool:
             "--output-dir", str(candidates),
             "--phases", "phase1,phase2",
             "--resume",
+            *context.adapter_arguments,
             step="IBSI 2 candidate maps",
             **memory_cap,
         )  # fmt: skip
@@ -295,6 +334,7 @@ def compliance(context: Context) -> bool:
                     "--reference-dir", "data/ibsi2/references/phase1/maps",
                     "--candidate-manifest", str(candidates / f"ibsi2_phase1{suffix}_candidates.json"),
                     "--output-dir", str(root / f"ibsi2-phase1{folder}"),
+                    *context.adapter_arguments,
                     step=f"IBSI 2 Phase 1 conformance{label}",
                 )  # fmt: skip
             bench(
@@ -305,6 +345,7 @@ def compliance(context: Context) -> bool:
                 "data/ibsi2/references/phase2/ibsi2_phase2_reference_manifest.json",
                 "--output-dir", str(root / f"ibsi2-phase2{folder}"),
                 "--resume",
+                *context.adapter_arguments,
                 step=f"IBSI 2 Phase 2 conformance{label}",
             )  # fmt: skip
     except StageError as exc:
@@ -320,13 +361,20 @@ def host_profile(context: Context) -> None:
 
     if context.host_profile is None:
         context.host_profile = write_host_profile(
-            context.machine_root / "host_profile.json", context.machine_id
+            context.state_root / "host_profile.json", context.machine_id
         )
 
 
 def _launch(context: Context, *flags: str, step: str) -> None:
+    # The Pictologics-only launcher reuses the release launcher's checks and
+    # commands, and changes only the library list and the result folder.
+    launcher = (
+        ["-m", "bench.reproduce.pictologics_only"]
+        if context.pictologics_only
+        else ["scripts/launch_benchmark.py"]
+    )
     command = [
-        PYTHON, "scripts/launch_benchmark.py",
+        PYTHON, *launcher,
         "--workspace-root", "data/benchmark",
         "--result-root", str(context.result_root),
         "--host-profile", str(context.host_profile),
@@ -419,7 +467,7 @@ def figures(context: Context) -> bool:
 
 def _latest_package(context: Context) -> Path | None:
     folders = sorted(
-        (context.machine_root / "submissions" / context.machine_id).glob("*")
+        (context.state_root / "submissions" / context.machine_id).glob("*")
     )
     return folders[-1] if folders else None
 
@@ -430,7 +478,7 @@ def package(context: Context) -> None:
 
     try:
         folder = _latest_package(context) or build_package(
-            context.machine_root, context.result_root
+            context.state_root, context.result_root, scope=context.scope
         )
     except PackageError as exc:
         raise StageError(str(exc)) from exc
@@ -475,7 +523,7 @@ STAGES = (
     Stage("release", "Check the release files", release_check, False),
     Stage("inputs", "Download and check the public inputs", inputs, True),
     Stage("references", "Import the IBSI reference values", references, True),
-    Stage("environments", "Build the five library environments", environments, False),
+    Stage("environments", "Build the library environments", environments, False),
     Stage("workspace", "Build and check the benchmark datasets", workspace, True),
     Stage("compliance", "Check IBSI conformance", compliance, True),
     Stage("host_profile", "Record this computer's hardware", host_profile, False),
@@ -486,3 +534,16 @@ STAGES = (
     Stage("package", "Build the result package", package, True),
     Stage("submit", "Send the results", submission, False),
 )
+
+
+def applies(stage: Stage, context: Context) -> bool:
+    """Whether a stage belongs to the run of this context."""
+
+    if stage.name == "screens":
+        return context.screens
+    if stage.name in {"package", "submit"}:
+        return not context.quick
+    # The figures compare the five libraries with each other.
+    if stage.name == "figures":
+        return not context.pictologics_only
+    return True

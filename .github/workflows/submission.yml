@@ -37,9 +37,10 @@ jobs:
         run: |
           files=$(gh pr view ${{ github.event.pull_request.number }} \
             --repo ${{ github.repository }} --json files --jq '.files[].path')
-          bad=$(printf '%s\n' "$files" | grep -Ev '^submissions/[A-Za-z0-9][A-Za-z0-9._-]*/[0-9]{4}-[0-9]{2}-[0-9]{2}/' || true)
+          # <date> for a full run, <date>-pictologics for a Pictologics-only run.
+          bad=$(printf '%s\n' "$files" | grep -Ev '^submissions/[A-Za-z0-9][A-Za-z0-9._-]*/[0-9]{4}-[0-9]{2}-[0-9]{2}(-pictologics)?/' || true)
           if [ -n "$bad" ]; then
-            echo "This pull request may change only submissions/<machine-id>/<date>/:"
+            echo "This pull request may change only submissions/<machine-id>/<date>/ or submissions/<machine-id>/<date>-pictologics/:"
             echo "$bad"
             exit 1
           fi

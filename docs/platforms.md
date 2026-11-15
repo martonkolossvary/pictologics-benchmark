@@ -26,6 +26,8 @@ The first stage of the runner checks this computer. It lists every problem that 
 
 PyRadiomics installs from its source code at a git commit. For this reason, every platform needs git and a C compiler. On macOS and Linux, `reproduce.sh` uses `curl` to download uv.
 
+The Pictologics-only run (`--pictologics-only`) builds only the Pictologics environment, which installs from wheels. It needs git but no C compiler, and its repository folder needs 6 GiB.
+
 On Windows, this command installs the Build Tools with the C++ workload:
 
 ```powershell

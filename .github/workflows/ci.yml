@@ -22,6 +22,10 @@ on:
         type: choice
         options: [both, ubuntu-latest, windows-latest]
         default: both
+      quick_run_pictologics_only:
+        description: "Run the quick run with --pictologics-only"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -109,6 +113,8 @@ jobs:
         os: ${{ fromJSON(inputs.quick_run_os == 'both' && '["ubuntu-latest", "windows-latest"]' || format('["{0}"]', inputs.quick_run_os)) }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 345
+    env:
+      MODE: ${{ inputs.quick_run_pictologics_only && '--pictologics-only' || '' }}
     steps:
       - uses: actions/checkout@v7
       - name: Install Arial (Linux)
@@ -123,16 +129,19 @@ jobs:
         run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
       - name: Quick run (Linux)
         if: runner.os != 'Windows'
-        run: ./reproduce.sh --quick --yes --no-submit --machine-id ci-${{ runner.os }} --result-root "$RUNNER_TEMP/results"
+        # $MODE stays unquoted, so an empty mode adds no argument.
+        run: ./reproduce.sh --quick $MODE --yes --no-submit --machine-id ci-${{ runner.os }} --result-root "$RUNNER_TEMP/results"
       - name: Quick run (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
-        run: powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 --quick --yes --no-submit --machine-id ci-${{ runner.os }} --result-root "$env:RUNNER_TEMP\results"
+        run: |
+          $mode = @($env:MODE) | Where-Object { $_ }
+          powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 --quick @mode --yes --no-submit --machine-id ci-${{ runner.os }} --result-root "$env:RUNNER_TEMP\results"
       - name: Keep the reports
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: quick-run-${{ runner.os }}
+          name: quick-run-${{ runner.os }}${{ inputs.quick_run_pictologics_only && '-pictologics-only' || '' }}
           path: |
             ${{ runner.temp }}/results/**/report/**
             ${{ runner.temp }}/results/**/figures/**

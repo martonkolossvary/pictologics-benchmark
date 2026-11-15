@@ -1,7 +1,9 @@
 """Run the whole benchmark on this computer: ``reproduce.sh`` or ``reproduce.ps1``.
 
 Run the same command again to resume.  The first run asks for a machine ID and
-a result folder and stores them in ``.reproduce/settings.json``.
+a result folder and stores them in ``.reproduce/settings.json``.  With
+``--pictologics-only``, the run times Pictologics alone on the tasks of the full
+run, to compare hardware.
 """
 
 from __future__ import annotations
@@ -24,6 +26,7 @@ from bench.reproduce.stages import (
     Context,
     Markers,
     StageError,
+    applies,
 )
 
 SETTINGS = REPO / ".reproduce" / "settings.json"
@@ -56,6 +59,10 @@ def _settings(args: argparse.Namespace) -> dict:
     stored = (
         json.loads(SETTINGS.read_text(encoding="utf-8")) if SETTINGS.is_file() else {}
     )
+    if stored:
+        # Settings from before the Pictologics-only mode belong to a full run.
+        stored.setdefault("pictologics_only", False)
+    pictologics_only = bool(getattr(args, "pictologics_only", False))
     requested = {
         "result_root": (
             str(Path(args.result_root).expanduser().resolve())
@@ -65,6 +72,7 @@ def _settings(args: argparse.Namespace) -> dict:
         "machine_id": args.machine_id,
         "quick": True if args.quick else None,
         "screens": True if args.screens else None,
+        "pictologics_only": True if pictologics_only else None,
     }
     for key, value in requested.items():
         if stored and value is not None and stored.get(key) != value:
@@ -91,6 +99,7 @@ def _settings(args: argparse.Namespace) -> dict:
         or _ask("Machine ID (no personal names)", suggested_machine_id(), args.yes),
         "quick": bool(args.quick),
         "screens": bool(args.screens),
+        "pictologics_only": pictologics_only,
         "first_start": {
             "commit": _git("rev-parse", "HEAD"),
             "operating_system": f"{platform.system()} {platform.release()}",
@@ -124,9 +133,16 @@ def _check_unchanged(settings: dict) -> None:
 
 
 def _status(context: Context, markers: Markers) -> None:
-    print(f"Machine {context.machine_id}, results in {context.machine_root}")
+    mode = " (Pictologics only)" if context.pictologics_only else ""
+    print(f"Machine {context.machine_id}{mode}, results in {context.state_root}")
     for stage in STAGES:
-        state = "done" if markers.done(stage.name) else "-"
+        state = (
+            "done"
+            if markers.done(stage.name)
+            else "-"
+            if applies(stage, context)
+            else "not in this run"
+        )
         print(f"  {stage.title:42s} {state}")
     for pillar in PILLARS:
         ledger = context.run_root / pillar / "benchmark.sqlite3"
@@ -152,6 +168,14 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Run the two feasibility screens before the main run",
     )
+    parser.add_argument(
+        "--pictologics-only",
+        action="store_true",
+        help=(
+            "Time Pictologics alone on the tasks of the full run, to compare "
+            "hardware; needs no C compiler"
+        ),
+    )
     parser.add_argument("--result-root", default=None)
     parser.add_argument("--machine-id", default=None)
     parser.add_argument(
@@ -167,6 +191,10 @@ def main(argv: list[str] | None = None) -> int:
     send.add_argument("--no-submit", dest="submit", action="store_false")
     parser.add_argument("--status", action="store_true", help="Show progress only")
     args = parser.parse_args(argv)
+    if args.pictologics_only and args.screens:
+        parser.error(
+            "the feasibility screens compare the libraries; leave out --screens"
+        )
     try:
         settings = _settings(args)
         context = Context(
@@ -179,15 +207,14 @@ def main(argv: list[str] | None = None) -> int:
             if args.host_profile
             else None,
             submit=args.submit,
+            pictologics_only=bool(settings.get("pictologics_only")),
         )
         markers = Markers(context)
         if args.status:
             _status(context, markers)
             return 0
         for stage in STAGES:
-            if stage.name == "screens" and not context.screens:
-                continue
-            if stage.name in {"package", "submit"} and context.quick:
+            if not applies(stage, context):
                 continue
             if stage.recorded and markers.done(stage.name):
                 print(f"[done] {stage.title}")

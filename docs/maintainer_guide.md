@@ -115,13 +115,15 @@ The Pictologics 1.0.1 release used this procedure. Use the same steps for each o
 
 To run the check on your computer, use `python -I bench/submission/validate.py . submissions/<machine ID>/<date>`.
 
+A Pictologics-only package is in `submissions/<machine ID>/<date>-pictologics/`, and its `submission.json` has `"scope": "pictologics"`. Review it in the same way. It holds only Pictologics tasks and the Pictologics environment.
+
 ## Build the community figure
 
 ```bash
 python -m bench.figures.community --submissions submissions --output-dir <folder>
 ```
 
-[`bench/figures/community.py`](../bench/figures/community.py) uses the newest package of each machine. Each machine gives its own runtime ratios to Pictologics, and the figure shows the machines side by side. It never pools absolute times. The default data are Pillar 3, CT. The output is `figure_community_runtime_ratio` in the output folder. The figure needs the Arial font.
+[`bench/figures/community.py`](../bench/figures/community.py) draws two figures. `figure_community_runtime_ratio` uses the newest full-run package of each machine: each machine gives its own runtime ratios to Pictologics, and the figure shows the machines side by side. The default data are Pillar 3, CT. `figure_community_pictologics_hardware` uses the newest package of each machine of either kind and shows the Pictologics times on Pillar 2, one line for each machine. Neither figure pools absolute times. The figures need the Arial font.
 
 ## Run the feasibility screens
 

@@ -177,18 +177,28 @@ value is clipped to a floor.
 ## Community figure
 
 [`bench/figures/community.py`](../bench/figures/community.py) draws
-`figure_community_runtime_ratio`. The build command does not run it. Run it
-when machines send their results:
+`figure_community_runtime_ratio` and `figure_community_pictologics_hardware`.
+The build command does not run it. Run it when machines send their results:
 
 ```bash
 poetry run python -m bench.figures.community \
   --submissions submissions --output-dir <folder>
 ```
 
-- It reads the newest package of each machine in `submissions/<machine-id>/<date>/`.
+`figure_community_runtime_ratio`:
+
+- It reads the newest full-run package of each machine in `submissions/<machine-id>/<date>/`. Pictologics-only packages have no other library, so this figure leaves them out.
 - Each machine gives its own ratios to Pictologics, on its own hardware. The figure never pools absolute times across machines.
 - It uses Pillar 3 CT and the Figure 5 layout, with one row for each library and machine.
-- It prints "no submitted packages" when the folder holds no package.
+
+`figure_community_pictologics_hardware`:
+
+- It reads the newest package of each machine of either kind: a full run or a Pictologics-only run (`<date>-pictologics`).
+- It shows the Pictologics wall time per call against the ROI voxels on Pillar 2, one panel for each feature group and one line for each machine. The key names each machine, its hardware, its platform and its kind of run.
+- It shows absolute times machine by machine and never pools them.
+- It also writes `table_community_pictologics_times.csv`, with one row for each machine, group and size.
+
+The command prints "no submitted packages" for a figure without packages.
 
 ## Compliance report figures
 
