@@ -39,7 +39,9 @@ runs the build in its "Draw the figures" stage:
 - When Arial is missing, the stage draws no figure and prints a note.
 
 Each run report of `bench.cli report` also draws the timing figures of its
-run. [`bench/report.py`](../bench/report.py) calls the same functions.
+run. [`bench/report.py`](../bench/report.py) calls the same functions. A
+Pictologics-only run has no other library, so its reports have no ratio
+figures (Figures 5 and S6) and no ratio tables.
 
 The build writes these files:
 

@@ -101,6 +101,33 @@ class SettingsAndMarkerTests(unittest.TestCase):
         self.assertEqual(Path(switched["result_root"]).name, "pictologics-only-results")
         self.assertTrue(json.loads(self.settings.read_text())["pictologics_only"])
 
+    def test_a_named_result_folder_stays_when_switching(self) -> None:
+        # The full run's command, which named the default folder, with the
+        # option added.
+        with mock.patch.object(Path, "home", return_value=Path(self.temporary.name)):
+            full = self.arguments()
+            full.result_root = str(reproduce._default_result_root(False))
+            solo = self.arguments(pictologics_only=True)
+            solo.result_root = full.result_root
+            first = reproduce._settings(full)
+            switched = reproduce._settings(solo)
+        self.assertTrue(switched["pictologics_only"])
+        self.assertEqual(switched["result_root"], first["result_root"])
+        self.assertTrue(json.loads(self.settings.read_text())["pictologics_only"])
+
+    def test_a_refused_switch_saves_nothing(self) -> None:
+        full = self.arguments()
+        full.result_root = None
+        solo = self.arguments(pictologics_only=True)
+        solo.result_root = None
+        solo.machine_id = "another-machine"
+        with mock.patch.object(Path, "home", return_value=Path(self.temporary.name)):
+            reproduce._settings(full)
+            before = self.settings.read_text()
+            with self.assertRaisesRegex(stages.StageError, "machine_id"):
+                reproduce._settings(solo)
+        self.assertEqual(self.settings.read_text(), before)
+
     def test_a_pictologics_only_run_suggests_its_own_result_folder(self) -> None:
         arguments = self.arguments(pictologics_only=True)
         arguments.result_root = None

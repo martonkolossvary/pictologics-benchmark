@@ -80,12 +80,20 @@ def _switchable(stored: dict) -> bool:
     )
 
 
-def _switch_to_pictologics_only(stored: dict) -> dict:
+def _switch_to_pictologics_only(stored: dict, *, named_result_root: bool) -> dict:
+    """The settings of a full-run clone that becomes a Pictologics-only clone.
+
+    The full run's default result folder becomes the Pictologics-only default,
+    unless the command names a result folder: then the stored folder stays, and
+    the named one must match it like every other setting.
+    """
+
     switched = {**stored, "pictologics_only": True}
-    if Path(stored["result_root"]) == _default_result_root(False).resolve():
+    if (
+        not named_result_root
+        and Path(stored["result_root"]) == _default_result_root(False).resolve()
+    ):
         switched["result_root"] = str(_default_result_root(True).resolve())
-    atomic_write_json(SETTINGS, switched)
-    print(f"This clone now runs only Pictologics; results: {switched['result_root']}")
     return switched
 
 
@@ -108,21 +116,28 @@ def _settings(args: argparse.Namespace) -> dict:
         "screens": True if args.screens else None,
         "pictologics_only": True if pictologics_only else None,
     }
-    if (
+    # A clone may become a Pictologics-only clone until its run starts, for
+    # example when the full run asked for a missing C compiler.
+    switch = bool(
         stored
         and requested["pictologics_only"] is not None
         and not stored["pictologics_only"]
         and _switchable(stored)
-    ):
-        # A clone may become a Pictologics-only clone until its run starts,
-        # for example when the full run asked for a missing C compiler.
-        stored = _switch_to_pictologics_only(stored)
+    )
+    if switch:
+        stored = _switch_to_pictologics_only(
+            stored, named_result_root=requested["result_root"] is not None
+        )
     for key, value in requested.items():
         if stored and value is not None and stored.get(key) != value:
             raise StageError(
                 f"This folder already runs with {key} = {stored.get(key)!r}. "
                 "Use another clone of the repository for a different run."
             )
+    if switch:
+        # Saved only after every option of the command fits.
+        atomic_write_json(SETTINGS, stored)
+        print(f"This clone now runs only Pictologics; results: {stored['result_root']}")
     if stored:
         return stored
     default_root = _default_result_root(pictologics_only)

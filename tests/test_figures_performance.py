@@ -48,6 +48,26 @@ def _record(
     }
 
 
+def _pillar1_records(
+    adapter: str, group: str, repeat: int, sizes: tuple[int, ...]
+) -> list[dict]:
+    """Masks M1 and M2 of one noise level; M2 takes longer."""
+
+    records = []
+    for size in sizes:
+        for mask, factor in (("M1", 1.0), ("M2", 1.5)):
+            record = _record(adapter, size, repeat, duration=factor * 0.01 * size)
+            record.update(
+                workload=f"family:{group}",
+                dataset="pictologics_pillar1",
+                subject_id="low_noise",
+                mask_id=mask,
+                case_id=f"p1_low_noise_{mask.lower()}_n{size:03d}",
+            )
+            records.append(record)
+    return records
+
+
 def _ledger(directory: Path, records: list[dict]) -> Path:
     directory.mkdir(parents=True)
     connection = sqlite3.connect(directory / "benchmark.sqlite3")
@@ -213,9 +233,57 @@ class PerformanceFigureTests(unittest.TestCase):
         ):
             self.assertTrue((self.root / "figures" / "tables" / table).is_file())
 
+    def test_a_pictologics_only_run_draws_every_figure_but_the_ratios(self) -> None:
+        from bench.figures import style
 
-if __name__ == "__main__":
-    unittest.main()
+        # The three pillars of a Pictologics-only run: one library, no pairs.
+        records = []
+        for group, _ in style.GROUPS:
+            for repeat in (1, 2, 3):
+                for size in (32, 64, 128):
+                    record = _record("pictologics", size, repeat, duration=0.01 * size)
+                    records.append(record | {"workload": f"family:{group}"})
+                records += _pillar1_records("pictologics", group, repeat, (32, 64, 128))
+                for modality in ("ct", "mri"):
+                    record = _record("pictologics", 64, repeat, duration=0.2)
+                    record.update(
+                        workload=f"family:{group}",
+                        dataset="ibsi2_phase3",
+                        subject_id="STS_001",
+                        mask_id="GTV",
+                        modality=modality,
+                        case_id=f"STS_001_{modality}",
+                    )
+                    records.append(record)
+        run_dir = _ledger(self.root / "solo", records)
+        output = self.root / "solo_figures"
+        names = {
+            record["figure_id"]
+            for record in performance.build_performance_figures([run_dir], output)
+        }
+        self.assertIn("figure4_runtime_scaling", names)
+        self.assertIn("figureS3_mask_effect", names)
+        self.assertIn("figureS4_patient_runtime", names)
+        self.assertNotIn("figure5_runtime_ratio", names)
+        self.assertNotIn("figureS6_ratio_by_size", names)
+        self.assertTrue((output / "tables" / "data_cells.csv").is_file())
+        self.assertFalse((output / "tables" / "data_ratio_cases.csv").exists())
+
+    def test_the_mask_figure_fits_the_ten_pillar1_sizes(self) -> None:
+        from bench.figures import style
+
+        # The sizes and groups of the release: the labels must not crowd.
+        sizes = (32, 48, 64, 96, 128, 192, 256, 320, 384, 512)
+        records = [
+            record
+            for group, _ in style.GROUPS
+            for repeat in (1, 2, 3)
+            for adapter in ("pictologics", "mirp")
+            for record in _pillar1_records(adapter, group, repeat, sizes)
+        ]
+        frame = performance.prepare_records(performance.pd.DataFrame(records))
+        record = performance.mask_effect(performance.cells(frame), self.root / "masks")
+        self.assertEqual(record["figure_id"], "figureS3_mask_effect")
 
 
 class CommunityFigureTests(unittest.TestCase):
@@ -310,3 +378,7 @@ class CommunityFigureTests(unittest.TestCase):
             self.assertTrue(
                 (root / "figures" / "table_community_pictologics_times.csv").is_file()
             )
+
+
+if __name__ == "__main__":
+    unittest.main()
