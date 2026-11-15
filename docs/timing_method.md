@@ -324,6 +324,28 @@ the full sequence with one command. Their `--screens` option runs both screens
 before the main run. Their `--quick` option runs the quick run in place of the
 main run.
 
+## The Pictologics-only run
+
+`--pictologics-only` times Pictologics alone, to compare hardware. Its
+launcher ([`bench/reproduce/pictologics_only.py`](../bench/reproduce/pictologics_only.py))
+builds the controller commands with the release launcher and then changes
+only these options: `--adapters` (now `pictologics`), `--run-id` (with
+`_pictologics` at the end) and the two progress counters. Thus the release
+lock, the main contract, the cases, groups, repeats, time limit, memory
+budget, memory preflight, skip rules and folder layout are those of the main
+run. The run has its own default result folder, `pictologics-only-results`,
+and `run_kind.json` in each machine folder keeps the two kinds of run apart.
+
+| Run | Contract | Cases | Libraries | Scheduled records | Result folder |
+| --- | --- | ---: | ---: | ---: | --- |
+| Pictologics-only run | [`main.json`](../configs/benchmark/main.json) | 283 | 1 | 5,094 | `<machine-id>/<pillar>` in its own result folder |
+
+With one library, the task order has no other library before or after a
+Pictologics task, and no other library warms or loads the computer between
+its tasks. Thus compare Pictologics-only runs with each other first. Compare
+them with the Pictologics tasks of main runs with care, and never pool the
+two kinds of run.
+
 ## Stop and resume
 
 - **Ctrl-C.** Press Ctrl-C once and wait for "Benchmark interrupted safely".

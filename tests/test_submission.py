@@ -188,5 +188,158 @@ class SubmissionPackageTests(unittest.TestCase):
             package.build_package(self.machine_root, self.result_root)
 
 
+class PictologicsOnlyPackageTests(unittest.TestCase):
+    """A Pictologics-only package holds one library's tasks and environment."""
+
+    LOCKS = {
+        name: f"reproducibility/environment-locks/{native_platform_key().lower()}/"
+        f"{name}.txt"
+        for name in ("pictologics", "mirp")
+    }
+
+    def setUp(self) -> None:
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name).resolve()
+        self.repo = self.root / "repo"
+        (self.repo / "reproducibility").mkdir(parents=True)
+        (self.repo / "submissions").mkdir()
+        files = {
+            "configs/benchmark/main.json": "c" * 64,
+            "configs/adapters/pictologics.yaml": "1" * 64,
+            "configs/adapters/mirp.yaml": "2" * 64,
+            **{path: "e" * 64 for path in self.LOCKS.values()},
+        }
+        lock = self.repo / "reproducibility" / "release-lock.json"
+        # Two libraries with two tasks each in every pillar.
+        lock.write_text(
+            json.dumps(
+                {
+                    "files": files,
+                    "workspace": {"scheduled_tasks": dict.fromkeys(package.PILLARS, 4)},
+                }
+            ),
+            encoding="utf-8",
+        )
+        (self.repo / "submissions" / "accepted_releases.json").write_text(
+            json.dumps(
+                {"release_lock_sha256": [hashlib.sha256(lock.read_bytes()).hexdigest()]}
+            ),
+            encoding="utf-8",
+        )
+        self.result_root = self.root / "results"
+        environments = {}
+        for name, path in self.LOCKS.items():
+            folder = self.root / "env" / name
+            folder.mkdir(parents=True)
+            (folder / "environment.json").write_text(
+                json.dumps(
+                    {
+                        "environment_lock": {
+                            "path": path,
+                            "sha256": "e" * 64,
+                            "freeze_sha256": "d" * 64,
+                        },
+                        "freeze_sha256": "d" * 64,
+                    }
+                ),
+                encoding="utf-8",
+            )
+            environments[name] = SimpleNamespace(folder=folder)
+        for patcher in (
+            mock.patch.object(package, "REPO", self.repo),
+            mock.patch.object(
+                package, "load_runtime_profiles", return_value=environments
+            ),
+            mock.patch.object(
+                package, "env_dir_for_profile", side_effect=lambda p: p.folder
+            ),
+        ):
+            patcher.start()
+            self.addCleanup(patcher.stop)
+
+    def run_folder(
+        self, adapters: tuple[str, str], *, run: str = "main_pictologics"
+    ) -> Path:
+        machine_root = self.result_root / "machine-a"
+        write_host_profile(machine_root / "host_profile.json", "machine-a")
+        for pillar in package.PILLARS:
+            _ledger(
+                machine_root / pillar,
+                [
+                    {
+                        "task_status": "measured",
+                        "adapter": adapter,
+                        "workload": "group_texture",
+                        "endpoint_contract_sha256": "c" * 64,
+                        "run_id": f"{pillar}_{run}",
+                        "duration_median_sec": 1.0,
+                        "cpu_time_median_sec": 0.5,
+                    }
+                    for adapter in adapters
+                ],
+            )
+            (machine_root / pillar / "run_spec.json").write_text("{}", encoding="utf-8")
+        return machine_root
+
+    def test_a_pictologics_only_package_passes_its_check(self) -> None:
+        machine_root = self.run_folder(("pictologics", "pictologics"))
+        folder = package.build_package(
+            machine_root, self.result_root, scope="pictologics"
+        )
+
+        self.assertRegex(folder.name, r"^\d{4}-\d{2}-\d{2}-pictologics$")
+        self.assertEqual(validate.validate(self.repo, folder), [])
+        self.assertEqual(
+            sorted(path.name for path in (folder / "environment").iterdir()),
+            ["pictologics.json"],
+        )
+        summary = json.loads((folder / "submission.json").read_text("utf-8"))
+        self.assertEqual(summary["scope"], "pictologics")
+
+    def test_the_check_finds_another_library_and_a_wrong_folder_name(self) -> None:
+        machine_root = self.run_folder(("pictologics", "mirp"))
+        folder = package.build_package(
+            machine_root, self.result_root, scope="pictologics"
+        )
+        problems = "\n".join(validate.validate(self.repo, folder))
+        self.assertIn("pillar1_morphology: 1 tasks are not pictologics tasks", problems)
+
+        renamed = folder.rename(folder.with_name(folder.name[:10]))
+        problems = "\n".join(validate.validate(self.repo, renamed))
+        self.assertIn("the folder name and the scope", problems)
+
+    def test_full_run_records_cannot_pass_as_a_pictologics_only_run(self) -> None:
+        # The Pictologics tasks of a full run, filtered and relabelled.
+        machine_root = self.run_folder(("pictologics", "pictologics"), run="main")
+        folder = package.build_package(
+            machine_root, self.result_root, scope="pictologics"
+        )
+        problems = "\n".join(validate.validate(self.repo, folder))
+        self.assertIn(
+            "pillar1_morphology: the run IDs of 2 tasks do not fit the scope", problems
+        )
+
+    def test_an_unknown_scope_is_a_problem_not_a_crash(self) -> None:
+        machine_root = self.run_folder(("pictologics", "pictologics"))
+        folder = package.build_package(
+            machine_root, self.result_root, scope="pictologics"
+        )
+        summary = folder / "submission.json"
+        summary.write_text(
+            json.dumps({**json.loads(summary.read_text("utf-8")), "scope": ["x"]}),
+            encoding="utf-8",
+        )
+        problems = "\n".join(validate.validate(self.repo, folder))
+        self.assertIn("unknown scope ['x']", problems)
+
+    def test_a_full_run_package_must_hold_every_task(self) -> None:
+        machine_root = self.run_folder(("pictologics", "pictologics"))
+        folder = package.build_package(machine_root, self.result_root)
+
+        problems = "\n".join(validate.validate(self.repo, folder))
+        self.assertIn("pillar1_morphology: 2 tasks; the release schedules 4", problems)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -17,7 +17,9 @@ import sys
 from pathlib import Path
 
 MACHINE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$")
-DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+# <date> for a full run, <date>-pictologics for a Pictologics-only run.
+FOLDER = re.compile(r"^\d{4}-\d{2}-\d{2}(?:-(?P<scope>pictologics))?$")
+SCOPES = {"all", "pictologics"}
 LIMIT_BYTES = 45 * 1024**2
 STATUSES = {
     "measured",
@@ -59,8 +61,12 @@ def _keys(value) -> set[str]:
 
 def validate(repo: Path, folder: Path) -> list[str]:
     problems: list[str] = []
-    if not (MACHINE_ID.match(folder.parent.name) and DATE.match(folder.name)):
-        return [f"{folder} is not submissions/<machine-id>/<YYYY-MM-DD>"]
+    folder_name = FOLDER.match(folder.name)
+    if not (MACHINE_ID.match(folder.parent.name) and folder_name):
+        return [
+            f"{folder} is not submissions/<machine-id>/<YYYY-MM-DD> "
+            "or submissions/<machine-id>/<YYYY-MM-DD>-pictologics"
+        ]
     files = sorted(
         path.relative_to(folder).as_posix()
         for path in folder.rglob("*")
@@ -85,6 +91,13 @@ def validate(repo: Path, folder: Path) -> list[str]:
         problems.append("submission.json has an unknown schema")
     if submission.get("machine_id") != folder.parent.name:
         problems.append("the machine ID differs from the folder name")
+    # A package without a scope comes from a full run of the five libraries.
+    scope = submission.get("scope", "all")
+    if not isinstance(scope, str) or scope not in SCOPES:
+        problems.append(f"submission.json has an unknown scope {scope!r}")
+        scope = "unknown"
+    if (folder_name["scope"] or "all") != scope:
+        problems.append("the folder name and the scope in submission.json differ")
     accepted = json.loads(
         (repo / "submissions" / "accepted_releases.json").read_text(encoding="utf-8")
     )
@@ -95,6 +108,14 @@ def validate(repo: Path, folder: Path) -> list[str]:
     current = _sha256(lock_path) == release
     lock = json.loads(lock_path.read_text(encoding="utf-8"))
     main_contract = lock["files"]["configs/benchmark/main.json"]
+    scheduled = lock["workspace"]["scheduled_tasks"]
+    # The release schedules one task for each library, case, group and repeat.
+    libraries = sum(
+        path.startswith("configs/adapters/") and path.endswith(".yaml")
+        for path in lock["files"]
+    )
+    if current and set(submission.get("pillars", {})) != set(scheduled):
+        problems.append(f"the package must hold the pillars {sorted(scheduled)}")
     host = json.loads((folder / "host_profile.json").read_text(encoding="utf-8"))
     if _keys(host) & FORBIDDEN_KEYS:
         problems.append("the host profile holds a private field")
@@ -109,6 +130,10 @@ def validate(repo: Path, folder: Path) -> list[str]:
         ]
         counts: dict[str, int] = {}
         foreign = 0
+        other_library = 0
+        other_run = 0
+        if len({row["task_id"] for row in rows}) != len(rows):
+            problems.append(f"{pillar}: a task ID occurs more than once")
         for row in rows:
             counts[row["status"]] = counts.get(row["status"], 0) + 1
             if row["status"] not in STATUSES:
@@ -119,6 +144,12 @@ def validate(repo: Path, folder: Path) -> list[str]:
                 record.get("endpoint_contract_sha256") == main_contract
                 and record.get("adapter")
                 and record.get("workload")
+            )
+            other_library += scope != "all" and record.get("adapter") != scope
+            # A Pictologics-only run names its runs <pillar>_main_pictologics,
+            # so a full run's records cannot pass as a Pictologics-only run.
+            other_run += str(record.get("run_id") or "").endswith("_pictologics") != (
+                scope == "pictologics"
             )
             if row["status"] != "measured":
                 continue
@@ -136,10 +167,22 @@ def validate(repo: Path, folder: Path) -> list[str]:
             problems.append(
                 f"{pillar}: the status counts disagree with submission.json"
             )
-        if current and len(rows) != lock["workspace"]["scheduled_tasks"][pillar]:
-            problems.append(f"{pillar}: {len(rows)} tasks; the release schedules more")
+        if current and pillar in scheduled:
+            expected = scheduled[pillar]
+            if scope != "all":
+                expected = scheduled[pillar] // libraries if libraries else -1
+            if len(rows) != expected:
+                problems.append(
+                    f"{pillar}: {len(rows)} tasks; the release schedules {expected}"
+                )
         if foreign:
             problems.append(f"{pillar}: {foreign} tasks are not main-run records")
+        if other_library:
+            problems.append(f"{pillar}: {other_library} tasks are not {scope} tasks")
+        if other_run:
+            problems.append(
+                f"{pillar}: the run IDs of {other_run} tasks do not fit the scope {scope}"
+            )
         if summary.get("run_status") not in {"completed", "completed_with_failures"}:
             problems.append(f"{pillar}: the run is not complete")
     if current:
@@ -150,6 +193,7 @@ def validate(repo: Path, folder: Path) -> list[str]:
             path
             for path in lock["files"]
             if path.startswith(f"reproducibility/environment-locks/{platform}/")
+            and (scope == "all" or path.endswith(f"/{scope}.txt"))
         }
         found = set()
         for path in sorted((folder / "environment").glob("*.json")):

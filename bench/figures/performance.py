@@ -928,11 +928,16 @@ def figures_from_records(
     if frame.empty or not frame["pillar"].isin(PILLARS).any():
         return []
     summary = cells(frame)
+    # A ratio needs Pictologics and another library: a Pictologics-only run
+    # has no pairs, so it gets no ratio figures or tables.
+    compared = (summary["adapter"] == "pictologics").any() and (
+        summary["adapter"] != "pictologics"
+    ).any()
     records = []
     if (summary["pillar"] == "pillar2").any():
         records.append(runtime_scaling(summary, output_dir))
         records.append(memory_scaling(summary, output_dir))
-    if (summary["adapter"] == "pictologics").any():
+    if compared:
         records.append(ratio_figure(summary, output_dir, synthetic_size=synthetic_size))
     if frame["pillar"].isin(["pillar1", "pillar2"]).any():
         records.append(outcome_map(frame, output_dir))
@@ -949,7 +954,7 @@ def figures_from_records(
     # The data behind every figure, so the figures can be drawn again.
     frame.to_csv(_tables(output_dir) / "data_task_records.csv", index=False)
     summary.to_csv(_tables(output_dir) / "data_cells.csv", index=False)
-    if (summary["adapter"] == "pictologics").any():
+    if compared:
         ratio_cases(summary, synthetic_size=synthetic_size).to_csv(
             _tables(output_dir) / "data_ratio_cases.csv", index=False
         )
@@ -1072,8 +1077,14 @@ def mask_effect(summary: pd.DataFrame, output_dir: Path) -> dict[str, Any] | Non
                     ax.set_ylabel(f"{mask} / M1 runtime")
                 if row == len(masks) - 1:
                     ax.set_xlabel("Grid edge (voxels)")
+                    # Six panels share one row, too narrow for the ten sizes of
+                    # Pillar 1: every size gets a tick, at most three powers of
+                    # two get a label.
                     sizes = sorted(set(data["size"].astype(int)))
-                    ax.set_xticks(sizes, [str(size) for size in sizes])
+                    powers = [size for size in sizes if size & (size - 1) == 0] or sizes
+                    labelled = powers[:: int(np.ceil(len(powers) / 3))]
+                    ax.set_xticks(sizes, minor=True)
+                    ax.set_xticks(labelled, [str(size) for size in labelled])
                     ax.xaxis.set_minor_formatter(NullFormatter())
         handles = [
             Line2D(
@@ -1274,13 +1285,13 @@ def ratio_by_size(summary: pd.DataFrame, output_dir: Path) -> dict[str, Any] | N
     """Figure S6: runtime relative to Pictologics at every Pillar 2 size."""
 
     data = summary.loc[(summary["pillar"] == "pillar2") & summary["median"].notna()]
-    if data.empty:
+    adapters = [key for key in _adapters_present(data) if key != "pictologics"]
+    if not adapters or not (data["adapter"] == "pictologics").any():
         return None
     reference = data.loc[data["adapter"] == "pictologics"].set_index(
         ["group", "case_id"]
     )
     groups = _groups_present(data)
-    adapters = [key for key in _adapters_present(data) if key != "pictologics"]
     with style.figure(
         style.DOUBLE_COLUMN_MM, 60 * _panel_rows(groups), font_pt=8.0
     ) as fig:

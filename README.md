@@ -8,6 +8,10 @@ measures their calculation time and memory on three sets of inputs.
 One command runs the whole benchmark on your computer. You can then send your
 results back to this repository by pull request.
 
+The full run takes several days. To compare hardware, a shorter run times only
+Pictologics on the same tasks: see
+[Run only Pictologics](#run-only-pictologics-to-compare-hardware).
+
 ## Run the benchmark
 
 You need:
@@ -15,11 +19,11 @@ You need:
 | Item | Requirement |
 | --- | --- |
 | System | macOS on Apple Silicon, Linux x86_64 or Windows x86_64 |
-| Tools | git and a C compiler: the Xcode Command Line Tools (macOS), `gcc` (Linux) or the Microsoft C++ Build Tools with "Desktop development with C++" (Windows). [docs/platforms.md](docs/platforms.md) gives the install commands |
+| Tools | git and a C compiler: the Xcode Command Line Tools (macOS), `gcc` (Linux) or the Microsoft C++ Build Tools with "Desktop development with C++" (Windows). [docs/platforms.md](docs/platforms.md) gives the install commands. The Pictologics-only run needs only git |
 | To send results (optional) | The GitHub CLI (`gh`), signed in, and a git `user.name` and `user.email`. [docs/submitting_results.md](docs/submitting_results.md#before-the-run) gives the commands |
-| Disk | 10 GiB for the repository folder, 8 GiB for the results (3 GiB for the quick run) |
+| Disk | 10 GiB for the repository folder (6 GiB for the Pictologics-only run), 8 GiB for the results (3 GiB for the quick run) |
 | Memory | 16 GiB or more; with less memory, more large tasks stop at the memory limit. IBSI 2 conformance needs more than 16 GiB; with less, the command reports it and runs the timing benchmark |
-| Time | About 2 hours for the quick run; several days for the full run |
+| Time | About 2 hours for the quick run; several days for the full run; about one to two days for the Pictologics-only run |
 | Folder | A local folder that is not in a cloud-sync folder (OneDrive, Dropbox, iCloud, Google Drive) |
 
 Install all prerequisites before the first run. Do any restart that an
@@ -130,6 +134,58 @@ The command ends with one of these exit codes:
 | 1 | A stage stopped, or the answer to `Type CALCULATE to start` was not `CALCULATE`. The message says what to do. A change of the power state also gives 1: correct the power state, then run the same command again. |
 | 130 | Ctrl-C stopped the command. Run the same command again to resume. |
 
+## Run only Pictologics to compare hardware
+
+The full run compares the five libraries on one computer. To show how
+Pictologics itself scales across hardware, run only Pictologics on other
+computers, and send these results too:
+
+```bash
+git clone https://github.com/martonkolossvary/pictologics-benchmark.git pictologics-only
+cd pictologics-only
+./reproduce.sh --pictologics-only
+```
+
+On Windows, in PowerShell (see the notes on Windows above):
+
+```powershell
+cd $env:USERPROFILE
+git clone https://github.com/martonkolossvary/pictologics-benchmark.git pictologics-only
+cd pictologics-only
+powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 --pictologics-only
+```
+
+The folder name `pictologics-only` keeps this clone apart from a clone for the
+full run. A clone whose full run stopped before its first stage finished, for
+example for a missing C compiler, can still switch: run the command with
+`--pictologics-only` in it.
+
+The Pictologics-only run works like the full run, with these differences:
+
+- It times the Pictologics tasks of the full run: the same release, contract,
+  cases, feature groups, repeats, time limit, memory budget and skip rules.
+  Only the other four libraries are left out.
+- It builds only the Pictologics environment, so it needs git but no C
+  compiler.
+- It checks the IBSI 1 and IBSI 2 conformance of Pictologics only.
+- It draws no figures, because the figures compare the libraries.
+- Its default result folder is `~/pictologics-only-results`
+  (`%USERPROFILE%\AppData\Local\pictologics-only-results` on Windows). A
+  result folder holds one kind of run: the command refuses a machine folder
+  that holds a full run, and the other way round.
+- At the end, it asks to send the result package, as the full run does. The
+  package goes to `submissions/<machine ID>/<date>-pictologics/`.
+
+It takes about one to two days. On a 16-thread desktop computer, the
+Pictologics tasks of pillar 1 took about 13 hours of the full run. Use a new
+clone for each kind of run: a clone keeps its kind of run in
+`.reproduce/settings.json`. Add `--quick` for a short check that is never sent.
+
+In a full run, Pictologics runs between the other libraries. In a
+Pictologics-only run, it runs alone. Compare Pictologics-only runs with each
+other first, and compare them with the Pictologics times of full runs with
+care.
+
 ## Results
 
 The results go to `<result folder>/<machine ID>/`:
@@ -142,10 +198,13 @@ The results go to `<result folder>/<machine ID>/`:
 | `submissions/<machine ID>/<date>/` | The result package |
 | `quick/` | The same folders for the quick run |
 
+A Pictologics-only run has the same folders in its own result folder, without
+`figures/`. Its package is `submissions/<machine ID>/<date>-pictologics/`.
+
 ## Send your results
 
-At the end of the full run, the command asks if it can send the result
-package. It opens a pull request with the GitHub CLI, or it prints the steps to
+At the end of a full run or a Pictologics-only run, the command asks if it can
+send the result package. It opens a pull request with the GitHub CLI, or it prints the steps to
 do it by hand. The package holds no paths, user names or host names. An
 automatic check verifies each package.
 [docs/submitting_results.md](docs/submitting_results.md) gives the details.

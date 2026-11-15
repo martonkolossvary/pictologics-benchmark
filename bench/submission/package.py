@@ -4,6 +4,10 @@ The package holds the task records of the three pillars, the run
 specifications, the environment freezes, the host profile and the IBSI
 conformance tables.  It leaves out the staged input copies, the raw payload
 files, the SQLite ledger itself and the run lock.
+
+The scope says which libraries the run timed: ``all`` for the full run, or
+``pictologics`` for a Pictologics-only run.  The folder of a Pictologics-only
+package is ``<date>-pictologics``.
 """
 
 from __future__ import annotations
@@ -38,6 +42,11 @@ COMPLIANCE = (
 )
 PACKAGE_LIMIT_BYTES = 45 * 1024**2
 STDERR_KEEP_CHARACTERS = 4096
+SCOPES = ("all", "pictologics")
+
+
+def package_name(date: str, scope: str) -> str:
+    return date if scope == "all" else f"{date}-{scope}"
 
 
 class PackageError(RuntimeError):
@@ -160,18 +169,25 @@ def _json(value: Any) -> bytes:
     ).encode()
 
 
-def build_package(machine_root: Path, result_root: Path) -> Path:
-    """Write ``<machine_root>/submissions/<machine-id>/<UTC date>/``; return it."""
+def build_package(machine_root: Path, result_root: Path, *, scope: str = "all") -> Path:
+    """Write ``<machine_root>/submissions/<machine-id>/<UTC date>/``; return it.
 
+    ``machine_root`` holds the host profile, the pillars and the conformance
+    tables of the run; for a Pictologics-only run it is that run's folder.
+    """
+
+    if scope not in SCOPES:
+        raise PackageError(f"unknown scope {scope!r}; use one of {SCOPES}")
     host_profile = json.loads((machine_root / "host_profile.json").read_text("utf-8"))
     machine_id = host_profile["machine_id"]
     date = time.strftime("%Y-%m-%d", time.gmtime())
-    output = machine_root / "submissions" / machine_id / date
+    name = package_name(date, scope)
+    output = machine_root / "submissions" / machine_id / name
     if output.exists():
         raise PackageError(f"the package already exists: {output}")
     scrub = Scrubber(result_root)
     pillars: dict[str, Any] = {}
-    staging = output.with_name(f".{date}.partial")
+    staging = output.with_name(f".{name}.partial")
     shutil.rmtree(staging, ignore_errors=True)
     try:
         _write(staging / "host_profile.json", _json(host_profile))
@@ -210,18 +226,21 @@ def build_package(machine_root: Path, result_root: Path) -> Path:
                 "run_status": metadata.get("run_status"),
                 "status_counts": dict(Counter(row[2] for row in rows)),
             }
-        for name, profile in sorted(load_runtime_profiles().items()):
+        profiles = load_runtime_profiles()
+        if scope != "all":
+            profiles = {scope: profiles[scope]}
+        for profile_name, profile in sorted(profiles.items()):
             environment = env_dir_for_profile(profile) / "environment.json"
             _write(
-                staging / "environment" / f"{name}.json",
+                staging / "environment" / f"{profile_name}.json",
                 _json(scrub.value(json.loads(environment.read_text("utf-8")))),
             )
-        for name in COMPLIANCE:
+        for suite in COMPLIANCE:
             for table in sorted(
-                (machine_root / "compliance" / name / "report").glob("*.csv")
+                (machine_root / "compliance" / suite / "report").glob("*.csv")
             ):
                 _write(
-                    staging / "compliance" / name / f"{table.name}.gz",
+                    staging / "compliance" / suite / f"{table.name}.gz",
                     scrub.text(table.read_text("utf-8")).encode(),
                 )
         files = sorted(path for path in staging.rglob("*") if path.is_file())
@@ -229,6 +248,7 @@ def build_package(machine_root: Path, result_root: Path) -> Path:
         submission = {
             "schema_version": 1,
             "machine_id": machine_id,
+            "scope": scope,
             "created_utc_date": date,
             "release_lock_sha256": sha256_file(lock),
             "commit": subprocess.run(

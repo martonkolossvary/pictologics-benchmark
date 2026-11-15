@@ -2,6 +2,15 @@
 
 After a complete main run, the runner builds a result package. It then offers to send the package to the benchmark repository by pull request. The runner never builds or sends a package for a quick run (`--quick`).
 
+There are two kinds of package. Its `scope` in `submission.json` names the kind:
+
+| Run | `scope` | Package folder |
+| --- | --- | --- |
+| Full run of the five libraries | `all` | `submissions/<machine ID>/<date>/` |
+| Pictologics-only run (`--pictologics-only`) | `pictologics` | `submissions/<machine ID>/<date>-pictologics/` |
+
+A package without a `scope` comes from a full run. Both kinds come from the same release and the same main contract; a Pictologics-only package holds only the Pictologics tasks and environment.
+
 ## Before the run
 
 The send comes several days after the start. Thus prepare the GitHub CLI and git before the run:
@@ -49,20 +58,20 @@ To send the package later, run the same command again with `--submit`. The runne
 
 On Windows: `powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 --submit`.
 
-A clone that ran with `--quick` keeps that setting in `.reproduce/settings.json`. Use a new clone for a main run.
+A clone that ran with `--quick` or `--pictologics-only` keeps that setting in `.reproduce/settings.json`. Use a new clone for another kind of run.
 
 ## What the package holds
 
-[`bench/submission/package.py`](../bench/submission/package.py) writes the package to `<result folder>/<machine ID>/submissions/<machine ID>/<UTC date>/`. A machine can make one package on each UTC date. The three pillars must have the run status `completed` or `completed_with_failures`.
+[`bench/submission/package.py`](../bench/submission/package.py) writes the package to `<result folder>/<machine ID>/submissions/<machine ID>/<UTC date>/`. A Pictologics-only run has its own result folder, and its package folder is `<UTC date>-pictologics`. A machine can make one package of each kind on each UTC date. The three pillars must have the run status `completed` or `completed_with_failures`.
 
 | File | Content |
 | --- | --- |
 | `host_profile.json` | Machine ID, label, CPU model, hardware counts and the required power state |
 | `<pillar>/tasks.jsonl.gz` | One line for each task: task ID, order, status, attempt, payload checksum and the ledger record of the task |
 | `<pillar>/run_spec.json` | The run specification of the pillar |
-| `environment/<adapter>.json` | The `environment.json` of each adapter environment, with its full package freeze |
+| `environment/<adapter>.json` | The `environment.json` of each adapter environment, with its full package freeze; only `pictologics.json` in a Pictologics-only package |
 | `compliance/<suite>/*.csv.gz` | The IBSI conformance tables of `ibsi1`, `ibsi2-phase1` and `ibsi2-phase2`, and of the native-default class (`ibsi2-phase1-native-default`, `ibsi2-phase2-native-default`) |
-| `submission.json` | Machine ID, date, release-lock checksum, commit, platform key, hardware, the run status and status counts of each pillar, replacement counts, and file checksums and sizes |
+| `submission.json` | Machine ID, scope, date, release-lock checksum, commit, platform key, hardware, the run status and status counts of each pillar, replacement counts, and file checksums and sizes |
 | `SHA256SUMS` | The SHA-256 of each file in the package |
 
 The pillars are `pillar1_morphology`, `pillar2_whole_anatomy` and `pillar3_ibsi2_phase3`.
@@ -91,9 +100,9 @@ The submit stage uses the GitHub CLI (`gh`). It needs `gh` on the `PATH`, a `gh`
 
 1. Fork the benchmark repository to your GitHub account. GitHub lets no account fork its own repository, so for the owner of the benchmark repository the next steps use the repository itself.
 2. Clone the fork into a temporary folder.
-3. Make the branch `results-<machine ID>-<date>`.
-4. Copy the package to `submissions/<machine ID>/<date>/`, commit it and push the branch.
-5. Open the pull request "Benchmark results from \<machine ID\> (\<date\>)".
+3. Make the branch `results-<machine ID>-<package folder>`.
+4. Copy the package to `submissions/<machine ID>/<package folder>/`, commit it and push the branch. The submit stage stops when that folder is already in the clone of the fork.
+5. Open the pull request "Benchmark results from \<machine ID\> (\<date\>)", or "Pictologics-only benchmark results from \<machine ID\> (\<date\>)".
 
 The runner prints the address of the pull request at the end. To see the pull request and the result of its check later:
 
@@ -105,7 +114,7 @@ gh pr checks <number> --repo martonkolossvary/pictologics-benchmark
 When one of these three is missing, the runner prints the manual steps:
 
 1. Fork the benchmark repository on GitHub.
-2. Copy the package folder to `submissions/<machine ID>/<date>/` in your fork.
+2. Copy the package folder to `submissions/<machine ID>/<package folder>/` in your fork.
 3. Commit the folder.
 4. Open a pull request to the benchmark repository.
 
@@ -114,12 +123,13 @@ When one of these three is missing, the runner prints the manual steps:
 [`.github/workflows/submission.yml`](../.github/workflows/submission.yml) runs on each pull request that changes `submissions/`. It does these steps:
 
 1. Check out the base branch and the pull request into two separate folders. The validator and the list of accepted releases come from the base branch. The files of the pull request are only data.
-2. Fail when the pull request changes a file outside `submissions/<machine ID>/<YYYY-MM-DD>/`.
+2. Fail when the pull request changes a file outside `submissions/<machine ID>/<YYYY-MM-DD>/` and `submissions/<machine ID>/<YYYY-MM-DD>-pictologics/`.
 3. Run `python -I base/bench/submission/validate.py base pr/<folder>` on each package folder.
 
 The validator checks these items:
 
-- The folder names are a valid machine ID and a date.
+- The folder names are a valid machine ID and a date, with `-pictologics` after the date for a Pictologics-only package.
+- The scope in `submission.json` is `all` or `pictologics`, and it agrees with the folder name.
 - The package is 45 MiB or smaller.
 - `SHA256SUMS` lists all files of the package and only those files, and each checksum matches.
 - `submission.json` has schema version 1, and its machine ID is the folder name.
@@ -127,9 +137,10 @@ The validator checks these items:
 - The host profile holds no private field, and its hardware is the hardware in `submission.json`.
 - Each task has a known status. Each measured task has a payload checksum and plausible times.
 - The status counts and the run status of each pillar agree with `submission.json`.
-- For the current release, each pillar holds all tasks that the release lock schedules.
+- In a Pictologics-only package, each task record is a Pictologics task.
+- For the current release, the package holds the three pillars, and each pillar holds all tasks that the release lock schedules. For a Pictologics-only package, that is the scheduled count divided by the number of libraries in the release.
 - For the current release, each task record names its library and feature group, and it comes from the main contract ([`configs/benchmark/main.json`](../configs/benchmark/main.json)). A screen or a quick run thus fails the check.
-- For the current release, the package holds one environment record for each library lock of its platform. Each environment holds exactly the packages of its lock.
+- For the current release, the package holds one environment record for each library lock of its platform (only the Pictologics lock for a Pictologics-only package). Each environment holds exactly the packages of its lock.
 - No file holds a personal path (`/Users/<name>`, `/home/<name>`, `C:\Users\<name>`) or an email address.
 
 To run the same check on your computer, use the controller Python in the repository folder:
