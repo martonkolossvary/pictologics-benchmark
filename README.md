@@ -141,16 +141,24 @@ Pictologics itself scales across hardware, run only Pictologics on other
 computers, and send these results too:
 
 ```bash
-git clone https://github.com/martonkolossvary/pictologics-benchmark.git
-cd pictologics-benchmark
+git clone https://github.com/martonkolossvary/pictologics-benchmark.git pictologics-only
+cd pictologics-only
 ./reproduce.sh --pictologics-only
 ```
 
-On Windows, in PowerShell:
+On Windows, in PowerShell (see the notes on Windows above):
 
 ```powershell
+cd $env:USERPROFILE
+git clone https://github.com/martonkolossvary/pictologics-benchmark.git pictologics-only
+cd pictologics-only
 powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 --pictologics-only
 ```
+
+The folder name `pictologics-only` keeps this clone apart from a clone for the
+full run. A clone whose full run stopped before its first stage finished, for
+example for a missing C compiler, can still switch: run the command with
+`--pictologics-only` in it.
 
 The Pictologics-only run works like the full run, with these differences:
 
@@ -161,12 +169,14 @@ The Pictologics-only run works like the full run, with these differences:
   compiler.
 - It checks the IBSI 1 and IBSI 2 conformance of Pictologics only.
 - It draws no figures, because the figures compare the libraries.
-- It keeps all its files in `<result folder>/<machine ID>/pictologics_only/`,
-  apart from a full run of the same machine.
+- Its default result folder is `~/pictologics-only-results`
+  (`%USERPROFILE%\AppData\Local\pictologics-only-results` on Windows). A
+  result folder holds one kind of run: the command refuses a machine folder
+  that holds a full run, and the other way round.
 - At the end, it asks to send the result package, as the full run does. The
   package goes to `submissions/<machine ID>/<date>-pictologics/`.
 
-It takes about one to two days. On a 32-thread desktop computer, the
+It takes about one to two days. On a 16-thread desktop computer, the
 Pictologics tasks of pillar 1 took about 13 hours of the full run. Use a new
 clone for each kind of run: a clone keeps its kind of run in
 `.reproduce/settings.json`. Add `--quick` for a short check that is never sent.
@@ -187,7 +197,9 @@ The results go to `<result folder>/<machine ID>/`:
 | `figures/` | The manuscript figures and tables |
 | `submissions/<machine ID>/<date>/` | The result package |
 | `quick/` | The same folders for the quick run |
-| `pictologics_only/` | The same folders for the Pictologics-only run, without `figures/`; its package is `submissions/<machine ID>/<date>-pictologics/` |
+
+A Pictologics-only run has the same folders in its own result folder, without
+`figures/`. Its package is `submissions/<machine ID>/<date>-pictologics/`.
 
 ## Send your results
 

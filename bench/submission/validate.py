@@ -93,8 +93,9 @@ def validate(repo: Path, folder: Path) -> list[str]:
         problems.append("the machine ID differs from the folder name")
     # A package without a scope comes from a full run of the five libraries.
     scope = submission.get("scope", "all")
-    if scope not in SCOPES:
+    if not isinstance(scope, str) or scope not in SCOPES:
         problems.append(f"submission.json has an unknown scope {scope!r}")
+        scope = "unknown"
     if (folder_name["scope"] or "all") != scope:
         problems.append("the folder name and the scope in submission.json differ")
     accepted = json.loads(
@@ -130,6 +131,9 @@ def validate(repo: Path, folder: Path) -> list[str]:
         counts: dict[str, int] = {}
         foreign = 0
         other_library = 0
+        other_run = 0
+        if len({row["task_id"] for row in rows}) != len(rows):
+            problems.append(f"{pillar}: a task ID occurs more than once")
         for row in rows:
             counts[row["status"]] = counts.get(row["status"], 0) + 1
             if row["status"] not in STATUSES:
@@ -142,6 +146,11 @@ def validate(repo: Path, folder: Path) -> list[str]:
                 and record.get("workload")
             )
             other_library += scope != "all" and record.get("adapter") != scope
+            # A Pictologics-only run names its runs <pillar>_main_pictologics,
+            # so a full run's records cannot pass as a Pictologics-only run.
+            other_run += str(record.get("run_id") or "").endswith("_pictologics") != (
+                scope == "pictologics"
+            )
             if row["status"] != "measured":
                 continue
             wall = float(record.get("duration_median_sec") or 0)
@@ -170,6 +179,10 @@ def validate(repo: Path, folder: Path) -> list[str]:
             problems.append(f"{pillar}: {foreign} tasks are not main-run records")
         if other_library:
             problems.append(f"{pillar}: {other_library} tasks are not {scope} tasks")
+        if other_run:
+            problems.append(
+                f"{pillar}: the run IDs of {other_run} tasks do not fit the scope {scope}"
+            )
         if summary.get("run_status") not in {"completed", "completed_with_failures"}:
             problems.append(f"{pillar}: the run is not complete")
     if current:

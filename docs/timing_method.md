@@ -329,15 +329,16 @@ main run.
 `--pictologics-only` times Pictologics alone, to compare hardware. Its
 launcher ([`bench/reproduce/pictologics_only.py`](../bench/reproduce/pictologics_only.py))
 builds the controller commands with the release launcher and then changes
-only these options: `--adapters` (now `pictologics`), `--report-dir` (under
-`<machine-id>/pictologics_only/`), `--run-id` (with `_pictologics` at the end)
-and the two progress counters. Thus the release lock, the main contract, the
-cases, groups, repeats, time limit, memory budget, memory preflight and skip
-rules are those of the main run.
+only these options: `--adapters` (now `pictologics`), `--run-id` (with
+`_pictologics` at the end) and the two progress counters. Thus the release
+lock, the main contract, the cases, groups, repeats, time limit, memory
+budget, memory preflight, skip rules and folder layout are those of the main
+run. The run has its own default result folder, `pictologics-only-results`,
+and `run_kind.json` in each machine folder keeps the two kinds of run apart.
 
 | Run | Contract | Cases | Libraries | Scheduled records | Result folder |
 | --- | --- | ---: | ---: | ---: | --- |
-| Pictologics-only run | [`main.json`](../configs/benchmark/main.json) | 283 | 1 | 5,094 | `<machine-id>/pictologics_only/<pillar>` |
+| Pictologics-only run | [`main.json`](../configs/benchmark/main.json) | 283 | 1 | 5,094 | `<machine-id>/<pillar>` in its own result folder |
 
 With one library, the task order has no other library before or after a
 Pictologics task, and no other library warms or loads the computer between

@@ -787,6 +787,86 @@ class ReportIntegrationTests(unittest.TestCase):
         )
         self.assertFalse(any("throughput" in path.lower() for path in manifested))
 
+    def test_a_pictologics_only_run_gets_a_report_without_ratios(self) -> None:
+        # The Pictologics-only run times one library, so it has no pairs.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            input_dir = Path(temp_dir) / "input"
+            output_dir = Path(temp_dir) / "output"
+            input_dir.mkdir()
+            rows = self.pd.DataFrame(
+                [
+                    self._comparison_row(
+                        case, "pictologics", "category:all", repeat, duration
+                    )
+                    for case, duration in (("case-a", 2.0), ("case-b", 4.0))
+                    for repeat in (1, 2, 3)
+                ]
+            )
+
+            def verified_loader(path: Path):
+                return rows, {
+                    "record_source": "verified-test-ledger",
+                    "source_attested": True,
+                    "verified_payloads": [
+                        {
+                            "adapter": "pictologics",
+                            "features": {"all": ["Mean"]},
+                            "benchmark": {"status": "measured"},
+                        }
+                    ],
+                    "verified_payload_count": 1,
+                    "run_status": "completed",
+                    "execution_complete": True,
+                    "task_count": len(rows),
+                    "unfinished_task_count": 0,
+                    "status_counts": {"measured": len(rows)},
+                    "run_fingerprint": "report-test-fingerprint",
+                    "run_spec": {
+                        "schema_version": 1,
+                        "run_id": "pillar1_morphology_main_pictologics",
+                        "dataset": "synthetic-test",
+                        "dataset_kind": "synthetic",
+                        "manifest_sha256": "a" * 64,
+                        "dataset_hashes_verified": True,
+                        "dataset_values_inspected": True,
+                        "adapters": ["pictologics"],
+                        "workloads": ["family:glcm"],
+                        "repeats": 3,
+                        "aggregation": "3d_merge",
+                        "discretization": "fbn",
+                        "bins": 32,
+                        "bin_width": 32.0,
+                        "timing_iterations": 3,
+                        "thread_policy": {"mode": "adapter_native_threads"},
+                        "benchmark_machine": {
+                            "machine_id": "anonymous-test",
+                            "cpu_model": "Test CPU",
+                        },
+                        "adapter_environments": {
+                            "pictologics": {
+                                "distribution": "pictologics",
+                                "configured_release_version": "1.0.1",
+                                "distribution_version": "1.0.1",
+                                "python_version": "3.12.1",
+                                "profile_python": "3.12",
+                                "packages": [["pictologics", "1.0.1"]],
+                                "environment_freeze_sha256": "c" * 64,
+                                "environment_metadata_sha256": "b" * 64,
+                            }
+                        },
+                        "guardrail": {"baseline_adapter": "pictologics"},
+                    },
+                }
+
+            outputs = self.report.generate_report(
+                input_dir, output_dir, record_loader=verified_loader
+            )
+            pairs = self.pd.read_csv(outputs["matched_pairs"])
+            markdown = outputs["markdown_summary"].read_text(encoding="utf-8")
+
+        self.assertTrue(pairs.empty)
+        self.assertIn("Comparison baseline adapter: `pictologics`", markdown)
+
     def test_adapter_environment_summary_preserves_pyradiomics_release_labels(
         self,
     ) -> None:

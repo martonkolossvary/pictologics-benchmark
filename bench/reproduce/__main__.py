@@ -22,6 +22,8 @@ from bench.reproduce.host_profile import suggested_machine_id
 from bench.reproduce.stages import (
     PILLARS,
     REPO,
+    RESULT_FOLDERS,
+    RUN_KIND_FILE,
     STAGES,
     Context,
     Markers,
@@ -55,6 +57,38 @@ def _git(*arguments: str) -> str:
     return process.stdout.strip()
 
 
+def _default_result_root(pictologics_only: bool) -> Path:
+    # Not the folder that "git clone" makes in the home folder.  A
+    # Pictologics-only run has its own result folder.
+    folder = RESULT_FOLDERS[pictologics_only]
+    if platform.system() == "Windows":
+        return Path.home() / "AppData" / "Local" / folder
+    return Path.home() / folder
+
+
+def _switchable(stored: dict) -> bool:
+    """Whether a full-run clone has not started: no screen, run or package."""
+
+    machine_root = Path(stored["result_root"]) / stored["machine_id"]
+    return (
+        not stored.get("quick")
+        and not stored.get("screens")
+        and not any(
+            (machine_root / name).exists()
+            for name in (RUN_KIND_FILE, "reproduce_stages.json", "host_profile.json")
+        )
+    )
+
+
+def _switch_to_pictologics_only(stored: dict) -> dict:
+    switched = {**stored, "pictologics_only": True}
+    if Path(stored["result_root"]) == _default_result_root(False).resolve():
+        switched["result_root"] = str(_default_result_root(True).resolve())
+    atomic_write_json(SETTINGS, switched)
+    print(f"This clone now runs only Pictologics; results: {switched['result_root']}")
+    return switched
+
+
 def _settings(args: argparse.Namespace) -> dict:
     stored = (
         json.loads(SETTINGS.read_text(encoding="utf-8")) if SETTINGS.is_file() else {}
@@ -74,6 +108,15 @@ def _settings(args: argparse.Namespace) -> dict:
         "screens": True if args.screens else None,
         "pictologics_only": True if pictologics_only else None,
     }
+    if (
+        stored
+        and requested["pictologics_only"] is not None
+        and not stored["pictologics_only"]
+        and _switchable(stored)
+    ):
+        # A clone may become a Pictologics-only clone until its run starts,
+        # for example when the full run asked for a missing C compiler.
+        stored = _switch_to_pictologics_only(stored)
     for key, value in requested.items():
         if stored and value is not None and stored.get(key) != value:
             raise StageError(
@@ -82,12 +125,7 @@ def _settings(args: argparse.Namespace) -> dict:
             )
     if stored:
         return stored
-    # Not the folder that "git clone" makes in the home folder.
-    default_root = Path.home() / "pictologics-benchmark-results"
-    if platform.system() == "Windows":
-        default_root = (
-            Path.home() / "AppData" / "Local" / "pictologics-benchmark-results"
-        )
+    default_root = _default_result_root(pictologics_only)
     settings = {
         "result_root": requested["result_root"]
         or str(
@@ -134,7 +172,7 @@ def _check_unchanged(settings: dict) -> None:
 
 def _status(context: Context, markers: Markers) -> None:
     mode = " (Pictologics only)" if context.pictologics_only else ""
-    print(f"Machine {context.machine_id}{mode}, results in {context.state_root}")
+    print(f"Machine {context.machine_id}{mode}, results in {context.machine_root}")
     for stage in STAGES:
         state = (
             "done"

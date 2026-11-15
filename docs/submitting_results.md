@@ -62,7 +62,7 @@ A clone that ran with `--quick` or `--pictologics-only` keeps that setting in `.
 
 ## What the package holds
 
-[`bench/submission/package.py`](../bench/submission/package.py) writes the package to `<result folder>/<machine ID>/submissions/<machine ID>/<UTC date>/`. A Pictologics-only run writes it to `<result folder>/<machine ID>/pictologics_only/submissions/<machine ID>/<UTC date>-pictologics/`. A machine can make one package of each kind on each UTC date. The three pillars must have the run status `completed` or `completed_with_failures`.
+[`bench/submission/package.py`](../bench/submission/package.py) writes the package to `<result folder>/<machine ID>/submissions/<machine ID>/<UTC date>/`. A Pictologics-only run has its own result folder, and its package folder is `<UTC date>-pictologics`. A machine can make one package of each kind on each UTC date. The three pillars must have the run status `completed` or `completed_with_failures`.
 
 | File | Content |
 | --- | --- |
@@ -101,7 +101,7 @@ The submit stage uses the GitHub CLI (`gh`). It needs `gh` on the `PATH`, a `gh`
 1. Fork the benchmark repository to your GitHub account. GitHub lets no account fork its own repository, so for the owner of the benchmark repository the next steps use the repository itself.
 2. Clone the fork into a temporary folder.
 3. Make the branch `results-<machine ID>-<package folder>`.
-4. Copy the package to `submissions/<machine ID>/<package folder>/`, commit it and push the branch. The submit stage stops when that folder is already in the repository.
+4. Copy the package to `submissions/<machine ID>/<package folder>/`, commit it and push the branch. The submit stage stops when that folder is already in the clone of the fork.
 5. Open the pull request "Benchmark results from \<machine ID\> (\<date\>)", or "Pictologics-only benchmark results from \<machine ID\> (\<date\>)".
 
 The runner prints the address of the pull request at the end. To see the pull request and the result of its check later:

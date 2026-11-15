@@ -1,7 +1,7 @@
 name: ci
 
-# A result package changes only submissions/<machine-id>/<date>/, and
-# submission.yml checks it.
+# A result package changes only submissions/<machine-id>/<date>/ or
+# submissions/<machine-id>/<date>-pictologics/, and submission.yml checks it.
 on:
   push:
     paths-ignore: ["submissions/*/**"]
@@ -135,7 +135,8 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          $mode = @($env:MODE) | Where-Object { $_ }
+          $mode = @()
+          if ($env:MODE) { $mode += $env:MODE }
           powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 --quick @mode --yes --no-submit --machine-id ci-${{ runner.os }} --result-root "$env:RUNNER_TEMP\results"
       - name: Keep the reports
         if: always()

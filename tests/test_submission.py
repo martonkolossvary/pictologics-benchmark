@@ -258,8 +258,10 @@ class PictologicsOnlyPackageTests(unittest.TestCase):
             patcher.start()
             self.addCleanup(patcher.stop)
 
-    def run_folder(self, adapters: tuple[str, str]) -> Path:
-        machine_root = self.result_root / "machine-a" / "pictologics_only"
+    def run_folder(
+        self, adapters: tuple[str, str], *, run: str = "main_pictologics"
+    ) -> Path:
+        machine_root = self.result_root / "machine-a"
         write_host_profile(machine_root / "host_profile.json", "machine-a")
         for pillar in package.PILLARS:
             _ledger(
@@ -270,6 +272,7 @@ class PictologicsOnlyPackageTests(unittest.TestCase):
                         "adapter": adapter,
                         "workload": "group_texture",
                         "endpoint_contract_sha256": "c" * 64,
+                        "run_id": f"{pillar}_{run}",
                         "duration_median_sec": 1.0,
                         "cpu_time_median_sec": 0.5,
                     }
@@ -305,6 +308,30 @@ class PictologicsOnlyPackageTests(unittest.TestCase):
         renamed = folder.rename(folder.with_name(folder.name[:10]))
         problems = "\n".join(validate.validate(self.repo, renamed))
         self.assertIn("the folder name and the scope", problems)
+
+    def test_full_run_records_cannot_pass_as_a_pictologics_only_run(self) -> None:
+        # The Pictologics tasks of a full run, filtered and relabelled.
+        machine_root = self.run_folder(("pictologics", "pictologics"), run="main")
+        folder = package.build_package(
+            machine_root, self.result_root, scope="pictologics"
+        )
+        problems = "\n".join(validate.validate(self.repo, folder))
+        self.assertIn(
+            "pillar1_morphology: the run IDs of 2 tasks do not fit the scope", problems
+        )
+
+    def test_an_unknown_scope_is_a_problem_not_a_crash(self) -> None:
+        machine_root = self.run_folder(("pictologics", "pictologics"))
+        folder = package.build_package(
+            machine_root, self.result_root, scope="pictologics"
+        )
+        summary = folder / "submission.json"
+        summary.write_text(
+            json.dumps({**json.loads(summary.read_text("utf-8")), "scope": ["x"]}),
+            encoding="utf-8",
+        )
+        problems = "\n".join(validate.validate(self.repo, folder))
+        self.assertIn("unknown scope ['x']", problems)
 
     def test_a_full_run_package_must_hold_every_task(self) -> None:
         machine_root = self.run_folder(("pictologics", "pictologics"))

@@ -198,7 +198,7 @@ poetry run python -m bench.figures.community \
 - It shows absolute times machine by machine and never pools them.
 - It also writes `table_community_pictologics_times.csv`, with one row for each machine, group and size.
 
-The command prints "no submitted packages" for a figure without packages.
+The command prints each figure name with "drawn", or with "no packages with its data" when no package has the data of that figure.
 
 ## Compliance report figures
 

@@ -234,11 +234,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output-dir", required=True)
     args = parser.parse_args(argv)
     submissions, output_dir = Path(args.submissions), Path(args.output_dir)
-    for record in (
-        community_figure(submissions, output_dir),
-        pictologics_hardware_figure(submissions, output_dir),
+    for name, record in (
+        ("figure_community_runtime_ratio", community_figure(submissions, output_dir)),
+        (
+            "figure_community_pictologics_hardware",
+            pictologics_hardware_figure(submissions, output_dir),
+        ),
     ):
-        print("no submitted packages" if record is None else record["figure_id"])
+        print(
+            f"{name}: " + ("no packages with its data" if record is None else "drawn")
+        )
     return 0
 
 

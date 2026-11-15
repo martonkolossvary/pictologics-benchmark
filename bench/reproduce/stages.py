@@ -10,7 +10,7 @@ import shutil
 import subprocess
 import sys
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Callable
 
@@ -27,9 +27,16 @@ PILLARS = ("pillar1_morphology", "pillar2_whole_anatomy", "pillar3_ibsi2_phase3"
 SUPPORTED_PLATFORMS = ("Darwin-arm64", "Linux-x86_64", "Windows-AMD64")
 GIB = 1024**3
 # A Pictologics-only run times this one library on the tasks of the full run,
-# to compare hardware.  It keeps all its files in this folder of the machine.
+# to compare hardware.  Its default result folder differs from the full run's,
+# and is shorter, so that its paths stay within the Windows path budget.
 PICTOLOGICS = "pictologics"
-PICTOLOGICS_FOLDER = "pictologics_only"
+RESULT_FOLDERS = {
+    False: "pictologics-benchmark-results",
+    True: "pictologics-only-results",
+}
+# Names the kind of run of a machine folder, so that a full run and a
+# Pictologics-only run never share one.
+RUN_KIND_FILE = "run_kind.json"
 # On Linux, numpy's AVX-512 math routines round some results differently, and
 # the synthetic images then miss the release checksums.  The workspace build
 # turns them off; the timed adapter processes keep them.
@@ -60,23 +67,16 @@ class Context:
         return self.result_root / self.machine_id
 
     @property
-    def state_root(self) -> Path:
-        """The host profile, stage records, conformance tables and packages.
-
-        A Pictologics-only run keeps them in its own folder, so it never
-        changes a file of a full run of the same machine.
-        """
-        if self.pictologics_only:
-            return self.machine_root / PICTOLOGICS_FOLDER
-        return self.machine_root
-
-    @property
     def compliance_root(self) -> Path:
-        return self.state_root / "compliance"
+        return self.machine_root / "compliance"
 
     @property
     def run_root(self) -> Path:
-        return self.state_root / "quick" if self.quick else self.state_root
+        return self.machine_root / "quick" if self.quick else self.machine_root
+
+    @property
+    def run_kind(self) -> str:
+        return "pictologics_only" if self.pictologics_only else "full"
 
     @property
     def scope(self) -> str:
@@ -116,11 +116,59 @@ def _release_digest(context: Context) -> str:
     return hashlib.sha256(content + mode).hexdigest()
 
 
+def recorded_run_kind(machine_root: Path, context: Context) -> str | None:
+    """The kind of run that a machine folder holds, or None for a new folder.
+
+    ``run_kind.json`` names it.  Without the file, the stage records tell a
+    Pictologics-only run by its digests; other run files mean a full run from
+    before ``run_kind.json``.
+    """
+
+    path = machine_root / RUN_KIND_FILE
+    if path.is_file():
+        return json.loads(path.read_text(encoding="utf-8")).get("run_kind")
+    markers = machine_root / "reproduce_stages.json"
+    if markers.is_file():
+        records = json.loads(markers.read_text(encoding="utf-8"))
+        digests = {
+            record.get("digest")
+            for record in records.values()
+            if isinstance(record, dict)
+        }
+        pictologics = {
+            _release_digest(replace(context, pictologics_only=True, quick=quick))
+            for quick in (False, True)
+        }
+        return "pictologics_only" if digests & pictologics else "full"
+    if any((machine_root / name).exists() for name in ("host_profile.json", *PILLARS)):
+        return "full"
+    return None
+
+
+def claim_machine_folder(context: Context) -> None:
+    """Refuse a machine folder that holds the other kind of run; else claim it.
+
+    A full run and a Pictologics-only run would share the pillar ledgers, the
+    host profile and the stage records of one machine folder.
+    """
+
+    recorded = recorded_run_kind(context.machine_root, context)
+    path = context.machine_root / RUN_KIND_FILE
+    if recorded not in (None, context.run_kind):
+        kind = recorded.replace("_", "-")
+        raise StageError(
+            f"{context.machine_root} holds a {kind} run. Use another result "
+            "folder for this kind of run."
+        )
+    if recorded is None:
+        atomic_write_json(path, {"run_kind": context.run_kind})
+
+
 class Markers:
     """Stage completion records of one machine, bound to the release lock."""
 
     def __init__(self, context: Context):
-        self.path = context.state_root / "reproduce_stages.json"
+        self.path = context.machine_root / "reproduce_stages.json"
         self.digest = _release_digest(context)
         self.records = (
             json.loads(self.path.read_text(encoding="utf-8"))
@@ -216,6 +264,7 @@ def prerequisites(context: Context) -> None:
             )
     if problems:
         raise StageError("Fix these first:\n  - " + "\n  - ".join(problems))
+    claim_machine_folder(context)
 
 
 def release_check(context: Context) -> None:
@@ -361,7 +410,7 @@ def host_profile(context: Context) -> None:
 
     if context.host_profile is None:
         context.host_profile = write_host_profile(
-            context.state_root / "host_profile.json", context.machine_id
+            context.machine_root / "host_profile.json", context.machine_id
         )
 
 
@@ -467,7 +516,7 @@ def figures(context: Context) -> bool:
 
 def _latest_package(context: Context) -> Path | None:
     folders = sorted(
-        (context.state_root / "submissions" / context.machine_id).glob("*")
+        (context.machine_root / "submissions" / context.machine_id).glob("*")
     )
     return folders[-1] if folders else None
 
@@ -478,7 +527,7 @@ def package(context: Context) -> None:
 
     try:
         folder = _latest_package(context) or build_package(
-            context.state_root, context.result_root, scope=context.scope
+            context.machine_root, context.result_root, scope=context.scope
         )
     except PackageError as exc:
         raise StageError(str(exc)) from exc

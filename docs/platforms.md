@@ -54,7 +54,7 @@ Use local folders. The runner stops when the repository or the result folder is 
 
 On Windows, the launcher also stops when the longest result path is more than 240 characters. Some native libraries do not support long paths.
 
-The runner asks for the result folder on the first run. The default is `~/pictologics-benchmark-results` on macOS and Linux, and `%USERPROFILE%\AppData\Local\pictologics-benchmark-results` on Windows. It is not the repository folder, so a clone in the home folder keeps its results apart.
+The runner asks for the result folder on the first run. The default is `~/pictologics-benchmark-results` on macOS and Linux, and `%USERPROFILE%\AppData\Local\pictologics-benchmark-results` on Windows. It is not the repository folder, so a clone in the home folder keeps its results apart. For a Pictologics-only run, the default is `pictologics-only-results` in the same place. That name is shorter, because the result paths of both kinds of run must fit the Windows limit of 240 characters.
 
 [`.gitattributes`](../.gitattributes) keeps LF line endings in every text file on every platform. Thus the checksums of text files are the same on all platforms.
 
